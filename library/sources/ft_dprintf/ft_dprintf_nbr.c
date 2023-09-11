@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_dprintf_nbr.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: cllovio <cllovio@student.42.fr>            +#+  +:+       +#+        */
+/*   By: lisa <lisa@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/24 14:05:21 by cllovio           #+#    #+#             */
-/*   Updated: 2023/09/09 12:35:42 by cllovio          ###   ########.fr       */
+/*   Updated: 2023/09/11 12:12:33 by lisa             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,7 +40,7 @@ void	ft_putnbr_base_fd(unsigned long nbr, char *base, int *count, int fd)
 	unsigned long	base_size;
 
 	base_size = (unsigned long)ft_strlen(base);
-	if (nbr < 0)
+	if ((long long)nbr < 0)
 	{
 		ft_putchar_fd('-', count, fd);
 		nbr = nbr * -1;
