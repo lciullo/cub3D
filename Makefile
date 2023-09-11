@@ -2,6 +2,8 @@
 NAME		=	cub_3D
 CFLAGS		=	-Wall -Wextra -Werror
 
+CFLAGS+=-Wno-deprecated-declarations
+
 # Directories path
 DIR_SRCS	=	sources/
 DIR_HEADERS	=	headers/
@@ -15,7 +17,7 @@ HEADERS	=	$(DIR_HEADERS)clem.h \
 			$(DIR_LIB)/headers/library.h \
 			$(DIR_HEADERS)lisa.h\
 
-SRCS	=	$(DIR_SRCS)print.c
+SRCS	=	$(DIR_SRCS)main.c
 
 OBJS	=	$(SRCS:.c=.o)
 
