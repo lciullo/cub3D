@@ -6,11 +6,11 @@
 /*   By: cllovio <cllovio@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/08 13:57:42 by cllovio           #+#    #+#             */
-/*   Updated: 2023/05/04 14:45:20 by cllovio          ###   ########.fr       */
+/*   Updated: 2023/09/12 10:48:23 by cllovio          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libft.h"
+#include "library.h"
 
 size_t	ft_strlcpy(char *dest, const char *src, size_t destsize)
 {

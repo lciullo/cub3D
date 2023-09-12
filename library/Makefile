@@ -84,7 +84,7 @@ ${NAME}:		${OBJS}
 
 ${DIR_OBJS}%.o: %.c ${HEADERS}
 	@ mkdir -p ${dir $@}
-	${CC} ${CFLAGS} -I ${INCLUDES} -c $< -o $@
+	${CC} ${CFLAGS} -c $< -o $@ -I ${INCLUDES}
 
 # ---- Clean rules ---- #
 

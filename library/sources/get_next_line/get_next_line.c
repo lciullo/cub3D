@@ -6,117 +6,127 @@
 /*   By: cllovio <cllovio@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/10 12:49:46 by cllovio           #+#    #+#             */
-/*   Updated: 2023/08/23 15:07:51 by cllovio          ###   ########.fr       */
+/*   Updated: 2023/09/12 11:45:10 by cllovio          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "get_next_line.h"
+#include "library.h"
 
 char	*get_next_line(int fd)
 {
 	static char	buffer[BUFFER_SIZE + 1] = "\0";
-	char		*line;
-	int			end_file;
+	char		*stash;
 
-	end_file = 1;
-	line = read_the_line(buffer, &end_file, fd);
-	clean_buf(buffer, &end_file);
-	return (line);
-}
-
-char	*read_the_line(char *buffer, int *end_file, int fd)
-{
-	int		i;
-	char	*line;
-
-	line = NULL;
-	i = 0;
-	if (buffer[0] == '\0')
+	stash = NULL;
+	if (fd < 0 || read(fd, buffer, 0) < 0 || BUFFER_SIZE <= 0)
 	{
-		*end_file = read(fd, buffer, BUFFER_SIZE);
-		if (*end_file < 0)
-		{
-			buffer[0] = '\0';
-			return (NULL);
-		}
-		buffer[*end_file] = '\0';
-		if (*end_file <= 0)
-			return (line);
-	}
-	line = first_read(buffer, &i);
-	while (buffer[i] != '\n' && *end_file > 0)
-	{
-		if (buffer[i++] == '\0' && *end_file > 0)
-			line = ft_strjoin(line, next_line(buffer, end_file, &i, fd));
-	}
-	return (line);
-}
-
-char	*next_line(char *buffer, int *end_file, int *i, int fd)
-{
-	char	*continue_line;
-
-	*i = 0;
-	*end_file = read(fd, buffer, BUFFER_SIZE);
-	if (*end_file < 0)
-	{
+		stash = NULL;
 		buffer[0] = '\0';
 		return (NULL);
 	}
-	buffer[*end_file] = '\0';
-	continue_line = malloc(sizeof(char) * (next_line_len(buffer) + 2));
-	if (!continue_line)
+	if (read(fd, NULL, 0) == -1)
 		return (NULL);
-	while (buffer[*i] != '\n')
-	{
-		continue_line[*i] = buffer[*i];
-		if (buffer[*i] == '\0')
-			return (continue_line);
-		*i = *i + 1;
-	}
-	continue_line[*i] = '\n';
-	*i = *i + 1;
-	continue_line[*i] = '\0';
-	*i = *i - 1;
-	return (continue_line);
+	if (ft_strlen(buffer) != 0)
+		stash = ft_strdup(buffer);
+	stash = ft_read(fd, buffer, stash);
+	if (stash)
+		ft_new_buffer(buffer);
+	else
+		stash = NULL;
+	return (stash);
 }
 
-void	clean_buf(char *buffer, int *end_file)
+char	*ft_read(int fd, char *buffer, char *stash)
+{
+	int		read_bytes;
+	char	*line;
+
+	read_bytes = 1;
+	while (read_bytes != 0 && ft_check_line(buffer) == 1)
+	{
+		read_bytes = read(fd, buffer, BUFFER_SIZE);
+		if (read_bytes == -1)
+		{
+			if (stash != NULL)
+				free(stash);
+			return (NULL);
+		}
+		if (read_bytes == 0)
+			buffer[0] = '\0';
+		buffer[read_bytes] = '\0';
+		stash = ft_strjoin(stash, buffer);
+	}
+	line = ft_full_line(stash, 0, 0);
+	return (line);
+}
+
+char	*ft_new_buffer(char	*buffer)
+{
+	int		i;
+	int		j;
+
+	i = 0;
+	j = 0;
+	while (buffer[i] && buffer[i] != '\n')
+		i++;
+	if (buffer[i] == '\n')
+	{
+		while (buffer[i + 1])
+		{
+			buffer[j] = buffer[i + 1];
+			j++;
+			i++;
+		}
+	}
+	buffer[j] = '\0';
+	return (buffer);
+}
+
+int	ft_check_line(char *buffer)
 {
 	int	i;
 
 	i = 0;
-	if (*end_file <= 0)
-		return ;
-	while (buffer[i] != '\n')
+	while (buffer[i])
 	{
+		if (buffer[i] == '\n')
+			return (0);
 		i++;
 	}
-	if (i + 1 == BUFFER_SIZE)
-		buffer[0] = '\0';
-	else
-		ft_memmove(buffer, buffer + i + 1, ft_strlen(buffer + i + 1));
+	return (1);
 }
 
-char	*first_read(char *buffer, int *i)
+// Dans mon so_long j'avas modifié mon gnl de manière à que si il y a un \n a la 
+// fin de la ligne il ne soit pas dans le char * renvoyé par le programme
+
+// Actuellement c'est un gnl normal
+// Si tu veux le remodifié comme pour mon so_long tu as juste a effacé les
+// lignes 109, 110, 111, 120, 121, 122, 123, 124
+char	*ft_full_line(char *stash, int i, int j)
 {
 	char	*line;
-	int		len_line;
 
-	len_line = next_line_len(buffer);
-	line = malloc(sizeof(char) * (len_line + 2));
-	if (!line)
-		return (NULL);
-	while (buffer[*i] != '\n')
+	if (!(stash[i]))
+		return (free(stash), NULL);
+	while (stash[i] && stash[i] != '\n')
+		i++;
+	if (stash[i] == '\n')
+		line = malloc(sizeof(char) * (i + 2));
+	else
+		line = malloc(sizeof(char) * (i + 1));
+	if (!(line))
+		return (free(stash), NULL);
+	while (stash[j] && stash[j] != '\n')
 	{
-		line[*i] = buffer[*i];
-		if (buffer[*i] == '\0')
-			return (line);
-		*i = *i + 1;
+		line[j] = stash[j];
+		j++;
 	}
-	line[*i] = '\n';
-	*i = *i + 1;
-	line[*i] = '\0';
-	*i = *i - 1;
+	if (stash[j] == '\n')
+	{
+		line[j] = '\n';
+		j++;
+	}
+	line[j] = '\0';
+	free(stash);
 	return (line);
 }

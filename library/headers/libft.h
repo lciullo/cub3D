@@ -6,21 +6,12 @@
 /*   By: cllovio <cllovio@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/19 15:01:44 by lciullo           #+#    #+#             */
-/*   Updated: 2023/09/09 12:34:54 by cllovio          ###   ########.fr       */
+/*   Updated: 2023/09/12 10:45:53 by cllovio          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef LIBFT_H
 # define LIBFT_H
-
-# include <unistd.h>
-# include <stdlib.h>
-# include <fcntl.h>
-# include <stdint.h>
-# include <stddef.h>
-# include <stdbool.h>
-# include <limits.h>
-# include <stdarg.h>
 
 /*======================= ENUMERATION =======================*/
 enum {
