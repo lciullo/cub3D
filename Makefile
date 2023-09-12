@@ -1,47 +1,89 @@
-# Constants
-NAME		=	cub_3D
-CFLAGS		=	-Wall -Wextra -Werror
+include paths/sources_lisa.mk
+include paths/sources_clem.mk
 
-CFLAGS+=-Wno-deprecated-declarations
+# ---- Variables ---- #
+NAME		=	cub3D
+OS			=	$(shell uname)
+DEBUG		=	no
 
-# Directories path
+# ---- Directories ---- #
 DIR_SRCS	=	sources/
+DIR_OBJS	=	.objs/
 DIR_HEADERS	=	headers/
 DIR_LIB		=	library/
 LIB			=	$(DIR_LIB)library.a
-DIR_MLX		=	mlx/
 
-# Files path
+# ---- Flags ---- #
+CFLAGS		=	-Wall -Wextra -Werror
+CFLAGS		+=	-Wno-deprecated-declarations
+DFLAGS		=	-g3	-fsanitize=address
+MLX_FLAGS	=	-L $(DIR_MLX)
+
+ifeq ($(OS), Darwin)
+MLX_FLAGS 	+= -framework OpenGL -framework AppKit
+else ifeq ($(OS), Linux)
+MLX_FLAGS 	+= -l m -l Xext -l X11 -I $(DIR_MLX)
+endif
+
+ifeq ($(DEBUG), yes)
+CFLAGS	+=	$(DFLAGS)
+endif
+
+# ---- mlx ---- #
+ifeq ($(OS), Darwin)
+DIR_MLX	=	mlx/mlx_mac
+else ifeq ($(OS), Linux)
+DIR_MLX	=	mlx/mlx_linux
+endif
+
+# ---- Files ---- #
 HEADERS	=	$(DIR_HEADERS)clem.h \
 			$(DIR_HEADERS)cub3D.h \
 			$(DIR_LIB)/headers/library.h \
-			$(DIR_HEADERS)lisa.h\
+			$(DIR_HEADERS)lisa.h
 
-SRCS	=	$(DIR_SRCS)main.c
+OBJS	=	$(addprefix $(DIR_OBJS),$(SRCS:.c=.o))
 
-OBJS	=	$(SRCS:.c=.o)
+# ---- Command ---- #
+RMF				=	rm -rf
 
-# Rules
-%.o: %.c	$(HEADERS) Makefile
-			$(CC) $(CFLAGS) -c $< -o $@ -I $(DIR_HEADERS)
+# ====================== RULES ====================== #
+
+# ---- Compilation rules ---- #
 
 all:		$(NAME)
 
 ${NAME}:	$(LIB) ${OBJS}
 			$(MAKE) -C $(DIR_MLX)
-			$(CC) $(CFLAGS) $(OBJS) $(LIB) -Lmlx -lmlx -lX11 -lXext -L$(DIR_MLX) -o $(NAME)
+			$(CC) $(CFLAGS) $(OBJS) $(LIB) -o $(NAME) $(MLX_FLAGS)
 
-$(LIB):
+$(DIR_OBJS)%.o: %.c	$(HEADERS)
+			@ mkdir -p ${dir $@}
+			$(CC) $(CFLAGS) -c $< -o $@ -I $(DIR_HEADERS)
+
+# ---- Library rule ---- #
+$(LIB) :
 			$(MAKE) -C $(DIR_LIB)
 
+# ---- Debug rule ---- #
+debug:
+			clear
+			$(MAKE) DEBUG=yes
+
+# ---- Norm rule ---- #
+norm:
+			clear
+			norminette $(DIR_SRCS) $(DIR_HEADERS) $(DIR_LIB)
+
+# ---- Clean rules ---- #
+re :		fclean all
+
 clean:
-			${RM} ${OBJS}
+			${RMF} ${OBJS} ${DIR_OBJS}
 			$(MAKE) clean -C $(DIR_LIB)
 
 fclean:		clean
 			${RM} ${NAME}
 			$(MAKE) fclean -C $(DIR_LIB)
 
-re :		fclean all
-
-.PHONY :	all clean fclean re mlx libft
+.PHONY :	all debug norm re clean fclean 

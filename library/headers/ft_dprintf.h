@@ -6,14 +6,12 @@
 /*   By: cllovio <cllovio@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/24 11:05:45 by cllovio           #+#    #+#             */
-/*   Updated: 2023/09/09 12:37:12 by cllovio          ###   ########.fr       */
+/*   Updated: 2023/09/12 10:45:42 by cllovio          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef FT_DPRINTF_H
 # define FT_DPRINTF_H
-
-# include "library.h"
 
 /*======================= DEFINE =======================*/
 # define HEXA_LOW "0123456789abcdef"

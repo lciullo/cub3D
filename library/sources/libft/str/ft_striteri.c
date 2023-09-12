@@ -3,14 +3,14 @@
 /*                                                        :::      ::::::::   */
 /*   ft_striteri.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: cllovio <cllovio@student.42lyon.fr>        +#+  +:+       +#+        */
+/*   By: cllovio <cllovio@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/16 16:21:23 by cllovio           #+#    #+#             */
-/*   Updated: 2022/11/17 10:52:16 by cllovio          ###   ########.fr       */
+/*   Updated: 2023/09/12 10:48:22 by cllovio          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libft.h"
+#include "library.h"
 
 void	ft_striteri(char *s, void (*f)(unsigned int, char*))
 {

@@ -6,11 +6,11 @@
 /*   By: cllovio <cllovio@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/10 12:49:46 by cllovio           #+#    #+#             */
-/*   Updated: 2023/08/23 15:07:51 by cllovio          ###   ########.fr       */
+/*   Updated: 2023/09/12 10:46:40 by cllovio          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "get_next_line.h"
+#include "library.h"
 
 char	*get_next_line(int fd)
 {

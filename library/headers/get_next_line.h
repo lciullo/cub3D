@@ -6,14 +6,12 @@
 /*   By: cllovio <cllovio@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/22 18:39:21 by cllovio           #+#    #+#             */
-/*   Updated: 2023/09/09 12:33:29 by cllovio          ###   ########.fr       */
+/*   Updated: 2023/09/12 10:45:46 by cllovio          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef GET_NEXT_LINE_H
 # define GET_NEXT_LINE_H
-
-# include "library.h"
 
 /*======================= BUFFER_SIZE =======================*/
 # ifndef BUFFER_SIZE
