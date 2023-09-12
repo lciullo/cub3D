@@ -6,80 +6,66 @@
 /*   By: cllovio <cllovio@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/10 12:49:35 by cllovio           #+#    #+#             */
-/*   Updated: 2023/09/12 10:46:35 by cllovio          ###   ########.fr       */
+/*   Updated: 2023/09/12 11:34:39 by cllovio          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "library.h"
 
-unsigned int	next_line_len(char *buffer)
-{
+size_t	ft_strlen_gnl(char *s)
+{	
 	unsigned int	i;
 
 	i = 0;
-	while (buffer[i] != '\n')
-	{
-		if (buffer[i] == '\0')
-		{
-			return (i);
-		}
+	while (s[i] != '\0')
 		i++;
-	}
 	return (i);
 }
 
-void	*ft_memmove_gnl(void *dst, const void *src, size_t len)
-{
-	const char	*str_src;
-	char		*str_dst;
-
-	if (!dst && !src)
-		return (dst);
-	str_dst = dst;
-	str_src = src;
-	if (str_dst < str_src)
-	{
-		while (len-- > 0)
-			*str_dst++ = *str_src++;
-		*str_dst = '\0';
-	}
-	else
-	{
-		str_src = src + (len - 1);
-		str_dst = dst + (len);
-		*str_dst-- = '\0';
-		while (len-- > 0)
-			*str_dst-- = *str_src--;
-	}
-	return (dst);
-}
-
-char	*ft_strjoin_gnl(char *s1, char *s2)
+char	*ft_strjoin_gnl(char *stash, char *buffer)
 {
 	int		i;
-	int		pos;
-	char	*tab;
+	int		k;
+	char	*new_s;
 
-	if (!s1)
-		return (NULL);
-	if (!s2)
+	i = 0;
+	k = 0;
+	if (!(stash))
 	{
-		free(s1);
-		return (NULL);
+		stash = malloc(sizeof(char));
+		if (!(stash))
+			return (NULL);
+		stash[0] = '\0';
 	}
-	tab = malloc(sizeof(char) * (ft_strlen(s1) + ft_strlen(s2) + 1));
-	if (!(tab))
-		return (NULL);
+	new_s = malloc(sizeof(char) * (ft_strlen(stash) + ft_strlen(buffer) + 1));
+	if (!new_s)
+		return (free(stash), NULL);
+	while (stash[i])
+		new_s[k++] = stash[i++];
 	i = 0;
-	pos = 0;
-	while (s1[i] != '\0')
-		tab[pos++] = s1[i++];
-	i = 0;
-	while (s2[i] != '\0')
-		tab[pos++] = s2[i++];
-	tab[pos] = '\0';
-	free(s1);
-	free(s2);
-	return (tab);
+	while (buffer[i])
+		new_s[k++] = buffer[i++];
+	new_s[k] = '\0';
+	free(stash);
+	return (new_s);
 }
 
+char	*ft_strdup_gnl(char *buffer)
+{
+	char	*dest;
+	int		len;
+	int		i;
+
+	i = 0;
+	len = ft_strlen(buffer);
+	dest = malloc(sizeof(char) * (len + 1));
+	if (!(dest))
+		return (NULL);
+	while (buffer[i])
+	{
+		dest[i] = buffer[i];
+		i++;
+	}
+	dest[i] = '\0';
+	return (dest);
+}
