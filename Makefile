@@ -17,12 +17,12 @@ LIB			=	$(DIR_LIB)library.a
 CFLAGS		=	-Wall -Wextra -Werror
 CFLAGS		+=	-Wno-deprecated-declarations
 DFLAGS		=	-g3	-fsanitize=address
-MLX_FLAGS	=	-L $(DIR_MLX)
+MLX_FLAGS	=	-L$(DIR_MLX)
 
 ifeq ($(OS), Darwin)
-MLX_FLAGS 	+= -framework OpenGL -framework AppKit
+MLX_FLAGS 	+= -lmlx -framework OpenGL -framework AppKit
 else ifeq ($(OS), Linux)
-MLX_FLAGS 	+= -l m -l Xext -l X11 -I $(DIR_MLX)
+MLX_FLAGS 	+= -lmlx -lX11 -lXext -L$(DIR_MLX)
 endif
 
 ifeq ($(DEBUG), yes)
@@ -54,8 +54,8 @@ RMF				=	rm -rf
 all:		$(NAME)
 
 ${NAME}:	$(LIB) ${OBJS}
-			$(MAKE) -C $(DIR_MLX)
-			$(CC) $(CFLAGS) $(OBJS) $(LIB) -o $(NAME) $(MLX_FLAGS)
+			make -C $(DIR_MLX)
+			$(CC) $(CFLAGS) $(OBJS) $(LIB) $(MLX_FLAGS) -o $(NAME)
 
 $(DIR_OBJS)%.o: %.c	$(HEADERS)
 			@ mkdir -p ${dir $@}
