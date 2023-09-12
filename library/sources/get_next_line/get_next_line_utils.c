@@ -6,14 +6,14 @@
 /*   By: cllovio <cllovio@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/10 12:49:35 by cllovio           #+#    #+#             */
-/*   Updated: 2023/09/12 11:34:39 by cllovio          ###   ########.fr       */
+/*   Updated: 2023/09/12 16:05:26 by cllovio          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "library.h"
 
 size_t	ft_strlen_gnl(char *s)
-{	
+{
 	unsigned int	i;
 
 	i = 0;

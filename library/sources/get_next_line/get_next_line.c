@@ -6,7 +6,7 @@
 /*   By: cllovio <cllovio@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/10 12:49:46 by cllovio           #+#    #+#             */
-/*   Updated: 2023/09/12 11:45:10 by cllovio          ###   ########.fr       */
+/*   Updated: 2023/09/12 16:04:49 by cllovio          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -96,8 +96,8 @@ int	ft_check_line(char *buffer)
 	return (1);
 }
 
-// Dans mon so_long j'avas modifié mon gnl de manière à que si il y a un \n a la 
-// fin de la ligne il ne soit pas dans le char * renvoyé par le programme
+// Dans mon so_long j'avas modifié mon gnl de manière à que si il y a un \n a
+//la fin de la ligne il ne soit pas dans le char * renvoyé par le programme
 
 // Actuellement c'est un gnl normal
 // Si tu veux le remodifié comme pour mon so_long tu as juste a effacé les
