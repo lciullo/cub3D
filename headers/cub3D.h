@@ -5,6 +5,6 @@
 # include "clem.h"
 # include "../library/headers/library.h"
 
-void	pirnt(void);
+void	print(void);
 
 #endif
