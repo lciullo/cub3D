@@ -3,16 +3,14 @@
 /*                                                        :::      ::::::::   */
 /*   ft_dprintf_nbr.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lisa <lisa@student.42.fr>                  +#+  +:+       +#+        */
+/*   By: cllovio <cllovio@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/24 14:05:21 by cllovio           #+#    #+#             */
-/*   Updated: 2023/09/11 12:12:33 by lisa             ###   ########.fr       */
+/*   Updated: 2023/09/12 10:46:26 by cllovio          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "ft_dprintf.h"
-
-// static int	ft_strlen(char *str);
+#include "library.h"
 
 void	ft_putnbr_fd(int n, int *count, int fd)
 {
@@ -54,13 +52,3 @@ void	ft_putnbr_base_fd(unsigned long nbr, char *base, int *count, int fd)
 	else
 		ft_putchar_fd(base[nbr], count, fd);
 }
-
-// static int	ft_strlen(char *str)
-// {
-// 	int	len;
-
-// 	len = 0;
-// 	while (str[len])
-// 		len++;
-// 	return (len);
-// }

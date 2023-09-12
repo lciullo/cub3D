@@ -6,11 +6,11 @@
 /*   By: cllovio <cllovio@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/07 14:59:50 by cllovio           #+#    #+#             */
-/*   Updated: 2023/06/09 12:21:35 by cllovio          ###   ########.fr       */
+/*   Updated: 2023/09/12 10:46:45 by cllovio          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libft.h"
+#include "library.h"
 
 bool	ft_isalnum(int c)
 {
