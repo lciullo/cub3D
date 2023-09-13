@@ -1,4 +1,3 @@
-
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
@@ -7,7 +6,7 @@
 /*   By: cllovio <cllovio@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/10 12:49:46 by cllovio           #+#    #+#             */
-/*   Updated: 2023/09/13 15:45:38 by cllovio          ###   ########.fr       */
+/*   Updated: 2023/09/13 17:41:55 by cllovio          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,9 +25,9 @@ char	*get_next_line(int fd)
 	}
 	if (read(fd, NULL, 0) == -1)
 		return (NULL);
-	if (ft_strlen(buffer) != 0)
+	if (ft_strlen_gnl(buffer) != 0)
 	{	
-		stash = ft_strdup(buffer);
+		stash = ft_strdup_gnl(buffer);
 		if (!(stash))
 			return (NULL);
 	}
@@ -37,7 +36,7 @@ char	*get_next_line(int fd)
 		ft_new_buffer(buffer);
 	else
 		*buffer = 0;
-	if (!stash || !ft_strlen(stash))
+	if (!stash || !ft_strlen_gnl(stash))
 		return (NULL);
 	return (stash);
 }
@@ -56,7 +55,7 @@ char	*ft_read(int fd, char *buffer, char *stash)
 		if (read_bytes == 0)
 			buffer[0] = '\0';
 		buffer[read_bytes] = '\0';
-		stash = ft_strjoin(stash, buffer);
+		stash = ft_strjoin_gnl(stash, buffer);
 		if (!(stash))
 			return (NULL);
 	}
