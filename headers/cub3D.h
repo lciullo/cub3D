@@ -60,6 +60,7 @@ enum {
 typedef struct s_data {
 	void		*mlx;
 	void		*win;
+	char		**map;                  
 }	t_data;
 
 # include "lisa.h"
