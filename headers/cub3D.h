@@ -67,5 +67,4 @@ typedef struct s_data {
 # include "clem.h"
 # include "../library/headers/library.h"
 
-
 #endif
