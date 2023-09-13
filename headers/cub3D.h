@@ -13,7 +13,7 @@
 # define RED "\033[1;31m"
 
 # ifndef BUFFER_SIZE
-#  define BUFFER_SIZE 1
+# define BUFFER_SIZE 1
 # endif
 
 /*======================= ENUMERATION =======================*/
