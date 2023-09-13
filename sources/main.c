@@ -1,11 +1,16 @@
 #include "cub3D.h"
 
-int	main(void)
+int	main(int ac, char **av)
 {
 	t_data	data;
 
-	if (launch_mlx(&data) == FAILURE)
+	(void)data;
+	if (ac != 2)
+		ft_dprintf(2, "Error\nWrong number of arguments\n");
+	if (parsing(av[1]) == FAILURE)
 		return (FAILURE);
+	/*if (launch_mlx(&data) == FAILURE)
+		return (FAILURE);*/
 	return (0);
 }
 
