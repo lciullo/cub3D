@@ -7,7 +7,10 @@ int	main(int ac, char **av)
 
 	(void)data;
 	if (ac != 2)
+	{
 		ft_dprintf(2, "Error\nWrong number of arguments\n");
+		return (FAILURE);
+	}
 	if (parsing(av[1]) == FAILURE)
 		return (FAILURE);
 	/*if (launch_mlx(&data) == FAILURE)

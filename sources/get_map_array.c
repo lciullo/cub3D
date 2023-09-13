@@ -14,7 +14,8 @@ int read_map(char *path)
 		tmp = get_next_line(fd);
 		if (tmp == NULL)
 			break ;
-		ft_dprintf(1, "line : %s\n", tmp);
+		ft_dprintf(1, "%s\n", tmp);
+		free(tmp);
 	}
 	close(fd);
 	return (SUCCESS);
