@@ -12,6 +12,10 @@
 # define END "\033[0m"
 # define RED "\033[1;31m"
 
+# ifndef BUFFER_SIZE
+#  define BUFFER_SIZE 1
+# endif
+
 /*======================= ENUMERATION =======================*/
 
 enum {

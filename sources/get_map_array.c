@@ -1,12 +1,12 @@
 #include "cub3D.h"
-#include <stdio.h>
+
 int read_map(char *path)
 {
 	char	*tmp;
 	int	fd;
 
 	tmp = NULL;
-	fd = open("", O_RDONLY);
+	fd = open(path, O_RDONLY);
 	if (fd == -1)
 		return (ft_dprintf(2, "Error\nThe file could not be opened\n"), FAILURE);
 	while (1)

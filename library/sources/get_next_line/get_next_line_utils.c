@@ -6,7 +6,7 @@
 /*   By: cllovio <cllovio@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/10 12:49:35 by cllovio           #+#    #+#             */
-/*   Updated: 2023/09/13 15:46:30 by cllovio          ###   ########.fr       */
+/*   Updated: 2023/09/13 17:41:47 by cllovio          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,7 +39,7 @@ char	*ft_strjoin_gnl(char *stash, char *buffer)
 	}
 	if (!(buffer))
 		return (free(stash), NULL);
-	new_s = malloc(sizeof(char) * (ft_strlen(stash) + ft_strlen(buffer) + 1));
+	new_s = malloc(sizeof(char) * (ft_strlen_gnl(stash) + ft_strlen_gnl(buffer) + 1));
 	if (!new_s)
 		return (free(stash), NULL);
 	while (stash[i])
@@ -59,7 +59,7 @@ char	*ft_strdup_gnl(char *buffer)
 	int		i;
 
 	i = 0;
-	len = ft_strlen(buffer);
+	len = ft_strlen_gnl(buffer);
 	dest = malloc(sizeof(char) * (len + 1));
 	if (!(dest))
 		return (NULL);
