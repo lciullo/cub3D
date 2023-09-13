@@ -2,20 +2,20 @@
 
 int read_map(char *path)
 {
-	char	*tmp;
+	char	*line;
 	int	fd;
 
-	tmp = NULL;
+	line = NULL;
 	fd = open(path, O_RDONLY);
 	if (fd == -1)
 		return (ft_dprintf(2, "Error\nThe file could not be opened\n"), FAILURE);
 	while (1)
 	{
-		tmp = get_next_line(fd);
-		if (tmp == NULL)
+		line = get_next_line(fd);
+		if (line == NULL)
 			break ;
-		ft_dprintf(1, "%s\n", tmp);
-		free(tmp);
+		ft_dprintf(1, "%s", line);
+		free(line);
 	}
 	close(fd);
 	return (SUCCESS);
