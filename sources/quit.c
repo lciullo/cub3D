@@ -20,4 +20,5 @@ int	quit_game(t_data *data)
 	exit(0);
 	return (0);
 }
+
 #endif
