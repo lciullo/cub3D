@@ -5,7 +5,9 @@ int	main(int ac, char **av)
 {
 	t_data	data;
 	t_draw	draw;
+	char **tmp_map;
 
+	tmp_map = NULL;
 	(void)av;
 	if (ac != 2)
 	{
@@ -14,6 +16,13 @@ int	main(int ac, char **av)
 	}
 	/*if (parsing(av[1]) == FAILURE)
 		return (FAILURE);*/
+	int i = 0;
+	tmp_map = make_map(av[1]);
+	while (tmp_map[i])
+	{
+		ft_dprintf(1, "%s\n", tmp_map[i]);
+		i++;
+	}
 	if (launch_mlx(&data, &draw) == FAILURE)
 		return (FAILURE);
 	return (0);
@@ -43,6 +52,7 @@ void	draw_square(t_draw *draw, int x, int y, int color, int size)
 
 	i = 0;
 	j = 0;
+	(void)color;
 	while (j < size)
 	{
 		i = 0;
