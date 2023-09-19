@@ -1,6 +1,8 @@
 DIR_SRCS	=	sources/
 
 SRCS		= 	$(DIR_SRCS)main.c \
-				$(DIR_SRCS)parsing.c \
-				$(DIR_SRCS)get_map_array.c \
-				$(DIR_SRCS)tmp.c
+				$(DIR_SRCS)structure.c \
+				$(DIR_SRCS)parsing/parsing.c \
+				$(DIR_SRCS)parsing/utils_parsing.c \
+				$(DIR_SRCS)parsing/get_map_array.c
+				

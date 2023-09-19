@@ -64,8 +64,12 @@ enum {
 typedef struct s_data {
 	void		*mlx;
 	void		*win;
-	char		**map;                  
+	char		**map;
+	char		**directions;
+	char 		**colors;                 
 }	t_data;
+
+void init_struct(t_data *data);
 
 # include "lisa.h"
 # include "clem.h"
