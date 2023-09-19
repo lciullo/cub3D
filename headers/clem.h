@@ -46,6 +46,13 @@ int		key_hook(int key_code, t_data *data);
 /* ---- launch_mlx.c ----*/
 int		launch_mlx(t_data *data);
 void	generate_image(t_data *data);
+int		render_next_frame(t_data *data);
+
+/* ---- move.c ----*/
+void	move_up(t_data *data);
+void	move_down(t_data *data);
+void	move_left(t_data *data);
+void	move_right(t_data *data);
 
 /* ---- quit.c ----*/
 int		quit_game(t_data *data);
