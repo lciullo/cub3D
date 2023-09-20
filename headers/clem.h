@@ -1,6 +1,8 @@
 #ifndef CLEM_H
 # define CLEM_H
 
+# include <math.h>
+
 # define SIZE_X				1220
 # define SIZE_Y				790
 
