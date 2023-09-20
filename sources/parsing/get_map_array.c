@@ -1,38 +1,93 @@
 #include "cub3D.h"
 
-int read_map(char *path, t_data *data)
+static int get_size_map(char *path, t_parsing *utils, char *line);
+static int get_map_array(char *path, t_parsing *utils, char **map, char *line);
+static int read_for_map(t_parsing *utils, int fd, char *line);
+
+int parse_map(char *path, t_parsing *utils, t_data *data)
 {
-	t_parsing	utils;
-	char		*line;
-	int			fd;
-	int			begin;
+	char *line;
 
 	line = NULL;
-	utils.size_map = 0;
-	begin = 0;
-	(void)data;
-	(void)utils;
-	fd = open(path, O_RDONLY);
-	if (fd == -1)
-		return (ft_dprintf(2, "Error\nThe file could not be opened\n"), FAILURE);
+	if (get_size_map(path, utils, line) == FAILURE)
+		return (FAILURE);
+	if (get_map_array(path, utils, data->map, line) == FAILURE)
+		return (FAILURE);
+	return (SUCCESS);
+}
+
+static int get_size_map(char *path, t_parsing *utils, char *line)
+{
+	int	fd;
+
+	fd = ft_open(path);
+	if (fd == ERROR)
+		return (FAILURE);
 	while (1)
 	{
 		line = get_next_line(fd);
 		if (line == NULL)
 			break ;
-		while ((is_map(line) == FALSE))
+		while ((is_map(line) == TRUE))
 		{
+			if (read_for_map(utils, fd, line) == FAILURE)
+				return (FAILURE);
 			if (line)
 				free(line);
 			line = get_next_line(fd);
-			begin++;
-			
+			utils->size_map++;	
 		}
 		if (line)
 			free(line);
 	}
-	//ft_dprintf(1, "nb lines %d size_map %d \n", nb_lines, size_map);
-	ft_dprintf(1, "begin %d\n", begin);
+	close(fd);
+	return (SUCCESS);
+}
+
+static int read_for_map(t_parsing *utils, int fd, char *line)
+{
+	if (utils->size_map == 0 && is_empty(line) == TRUE)
+		utils->size_map--;
+	if ((utils->size_map != 0 && utils->size_map != -1) && is_empty(line) == TRUE)
+	{
+		if (line)
+			free(line);
+		ft_dprintf(2, "Error\nDon't put empty line on map\n");
+		close(fd);
+		return (FAILURE);
+	}
+	return (SUCCESS);
+}
+
+static int get_map_array(char *path, t_parsing *utils, char **map, char *line)
+{
+	int	fd;
+	int	row;
+
+	row = 0;
+	fd = ft_open(path);
+	if (fd == ERROR)
+		return (FAILURE);
+	map = malloc(sizeof(char *) * (utils->size_map + 1));
+	if (!map)
+		return (FAILURE);
+	while (1)
+	{
+		line = get_next_line(fd);
+		if (line == NULL)
+			break ;
+		while (is_map(line) == TRUE && is_empty(line) == FALSE)
+		{	
+			map[row] = ft_strdup(line);
+			if (line)
+				free(line);
+			line = get_next_line(fd);
+			row++;	
+		}
+		if (line)
+			free(line);
+	}
+	ft_dprintf(1, "\ntest\n in loop row %d | map[row] %s\n", row, map[row - 1]);
 	close(fd);
 	return (SUCCESS);
 }

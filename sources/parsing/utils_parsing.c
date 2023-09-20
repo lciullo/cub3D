@@ -10,16 +10,20 @@ int is_valid(char c)
 
 int	is_empty(char *line)
 {
-	int i;
+	int 	i;
+	size_t	count;
 
 	i = 0;
+	count = 0;
 	while (line[i])
 	{
-		if ((line[i] != '\n') && (line[i] != ' '))
-			return (FALSE);
+		if ((line[i] == '\n') || (line[i] == ' '))
+			count++;
 		i++;
 	}
-	return (TRUE);
+	if (ft_strlen(line) == count)
+		return (TRUE);
+	return (FALSE);
 }
 
 int is_map(char *line)
@@ -27,6 +31,8 @@ int is_map(char *line)
 	int i;
 
 	i = 0;
+	if (!line)
+		return (FALSE);
 	while (line[i])
 	{
 		if (is_valid(line[i]) == TRUE)
@@ -35,4 +41,14 @@ int is_map(char *line)
 			return (FALSE);
 	}
 	return (TRUE);
+}
+
+int	ft_open(char *path)
+{
+	int fd;
+
+	fd = open(path, O_RDONLY);
+	if (fd == ERROR)
+		return (ft_dprintf(2, "Error\nThe file could not be opened\n"), ERROR);
+	return (fd);
 }

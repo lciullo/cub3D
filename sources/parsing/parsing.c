@@ -2,11 +2,11 @@
 
 static int	type_file_check(char *file);
 
-int parsing(char *file, t_data *data)
+int parsing(char *file, t_data *data, t_parsing *utils)
 {
 	if (type_file_check(file) == FAILURE)
 		return (FAILURE);
-	if (read_map(file, data) == FAILURE)
+	if (parse_map(file, utils, data) == FAILURE)
 		return (FAILURE);
 	return (SUCCESS);
 }

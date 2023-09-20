@@ -21,6 +21,7 @@
 enum {
 	SUCCESS,
 	FAILURE,
+	ERROR = -1,
 };
 
 enum {
@@ -69,7 +70,13 @@ typedef struct s_data {
 	char 		**colors;                 
 }	t_data;
 
-void init_struct(t_data *data);
+typedef struct s_parsing {
+	int size_map;
+    int nb_colors;
+    int nb_directions;                
+}	t_parsing;
+
+void init_struct(t_data *data, t_parsing *utils);
 
 # include "lisa.h"
 # include "clem.h"
