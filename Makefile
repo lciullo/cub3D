@@ -45,7 +45,7 @@ HEADERS	=	$(DIR_HEADERS)clem.h \
 OBJS	=	$(addprefix $(DIR_OBJS),$(SRCS:.c=.o))
 
 # ---- Command ---- #
-RMF				=	rm -rf
+RMF		=	rm -rf
 
 # ====================== RULES ====================== #
 
@@ -68,7 +68,7 @@ $(LIB) :
 # ---- Debug rule ---- #
 debug:
 			clear
-			$(MAKE) DEBUG=yes
+			$(MAKE) re DEBUG=yes
 
 # ---- Norm rule ---- #
 norm:

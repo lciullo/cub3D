@@ -64,7 +64,14 @@ enum {
 typedef struct s_data {
 	void		*mlx;
 	void		*win;
-	char		**map;                  
+	char		**map;
+	int			square_x;
+	int			square_y;
+	int			gap;
+	bool		N;
+	bool		S;
+	bool		W;
+	bool		E;
 }	t_data;
 
 # include "lisa.h"
