@@ -26,6 +26,9 @@ typedef struct	s_draw {
 
 /*======================= PROTOTYPES =======================*/
 
+/* ---- draw/draw_direction.c ----*/
+void	draw_direction_vector(t_data *data, t_draw *draw);
+
 /* ---- draw/draw_rectangle.c ----*/
 void	draw_frame(t_draw *draw, int color);
 

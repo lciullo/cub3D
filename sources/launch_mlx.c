@@ -5,6 +5,10 @@ int	launch_mlx(t_data *data)
 	data->gap = 10;
 	data->square_x = 610;
 	data->square_y = 355;
+	data->N = true;
+	data->S = false;
+	data->W = false;
+	data->E = false;
 	data->mlx = mlx_init();
 	if (data->mlx == NULL)
 		return (print_error_messages(MLX), quit_game(data), FAILURE);
@@ -12,7 +16,6 @@ int	launch_mlx(t_data *data)
 	if (data->win == NULL)
 		return (print_error_messages(MLX), quit_game(data), FAILURE);
 	hook(data);
-	mlx_loop(data->mlx);
 	return (SUCCESS);
 }
 
@@ -25,6 +28,7 @@ void	generate_image(t_data *data)
 	&draw.line_length, &draw.endian);
 	draw_frame(&draw, H_RED);
 	draw_square(&draw, data->square_x, data->square_y, H_BLUE, 80);
+	draw_direction_vector(data, &draw);
 	mlx_put_image_to_window(data->mlx, data->win, draw.img, 0, 0);
 	mlx_destroy_image(data->mlx, draw.img);
 }

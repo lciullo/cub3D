@@ -9,7 +9,7 @@ void	draw_vertical_rectangle(t_draw *draw, int x, int y, int color)
 	i = 0;
 	j = 0;
 	x_value = x;
-	while (j < SIZE_Y)
+	while (j < (SIZE_Y - 25))
 	{
 		i = 0;
 		x = x_value;
