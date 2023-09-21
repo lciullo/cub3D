@@ -68,6 +68,13 @@ typedef struct s_data {
 	char		**map;
 	char		**directions;
 	char 		**colors;                 
+	int			square_x;
+	int			square_y;
+	int			gap;
+	bool		N;
+	bool		S;
+	bool		W;
+	bool		E;
 }	t_data;
 
 typedef struct s_parsing {
