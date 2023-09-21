@@ -67,7 +67,8 @@ typedef struct s_data {
 	void		*win;
 	char		**map;
 	char		**directions;
-	char 		**colors;                 
+	char 		**colors; 
+	int			*len_line;                
 	int			square_x;
 	int			square_y;
 	int			gap;
