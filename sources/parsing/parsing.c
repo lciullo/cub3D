@@ -34,5 +34,7 @@ int parse_map(char *path, t_parsing *utils, t_data *data)
 		return (FAILURE);
 	if (fill_map(path, utils, data, line) == FAILURE)
 		return (FAILURE);
+	if (count_line(data, utils) == FAILURE)
+		return (FAILURE);
 	return (SUCCESS);
 }

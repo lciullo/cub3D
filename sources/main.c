@@ -4,16 +4,14 @@ int	main(int ac, char **av)
 {
 	t_data		data;
 	t_parsing	utils;	
-
-	int	y;
-
-	y = 0;
+  
 	(void)av;
 	if (ac != 2)
 	{
 		ft_dprintf(2, "Error\nWrong number of arguments\n");
 		return (FAILURE);
 	}
+	init_struct(&data, &utils);
 	if (parsing(av[1], &data, &utils) == FAILURE)
 		return (FAILURE);
 	int x = 0;

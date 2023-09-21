@@ -13,5 +13,5 @@ int is_valid(char c);
 /*Fill map*/
 int get_size_map(char *path, t_parsing *utils, char *line);
 int fill_map(char *path, t_parsing *utils, t_data *data, char *line);
-
+int count_line(t_data *data, t_parsing *utils);
 #endif
