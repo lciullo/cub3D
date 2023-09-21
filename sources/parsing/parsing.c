@@ -2,11 +2,11 @@
 
 static int	type_file_check(char *file);
 
-int parsing(char *file)
+int parsing(char *file, t_data *data, t_parsing *utils)
 {
 	if (type_file_check(file) == FAILURE)
 		return (FAILURE);
-	if (read_map(file) == FAILURE)
+	if (parse_map(file, utils, data) == FAILURE)
 		return (FAILURE);
 	return (SUCCESS);
 }
@@ -22,5 +22,17 @@ static int	type_file_check(char *file)
 		ft_dprintf(2, "Error\nMap name must be finished by .cub\n");
 		return (FAILURE);
 	}
+	return (SUCCESS);
+}
+
+int parse_map(char *path, t_parsing *utils, t_data *data)
+{
+	char *line;
+
+	line = NULL;
+	if (get_size_map(path, utils, line) == FAILURE)
+		return (FAILURE);
+	if (fill_map(path, utils, data, line) == FAILURE)
+		return (FAILURE);
 	return (SUCCESS);
 }
