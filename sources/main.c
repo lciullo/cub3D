@@ -6,7 +6,6 @@ int	main(int ac, char **av)
 	t_parsing	utils;	
   
 	(void)av;
-	int y;
 	if (ac != 2)
 	{
 		ft_dprintf(2, "Error\nWrong number of arguments\n");
@@ -15,19 +14,13 @@ int	main(int ac, char **av)
 	init_struct(&data, &utils);
 	if (parsing(av[1], &data, &utils) == FAILURE)
 		return (FAILURE);
-	int x = 0;
-	y = 0;
-	while (data.map[y])
+	int	i = 0;
+	while (data.len_line[i])
 	{
-		x = 0;
-		while (data.map[y][x])
-		{
-			ft_dprintf(1, "%c", data.map[y][x]);
-			x++;
-		}
-		y++;
+		ft_dprintf(1, "%d\n", data.len_line[i]);
+		i++;
 	}
-	// if (launch_mlx(&data) == FAILURE)
-	// 	return (FAILURE);
+	/*if (launch_mlx(&data) == FAILURE)
+		return (FAILURE);*/
 	return (0);
 }

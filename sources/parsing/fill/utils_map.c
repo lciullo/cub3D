@@ -85,5 +85,6 @@ int	count_line(t_data *data, t_parsing *utils)
 		data->len_line[i] = ft_strlen(data->map[i]);
 		i++;
 	}
+	data->len_line[i] = '\0';
 	return (SUCCESS);
 }
