@@ -6,6 +6,7 @@ int	main(int ac, char **av)
 	t_parsing	utils;	
   
 	(void)av;
+	int y;
 	if (ac != 2)
 	{
 		ft_dprintf(2, "Error\nWrong number of arguments\n");
@@ -15,6 +16,7 @@ int	main(int ac, char **av)
 	if (parsing(av[1], &data, &utils) == FAILURE)
 		return (FAILURE);
 	int x = 0;
+	y = 0;
 	while (data.map[y])
 	{
 		x = 0;

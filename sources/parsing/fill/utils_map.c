@@ -59,7 +59,7 @@ static int count_map_size(t_parsing *utils, int fd, char *line)
 {
 	if (utils->size_map == 0 && is_empty(line) == TRUE)
 		utils->size_map--;
-	if ((utils->size_map != 0 || utils->size_map != -1) && is_empty(line) == TRUE)
+	if ((utils->size_map != 0 && utils->size_map != -1) && is_empty(line) == TRUE)
 	{
 		if (line)
 			free(line);
