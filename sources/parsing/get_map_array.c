@@ -87,7 +87,15 @@ static int get_map_array(char *path, t_parsing *utils, char **map, char *line)
 		if (line)
 			free(line);
 	}
-	ft_dprintf(1, "\ntest\n in loop row %d | map[row] %s\n", row, map[row - 1]);
+	map[row] = NULL;
+	int i = 0;
+	while (map[i])
+	{
+		ft_dprintf(1, "%s", map[i]);
+		i++;
+	}
+	ft_dprintf(1, "\n%s", map[i]);
+	//ft_dprintf(1, "\ntest\n in loop row %d | map[row] %s\n", row, map[0]);
 	close(fd);
 	return (SUCCESS);
 }
