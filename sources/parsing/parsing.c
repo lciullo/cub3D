@@ -24,3 +24,15 @@ static int	type_file_check(char *file)
 	}
 	return (SUCCESS);
 }
+
+int parse_map(char *path, t_parsing *utils, t_data *data)
+{
+	char *line;
+
+	line = NULL;
+	if (get_size_map(path, utils, line) == FAILURE)
+		return (FAILURE);
+	if (fill_map(path, utils, data, line) == FAILURE)
+		return (FAILURE);
+	return (SUCCESS);
+}

@@ -26,23 +26,6 @@ int	is_empty(char *line)
 	return (FALSE);
 }
 
-int is_map(char *line)
-{
-	int i;
-
-	i = 0;
-	if (!line)
-		return (FALSE);
-	while (line[i])
-	{
-		if (is_valid(line[i]) == TRUE)
-			i++;
-		else
-			return (FALSE);
-	}
-	return (TRUE);
-}
-
 int	ft_open(char *path)
 {
 	int fd;
