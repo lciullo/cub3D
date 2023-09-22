@@ -1,7 +1,7 @@
 #include "cub3D.h"
 
-static int read_map(int fd, t_parsing *utils, char *line);
-static int count_map_size(t_parsing *utils, int fd, char *line);
+static int read_map(int fd, t_data *data, char *line);
+static int count_map_size(t_data *data, int fd, char *line);
 
 int is_map(char *line)
 {
@@ -20,19 +20,19 @@ int is_map(char *line)
 	return (TRUE);
 }
 
-int get_size_map(char *path, t_parsing *utils, char *line)
+int get_size_map(char *path, t_data *data, char *line)
 {
     int	fd;
 
 	fd = ft_open(path);
 	if (fd == ERROR)
 		return (FAILURE);
-    if (read_map(fd, utils, line) == FAILURE)
+    if (read_map(fd, data, line) == FAILURE)
         return (FAILURE);
     return (SUCCESS);
 }
 
-static int read_map(int fd, t_parsing *utils, char *line)
+static int read_map(int fd, t_data *data, char *line)
 {
 	while (1)
 	{
@@ -41,12 +41,12 @@ static int read_map(int fd, t_parsing *utils, char *line)
 			break ;
 		while ((is_map(line) == TRUE))
 		{
-			if (count_map_size(utils, fd, line) == FAILURE)
+			if (count_map_size(data, fd, line) == FAILURE)
 				return (FAILURE);
 			if (line)
 				free(line);
 			line = get_next_line(fd);
-			utils->size_map++;	
+			data->size_map++;	
 		}
 		if (line)
 			free(line);
@@ -55,11 +55,11 @@ static int read_map(int fd, t_parsing *utils, char *line)
 	return (SUCCESS);
 }
 
-static int count_map_size(t_parsing *utils, int fd, char *line)
+static int count_map_size(t_data *data, int fd, char *line)
 {
-	if (utils->size_map == 0 && is_empty(line) == TRUE)
-		utils->size_map--;
-	if ((utils->size_map != 0 && utils->size_map != -1) && is_empty(line) == TRUE)
+	if (data->size_map == 0 && is_empty(line) == TRUE)
+		data->size_map--;
+	if ((data->size_map != 0 && data->size_map != -1) && is_empty(line) == TRUE)
 	{
 		if (line)
 			free(line);
@@ -70,14 +70,12 @@ static int count_map_size(t_parsing *utils, int fd, char *line)
 	return (SUCCESS);
 }
 
-#include "stdio.h"
-
-int	count_line(t_data *data, t_parsing *utils)
+int	count_line(t_data *data)
 {
 	int i;
 
 	i = 0;
-	data->len_line = malloc((sizeof (int **)) * (utils->size_map + 1));
+	data->len_line = malloc((sizeof (int **)) * (data->size_map + 1));
 	if (!data->len_line)
 		return (FAILURE);
 	while (data->map[i])
@@ -85,6 +83,5 @@ int	count_line(t_data *data, t_parsing *utils)
 		data->len_line[i] = ft_strlen(data->map[i]);
 		i++;
 	}
-	//data->len_line[i] = '\0';
 	return (SUCCESS);
 }

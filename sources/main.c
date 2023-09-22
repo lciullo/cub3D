@@ -14,10 +14,10 @@ int	main(int ac, char **av)
 	init_struct(&data, &utils);
 	if (parsing(av[1], &data, &utils) == FAILURE)
 		return (FAILURE);
-	int	i = 0;
-	while (i < utils.size_map)
+	int i = 0;
+	while (data.map[i])
 	{
-		ft_dprintf(1, "%d\n", data.len_line[i]);
+		ft_dprintf(1, "%s\n", data.map[i]);
 		i++;
 	}
 	/*if (launch_mlx(&data) == FAILURE)
