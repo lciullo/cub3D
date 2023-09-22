@@ -65,4 +65,5 @@ int		quit_game(t_data *data);
 /* ---- utils.c ----*/
 void	print_error_messages(int error_code);
 
+void    mini_map(t_data *data, t_draw *draw);
 #endif
