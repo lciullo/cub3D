@@ -77,37 +77,7 @@ int	count_line(t_data *data, t_parsing *utils)
 	int i;
 
 	i = 0;
-	data->len_line = malloc((sizeof (int **
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	)) * (utils->size_map + 1));
+	data->len_line = malloc((sizeof (int **)) * (utils->size_map + 1));
 	if (!data->len_line)
 		return (FAILURE);
 	while (data->map[i])
