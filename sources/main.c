@@ -15,7 +15,7 @@ int	main(int ac, char **av)
 	if (parsing(av[1], &data, &utils) == FAILURE)
 		return (FAILURE);
 	int	i = 0;
-	while (data.len_line[i])
+	while (i < utils.size_map)
 	{
 		ft_dprintf(1, "%d\n", data.len_line[i]);
 		i++;
