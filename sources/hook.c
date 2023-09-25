@@ -25,29 +25,19 @@ int	key_hook(int key_code, t_data *data)
 		s_key(data);
 	if (key_code == D_KEY)
 		d_key(data);
-	if (key_code == UP_KEY)
-	{
-		data->N = true;
-		data->S = false;
-		data->W = false;
-		data->E = false;
-	}
 	if (key_code == LEFT_KEY)
 	{
+		data->angle += (M_PI * 10) / 180;
+		// rajouter securite voir se que j'ai pas push sur mon mac
 		data->N = false;
 		data->S = false;
 		data->W = true;
 		data->E = false;
 	}
-	if (key_code == DOWN_KEY)
-	{
-		data->N = false;
-		data->S = true;
-		data->W = false;
-		data->E = false;
-	}
 	if (key_code == RIGHT_KEY)
 	{
+		data->angle -= (M_PI * 10) / 180;
+		// rajouter securite voir se que j'ai pas push sur mon mac
 		data->N = false;
 		data->S = false;
 		data->W = false;

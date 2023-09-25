@@ -72,6 +72,7 @@ typedef struct s_data {
 	int			*len_line;                
 	int			square_x;
 	int			square_y;
+	float		angle;
 	int			gap;
 	bool		N;
 	bool		S;

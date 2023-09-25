@@ -27,8 +27,8 @@ void	generate_image(t_data *data)
 	draw.addr = mlx_get_data_addr(draw.img, &draw.bits_per_pixel, \
 	&draw.line_length, &draw.endian);
 	// draw_frame(&draw, H_RED);
-	// draw_square(&draw, data->square_x, data->square_y, H_BLUE, 80);
-	// draw_direction_vector(data, &draw);
+	//draw_square(&draw, data->square_x, data->square_y, H_BLUE, 80);
+	//draw_direction_vector(data, &draw);
 	mini_map(data, &draw);
 	mlx_put_image_to_window(data->mlx, data->win, draw.img, 0, 0);
 	mlx_destroy_image(data->mlx, draw.img);
