@@ -53,7 +53,7 @@ static int count_map_size(t_data *data, int fd, char *line)
 	return (SUCCESS);
 }
 
-int	count_line(t_data *data)
+int	fill_len_line_array(t_data *data)
 {
 	int i;
 

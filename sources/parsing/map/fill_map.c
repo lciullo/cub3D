@@ -5,8 +5,8 @@ static char	*copy_line(const char *s1);
 
 int fill_map(char *path, t_data *data, char *line)
 {
-	int	fd;
 	int	row;
+	int	fd;
 
 	row = 0;
 	fd = ft_open(path);
@@ -26,6 +26,16 @@ int fill_map(char *path, t_data *data, char *line)
 			if (line)
 				free(line);
 			line = get_next_line(fd);
+			if (line)
+			{
+				if (is_map(line) == FALSE)
+				{
+					ft_dprintf(2, "Error\nInvalid characteres\n");
+					if (line)
+						free(line);
+					return (FAILURE);
+				}
+			}
 			row++;	
 		}
 		if (line)

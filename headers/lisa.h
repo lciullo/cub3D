@@ -15,10 +15,13 @@ int is_empty_map(char *file, char *line);
 // --- Utils map ---
 int is_map(char *line);
 int	is_empty_line(char *line);
-
+int is_valid(char c);
 // --- Fill map ---
 int get_size_map(char *path, t_data *data, char *line);
 int fill_map(char *path, t_data *data, char *line);
-int count_line(t_data *data);
+int fill_len_line_array(t_data *data);
+
+//--- Is valid map ---
+int is_valid_map(t_data *data, t_parsing *utils);
 
 #endif

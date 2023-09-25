@@ -1,7 +1,5 @@
 #include "cub3D.h"
 
-static int is_valid(char c);
-
 int is_map(char *line)
 {
 	int i;
@@ -19,7 +17,7 @@ int is_map(char *line)
 	return (TRUE);
 }
 
-static int is_valid(char c)
+int is_valid(char c)
 {
 	if ((c == '1') || (c == '0') || (c == ' ') || (c == 'W') || \
 		 (c == 'S') || (c == 'N') || (c == 'E') || (c == '\n'))

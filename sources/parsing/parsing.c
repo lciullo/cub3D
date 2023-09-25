@@ -28,12 +28,13 @@ static int parse_map(char *path, t_parsing *utils, t_data *data)
 	char *line;
 
 	line = NULL;
-	(void)utils;
 	if (get_size_map(path, data, line) == FAILURE)
 		return (FAILURE);
 	if (fill_map(path, data, line) == FAILURE)
 		return (FAILURE);
-	if (count_line(data) == FAILURE)
+	if (fill_len_line_array(data) == FAILURE)
+		return (FAILURE);
+	if (is_valid_map(data, utils) == FAILURE)
 		return (FAILURE);
 	return (SUCCESS);
 }
