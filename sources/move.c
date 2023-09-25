@@ -18,20 +18,16 @@ void	move_left(t_data *data)
 {
 	printf("angle : %f\n", data->angle);
 	printf("angle : %f %f\n", data->square_x, data->square_y);
-	data->square_x += (data->x_dir * cosf(data->angle - (M_PI / 2))) - (data->y_dir * sinf(data->angle - (M_PI / 2)));
-	data->square_y += (data->x_dir * sinf(data->angle - (M_PI / 2))) + (data->y_dir * cosf(data->angle - (M_PI / 2)));
+	data->square_x -= (data->x_dir * cosf((M_PI / 2))) - (data->y_dir * sinf((M_PI / 2)));
+	data->square_y -= (data->x_dir * sinf((M_PI / 2))) + (data->y_dir * cosf((M_PI / 2)));
 	printf("angle : %f %f\n", data->square_x, data->square_y);
-	// data->square_y += data->y_dir;
-	// data->square_x += data->x_dir;
 }
 
 void	move_right(t_data *data)
 {
 	printf("angle : %f\n", data->angle);
 	printf("angle : %f %f\n", data->square_x, data->square_y);
-	data->square_x += (data->x_dir * cosf(data->angle + (M_PI / 2))) - (data->y_dir * sinf(data->angle + (M_PI / 2)));
-	data->square_y += (data->x_dir * sinf(data->angle + (M_PI / 2))) + (data->y_dir * cosf(data->angle + (M_PI / 2)));
+	data->square_x += (data->x_dir * cosf((M_PI / 2))) - (data->y_dir * sinf((M_PI / 2)));
+	data->square_y += (data->x_dir * sinf((M_PI / 2))) + (data->y_dir * cosf((M_PI / 2)));
 	printf("angle : %f %f\n", data->square_x, data->square_y);
-	// data->square_y += data->y_dir;
-	// data->square_x += data->x_dir;
 }

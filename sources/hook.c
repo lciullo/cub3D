@@ -22,10 +22,16 @@ int	key_hook(int key_code, t_data *data)
 	if (key_code == D_KEY)
 		move_right(data);
 	if (key_code == LEFT_KEY)
-		data->angle += (M_PI * 10) / 180;
-		// rajouter securite voir se que j'ai pas push sur mon mac
+	{
+		data->angle += (M_PI * 5) / 180;
+		if (data->angle > (2 * M_PI))
+			data->angle = 0;
+	}
 	if (key_code == RIGHT_KEY)
-		data->angle -= (M_PI * 10) / 180;
-		// rajouter securite voir se que j'ai pas push sur mon mac
+	{
+		data->angle -= (M_PI * 5) / 180;
+		if (data->angle < 0)
+			data->angle = 2 * M_PI;
+	}
 	return (SUCCESS);
 }
