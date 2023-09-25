@@ -4,39 +4,14 @@ static void	draw_north_vector(t_draw *draw, int x_start, int y_start, double c_a
 
 void	draw_direction_vector(t_data *data, t_draw *draw)
 {
-	if (data->N == true)
-	{
-		draw_north_vector(draw, (data->square_x + 40), data->square_y, cos(M_PI_2), -sin(M_PI_2), 277);
-		draw_north_vector(draw, (data->square_x + 40), (data->square_y - (160 / tan((M_PI * 30) / 180))), cos(M_PI), sin(M_PI), 160);
-		draw_north_vector(draw, (data->square_x + 40), (data->square_y - (160 / tan((M_PI * 30) / 180))), cos(0), sin(0), 160);
-		draw_north_vector(draw, (data->square_x + 40), data->square_y, cos(2 * M_PI / 3), -sin(2 * M_PI / 3), (277 / cos((M_PI * 30) / 180)));
-		draw_north_vector(draw, (data->square_x + 40), data->square_y, cos(M_PI / 3), -sin(M_PI / 3), (277 / cos((M_PI * 30) / 180)));
-	}
-	else if (data->S == true)
-	{
-		draw_north_vector(draw, (data->square_x + 40), (data->square_y + 80), cos(M_PI_2), sin(M_PI_2), 277);
-		draw_north_vector(draw, (data->square_x + 40 ), ((data->square_y + 80) + (160 / tan((M_PI * 30) / 180))), cos(M_PI), sin(M_PI), 160);
-		draw_north_vector(draw, (data->square_x + 40), ((data->square_y + 80) + (160 / tan((M_PI * 30) / 180))), cos(0), sin(0), 160);
-		draw_north_vector(draw, (data->square_x + 40), (data->square_y + 80), cos(4 * M_PI / 3), -sin(4 * M_PI / 3), (277 / cos((M_PI * 30) / 180)));
-		draw_north_vector(draw, (data->square_x + 40), (data->square_y + 80), cos(5 * M_PI / 3), -sin(5 * M_PI / 3), (277 / cos((M_PI * 30) / 180)));
-	}
-	else if (data->E == true)
-	{
-		draw_north_vector(draw, (data->square_x + 80), (data->square_y + 40), cos(0), sin(0), 277);
-		draw_north_vector(draw, ((data->square_x + 80) + (160 / tan((M_PI * 30) / 180))), (data->square_y + 40), cos(M_PI_2), sin(M_PI_2), 160);
-		draw_north_vector(draw, ((data->square_x + 80) + (160 / tan((M_PI * 30) / 180))), (data->square_y + 40), cos(3 * M_PI_2), sin(3 * M_PI_2), 160);
-		draw_north_vector(draw, (data->square_x + 80), (data->square_y + 40), cos(M_PI / 6), sin(M_PI / 6), (277 / cos((M_PI * 30) / 180)));
-		draw_north_vector(draw, (data->square_x + 80), (data->square_y + 40), cos(11 * M_PI / 6), sin(11 * M_PI / 6), (277 / cos((M_PI * 30) / 180)));
-	}
-	else if (data->W == true)
-	{
-		draw_north_vector(draw, data->square_x, (data->square_y + 40), cos(M_PI), sin(M_PI), 277);
-		draw_north_vector(draw, (data->square_x - (160 / tan((M_PI * 30) / 180))), (data->square_y + 40), cos(M_PI_2), sin(M_PI_2), 160);
-		draw_north_vector(draw, (data->square_x - (160 / tan((M_PI * 30) / 180))), (data->square_y + 40), cos(3 * M_PI_2), sin(3 * M_PI_2), 160);
-		draw_north_vector(draw, data->square_x, (data->square_y + 40), cos(5 * M_PI / 6), sin(5 * M_PI / 6), (277 / cos((M_PI * 30) / 180)));
-		draw_north_vector(draw, data->square_x, (data->square_y + 40), cos(7 * M_PI / 6), sin(7 * M_PI / 6), (277 / cos((M_PI * 30) / 180)));
-	}
+	int	square_half_size;
 
+	square_half_size = SQUARE_SIZE / 2;
+	draw_north_vector(draw, (data->square_x + square_half_size), (data->square_y + square_half_size), cos(M_PI_2 + data->angle), -sin(M_PI_2 + data->angle), 277);
+	//draw_north_vector(draw, (data->square_x + square_half_size), ((data->square_y + square_half_size) - (160 / tan((M_PI * 30) / 180))), cos(M_PI + data->angle), sin(M_PI + data->angle), 160);
+	//draw_north_vector(draw, (data->square_x + square_half_size), ((data->square_y + square_half_size) - (160 / tan((M_PI * 30) / 180))), cos(0 + data->angle), sin(0 + data->angle), 160);
+	draw_north_vector(draw, (data->square_x + square_half_size), (data->square_y + square_half_size), cos((2 * M_PI / 3) + data->angle), -sin((2 * M_PI / 3) + data->angle), (277 / cos((M_PI * 30) / 180)));
+	draw_north_vector(draw, (data->square_x + square_half_size), (data->square_y + square_half_size), cos((M_PI / 3) + data->angle), -sin((M_PI / 3) + data->angle), (277 / cos((M_PI * 30) / 180)));
 }
 
 static void	draw_north_vector(t_draw *draw, int x_start, int y_start, double c_angle, double s_angle, int size)

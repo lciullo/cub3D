@@ -17,7 +17,7 @@ LIB			=	$(DIR_LIB)library.a
 CFLAGS		=	-Wall -Wextra -Werror
 CFLAGS		+=	-Wno-deprecated-declarations
 DFLAGS		=	-g3	-fsanitize=address
-MLX_FLAGS	=	-L$(DIR_MLX)
+MLX_FLAGS	=	-L$(DIR_MLX) -lm
 
 ifeq ($(OS), Darwin)
 MLX_FLAGS 	+= -lmlx -framework OpenGL -framework AppKit

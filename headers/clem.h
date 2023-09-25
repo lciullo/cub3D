@@ -3,8 +3,9 @@
 
 # include <math.h>
 
-# define SIZE_X				1220
-# define SIZE_Y				790
+# define SIZE_X				1920
+# define SIZE_Y				1080
+# define SQUARE_SIZE		80
 
 # define H_WHITE			0xffffff
 # define H_BLACK			0x000000
