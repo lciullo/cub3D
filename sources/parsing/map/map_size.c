@@ -3,23 +3,6 @@
 static int read_map(int fd, t_data *data, char *line);
 static int count_map_size(t_data *data, int fd, char *line);
 
-int is_map(char *line)
-{
-	int i;
-
-	i = 0;
-	if (!line)
-		return (FALSE);
-	while (line[i])
-	{
-		if (is_valid(line[i]) == TRUE)
-			i++;
-		else
-			return (FALSE);
-	}
-	return (TRUE);
-}
-
 int get_size_map(char *path, t_data *data, char *line)
 {
     int	fd;
@@ -57,9 +40,9 @@ static int read_map(int fd, t_data *data, char *line)
 
 static int count_map_size(t_data *data, int fd, char *line)
 {
-	if (data->size_map == 0 && is_empty(line) == TRUE)
+	if (data->size_map == 0 && is_empty_line(line) == TRUE)
 		data->size_map--;
-	if ((data->size_map != 0 && data->size_map != -1) && is_empty(line) == TRUE)
+	if ((data->size_map != 0 && data->size_map != -1) && is_empty_line(line) == TRUE)
 	{
 		if (line)
 			free(line);
@@ -70,7 +53,7 @@ static int count_map_size(t_data *data, int fd, char *line)
 	return (SUCCESS);
 }
 
-int	count_line(t_data *data)
+int	fill_len_line_array(t_data *data)
 {
 	int i;
 
