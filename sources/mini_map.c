@@ -1,6 +1,5 @@
 #include "cub3D.h"
 
-static int	find_len_max(int *len_line, int size_map);
 
 void    mini_map(t_data *data, t_draw *draw)
 {
@@ -23,28 +22,28 @@ void    mini_map(t_data *data, t_draw *draw)
 		{
 			if (data->map[y][x] == '1' || data->map[y][x] == ' ')
 				draw_square(draw, x_square, y_square, H_PINK, size_square);
-			else if (data->map[y][x] == '0')
+			else if (data->map[y][x] == '0' || data->map[y][x] == 'N' || data->map[y][x] == 'S' || data->map[y][x] == 'W' || data->map[y][x] == 'E')
 				draw_square(draw, x_square, y_square, H_GREY, size_square);
-			else if (data->map[y][x] == 'N' || data->map[y][x] == 'S' || data->map[y][x] == 'W' || data->map[y][x] == 'E')
-				draw_square(draw, data->square_x, data->square_y, H_PURPLE, size_square);
 			x++;
 			x_square += size_square;
 		}
-		if (x < len_max)
-		{
-			while (x < len_max)
-			{
-				draw_square(draw, x_square, y_square, H_PINK, size_square);
-				x++;
-				x_square += size_square;
-			}
-		}
+		// if (x < len_max)
+		// {
+		// 	while (x < len_max)
+		// 	{
+		// 		draw_square(draw, x_square, y_square, H_PINK, size_square);
+		// 		x++;
+		// 		x_square += size_square;
+		// 	}
+		// }
 		y++;
 		y_square += size_square;
 	}
+	draw_square(draw, (data->square_x), (data->square_y), H_PURPLE, size_square);
+	draw_direction_vector(data, draw);
 }
 
-static int	find_len_max(int *len_line, int size_map)
+int	find_len_max(int *len_line, int size_map)
 {
 	int	i;
 	int	len_max;

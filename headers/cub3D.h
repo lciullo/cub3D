@@ -69,15 +69,19 @@ typedef struct s_data {
 	char		**directions;
 	char 		**colors; 
 	int 		size_map;
-	int			*len_line;                
-	int			square_x;
-	int			square_y;
+	int			*len_line;
+	float			square_x;
+	float			square_y;
 	float		angle;
 	int			gap;
 	bool		N;
 	bool		S;
 	bool		W;
 	bool		E;
+	int			x_pers;
+	int			y_pers;
+	float			x_dir;
+	float			y_dir;
 }	t_data;
 
 typedef struct s_parsing {
