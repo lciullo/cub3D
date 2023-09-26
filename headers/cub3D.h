@@ -80,8 +80,8 @@ typedef struct s_data {
 	bool		E;
 	int			x_pers;
 	int			y_pers;
-	float		xf_pers;
-	float		yf_pers;
+	float		xf_p;
+	float		yf_p;
 	float		x_dir;
 	float		y_dir;
 }	t_data;

@@ -36,5 +36,6 @@ static int parse_map(char *path, t_parsing *utils, t_data *data)
 		return (FAILURE);
 	if (is_valid_map(data, utils) == FAILURE)
 		return (FAILURE);
+	get_pos(data);
 	return (SUCCESS);
 }

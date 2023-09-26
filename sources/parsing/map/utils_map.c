@@ -1,4 +1,5 @@
 #include "cub3D.h"
+#include <stdio.h>
 
 int is_map(char *line)
 {
@@ -41,4 +42,37 @@ int	is_empty_line(char *line)
 	if (ft_strlen(line) == count)
 		return (TRUE);
 	return (FALSE);
+}
+
+void get_pos(t_data *data)
+{
+	int y;
+	int x;
+
+	y = 0;
+	x = 0;
+	while (data->map[y])
+	{
+		x = 0;
+		while (data->map[y][x])
+		{
+			if (data->map[y][x] == 'N' || data->map[y][x] == 'S' || data->map[y][x] == 'E' || data->map[y][x] == 'W')
+			{
+				data->y_pers = y;
+				data->x_pers = x;
+				data->yf_p = y + 0.5;
+				data->xf_p = x + 0.5;
+				if (data->map[y][x] == 'N')
+					data->N = TRUE;
+				else if (data->map[y][x] == 'S')
+					data->S = TRUE;
+				else if (data->map[y][x] == 'E')
+					data->E = TRUE;
+				else if (data->map[y][x] == 'W')
+					data->W = TRUE;
+			}
+			x++;
+		}
+		y++;
+	}	
 }
