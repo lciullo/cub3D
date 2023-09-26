@@ -24,14 +24,12 @@ int	key_hook(int key_code, t_data *data)
 	if (key_code == LEFT_KEY)
 	{
 		data->angle += (M_PI * 5) / 180;
-		if (data->angle > (2 * M_PI))
-			data->angle = 0;
+		//securise
 	}
 	if (key_code == RIGHT_KEY)
 	{
 		data->angle -= (M_PI * 5) / 180;
-		if (data->angle < 0)
-			data->angle = 2 * M_PI;
+		//securise
 	}
 	return (SUCCESS);
 }

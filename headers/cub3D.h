@@ -70,8 +70,8 @@ typedef struct s_data {
 	char 		**colors; 
 	int 		size_map;
 	int			*len_line;
-	float			square_x;
-	float			square_y;
+	float		square_x;
+	float		square_y;
 	float		angle;
 	int			gap;
 	bool		N;
@@ -80,8 +80,10 @@ typedef struct s_data {
 	bool		E;
 	int			x_pers;
 	int			y_pers;
-	float			x_dir;
-	float			y_dir;
+	float		xf_pers;
+	float		yf_pers;
+	float		x_dir;
+	float		y_dir;
 }	t_data;
 
 typedef struct s_parsing {

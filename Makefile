@@ -16,13 +16,9 @@ LIB			=	$(DIR_LIB)library.a
 # ---- Flags ---- #
 CFLAGS		=	-Wall -Wextra -Werror
 CFLAGS		+=	-Wno-deprecated-declarations
-<<<<<<< Updated upstream
 DFLAGS		=	-g3	-fsanitize=address
 MLX_FLAGS	=	-L$(DIR_MLX) -lm
-=======
-DFLAGS		=	-g3 -fsanitize=address
-MLX_FLAGS	=	-L$(DIR_MLX)
->>>>>>> Stashed changes
+
 
 ifeq ($(OS), Darwin)
 MLX_FLAGS 	+= -lmlx -framework OpenGL -framework AppKit

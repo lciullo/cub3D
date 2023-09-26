@@ -5,10 +5,10 @@ void	find_pers(t_data *data);
 int	launch_mlx(t_data *data)
 {
 	data->gap = 10;
-	data->N = true;
-	data->S = false;
-	data->W = false;
-	data->E = false;
+	// data->N = true;
+	// data->S = false;
+	// data->W = false;
+	// data->E = false;
 	find_pers(data);
 	data->square_x = data->x_pers * (SIZE_X / find_len_max(data->len_line, data->size_map));
 	data->square_y = data->y_pers * (SIZE_X / find_len_max(data->len_line, data->size_map));
