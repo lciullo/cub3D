@@ -70,8 +70,8 @@ typedef struct s_data {
 	char 		**colors; 
 	int 		size_map;
 	int			*len_line;
-	float		square_x;
-	float		square_y;
+	float		px_map;
+	float		py_map;
 	float		angle;
 	int			gap;
 	bool		N;
