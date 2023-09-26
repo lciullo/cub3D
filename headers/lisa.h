@@ -22,8 +22,10 @@ int fill_map(char *path, t_data *data, char *line);
 int fill_len_line_array(t_data *data);
 
 //--- Is valid map ---
-int is_valid_map(t_data *data, t_parsing *utils);
+int is_one_player(t_data *data, t_parsing *utils);
 
 //--- Get position ---
+int	is_map_closed(t_data *data);
 void get_pos(t_data *data);
+
 #endif
