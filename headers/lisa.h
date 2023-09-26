@@ -24,4 +24,6 @@ int fill_len_line_array(t_data *data);
 //--- Is valid map ---
 int is_valid_map(t_data *data, t_parsing *utils);
 
+//--- Get position ---
+void get_pos(t_data *data);
 #endif
