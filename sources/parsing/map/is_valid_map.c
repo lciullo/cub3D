@@ -10,7 +10,7 @@ int	check_around(int y, int x, char **copy)
 	if (x == 0) //check left
 		return (FAILURE);
 	
-	
+	(void)copy;
 	return (SUCCESS);
 }
 
