@@ -14,7 +14,7 @@ DIR_LIB		=	library/
 LIB			=	$(DIR_LIB)library.a
 
 # ---- Flags ---- #
-CFLAGS		=	-Wall -Wextra -Werror
+CFLAGS		=	-Wall -Wextra -Werror -O3
 CFLAGS		+=	-Wno-deprecated-declarations
 DFLAGS		=	-g3	-fsanitize=address
 MLX_FLAGS	=	-L$(DIR_MLX) -lm
