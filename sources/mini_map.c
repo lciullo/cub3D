@@ -8,12 +8,10 @@ void    mini_map(t_data *data, t_draw *draw)
 	int	x_square;
 	int	y_square;
 	int	len_max;
-	int	size_square;
 
 	y = 0;
 	y_square = 0;
 	len_max = find_len_max(data->len_line, data->size_map);
-	size_square = SIZE_X / len_max;
 	while (data->map[y])
 	{
 		x = 0;
@@ -21,11 +19,11 @@ void    mini_map(t_data *data, t_draw *draw)
 		while (data->map[y][x])
 		{
 			if (data->map[y][x] == '1' || data->map[y][x] == ' ')
-				draw_square(draw, x_square, y_square, H_PINK, size_square);
+				draw_square(draw, x_square, y_square, H_PINK, SQUARE_SIZE);
 			else if (data->map[y][x] == '0' || data->map[y][x] == 'N' || data->map[y][x] == 'S' || data->map[y][x] == 'W' || data->map[y][x] == 'E')
-				draw_square(draw, x_square, y_square, H_GREY, size_square);
+				draw_square(draw, x_square, y_square, H_GREY, SQUARE_SIZE);
 			x++;
-			x_square += size_square;
+			x_square += SQUARE_SIZE;
 		}
 		// if (x < len_max)
 		// {
@@ -37,9 +35,9 @@ void    mini_map(t_data *data, t_draw *draw)
 		// 	}
 		// }
 		y++;
-		y_square += size_square;
+		y_square += SQUARE_SIZE;
 	}
-	draw_square(draw, (data->square_x), (data->square_y), H_PURPLE, size_square);
+	draw_square(draw, (data->px_map - (SQUARE_SIZE / 2)), (data->py_map - (SQUARE_SIZE / 2)), H_PURPLE, SQUARE_SIZE);
 	draw_direction_vector(data, draw);
 }
 
