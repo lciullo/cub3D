@@ -11,6 +11,7 @@ void    mini_map(t_data *data, t_draw *draw)
 
 	y = 0;
 	y_square = 0;
+	(void)len_max;
 	len_max = find_len_max(data->len_line, data->size_map);
 	while (data->map[y])
 	{
