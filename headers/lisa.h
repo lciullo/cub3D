@@ -10,6 +10,7 @@ int	parsing(char *file, t_data *data, t_parsing *utils);
 int	type_file_check(char *file);
 int	ft_open(char *path);
 int is_empty_map(char *file, char *line);
+
 //==== Map ====
 
 // --- Utils map ---
@@ -27,11 +28,14 @@ int fill_len_line_array(t_data *data);
 int is_one_player(t_data *data, t_parsing *utils);
 
 //--- Get position ---
-
 void get_pos(t_data *data);
 
 //--- Is Map Closed ---
 int	is_map_closed(t_data *data);
 int	check_around(t_data *data, int y, int x, char **copy);
-
+int check_up(t_data *data, int y, int x, char **copy);
+int check_down(t_data *data, int y, int x, char **copy);
+int check_left(int y, int x, char **copy);
+int check_right(t_data *data, int y, int x, char **copy);
+int move_on_map(t_data *data, int y, int x, char **copy);
 #endif

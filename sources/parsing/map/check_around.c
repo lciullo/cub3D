@@ -1,9 +1,5 @@
 #include "cub3D.h"
-
-static int check_up(t_data *data, int y, int x, char **copy);
-static int check_down(t_data *data, int y, int x, char **copy);
-static int check_left(int y, int x, char **copy);
-static int check_right(t_data *data, int y, int x, char **copy);
+#include <stdio.h>
 
 int	check_around(t_data *data, int y, int x, char **copy)
 {
@@ -18,49 +14,49 @@ int	check_around(t_data *data, int y, int x, char **copy)
 	return (SUCCESS);
 }
 
-static int check_up(t_data *data, int y, int x, char **copy)
+int check_up(t_data *data, int y, int x, char **copy)
 {
-	if (y == 0)
-		return (FAILURE);
-	if (x >= (data->len_line[y - 1] - 1))
+	if ((y <= 0) || (x >= (data->len_line[y - 1] - 1)))
 		return (FAILURE);
 	if (copy[y - 1][x] == '1')
-		return (SUCCESS);
+		return (3);
 	if (copy[y - 1][x] != '0')
 		return (FAILURE);
 	return (SUCCESS);
 }
 
-static int check_down(t_data *data, int y, int x, char **copy)
+int check_down(t_data *data, int y, int x, char **copy)
 {
-	if (y >= data->len_line[y]) //last line
+	if (y >= (data->size_map - 1))
 		return (FAILURE);
-	if (x >= (data->len_line[y + 1] - 1)) //check
+	if (x >= (data->len_line[y + 1] - 1))
 		return (FAILURE);
 	if (copy[y + 1][x] == '1')
-		return (SUCCESS);
+		return (3);
 	if (copy[y + 1][x] != '0')
 		return (FAILURE);
 	return (SUCCESS);
 }
 
-static int check_left(int y, int x, char **copy)
+int check_left(int y, int x, char **copy)
 {
-	if (x == 0) //is in left top corner 
+	if (x == 0)
 		return (FAILURE);
 	if (copy[y][x - 1] == '1')
-		return (SUCCESS);
+		return (3);
 	if (copy[y][x - 1] != '0')
 		return (FAILURE);
 	return (SUCCESS);
 }
 
-static int check_right(t_data *data, int y, int x, char **copy)
+int check_right(t_data *data, int y, int x, char **copy)
 {
-	if (x >= (data->len_line[y] - 1)) //is 
+	if ((y <= 0) || (x >= (data->len_line[y] - 1))) 
+	{	
 		return (FAILURE);
+	}
 	if (copy[y][x + 1] == '1')
-		return (SUCCESS);
+		return (3);
 	if (copy[y][x + 1] != '0')
 		return (FAILURE);
 	return (SUCCESS);
