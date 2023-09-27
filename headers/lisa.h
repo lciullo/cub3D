@@ -16,6 +16,8 @@ int is_empty_map(char *file, char *line);
 int is_map(char *line);
 int	is_empty_line(char *line);
 int is_valid(char c);
+char **ft_copy_map(t_data *data);
+
 // --- Fill map ---
 int get_size_map(char *path, t_data *data, char *line);
 int fill_map(char *path, t_data *data, char *line);
