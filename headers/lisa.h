@@ -27,7 +27,11 @@ int fill_len_line_array(t_data *data);
 int is_one_player(t_data *data, t_parsing *utils);
 
 //--- Get position ---
-int	is_map_closed(t_data *data);
+
 void get_pos(t_data *data);
+
+//--- Is Map Closed ---
+int	is_map_closed(t_data *data);
+int	check_around(t_data *data, int y, int x, char **copy);
 
 #endif
