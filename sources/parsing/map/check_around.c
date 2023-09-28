@@ -39,7 +39,7 @@ int check_down(t_data *data, int y, int x, char **copy)
 
 int check_left(int y, int x, char **copy)
 {
-	if (x == 0)
+	if (x <= 0)
 		return (FAILURE);
 	if (copy[y][x - 1] == '1')
 		return (3);

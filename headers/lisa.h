@@ -38,4 +38,10 @@ int check_down(t_data *data, int y, int x, char **copy);
 int check_left(int y, int x, char **copy);
 int check_right(t_data *data, int y, int x, char **copy);
 int move_on_map(t_data *data, int y, int x, char **copy);
+
+//==== Textures ====
+
+// --- Read map ---
+int read_map_textures(char *path, t_data *data);
+
 #endif
