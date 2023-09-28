@@ -1,5 +1,4 @@
 #include "cub3D.h"
-#include <stdio.h>
 
 int	check_around(t_data *data, int y, int x, char **copy)
 {
