@@ -88,11 +88,9 @@ typedef struct s_data {
 
 typedef struct s_parsing {
 	
-    int	nb_colors;
-    int	nb_directions;
-	int	nb_player;
-	int	nb_wall;
-	int	nb_space;               
+	int	nb_colors;
+	int nb_directions;
+	int	nb_player;               
 }	t_parsing;
 
 void init_struct(t_data *data, t_parsing *utils);

@@ -12,7 +12,5 @@ void init_struct(t_data *data, t_parsing *utils)
 	data->E = false;
 	data->W = false;
 	utils->nb_player = 0;
-	utils->nb_wall = 0;
-	utils->nb_space = 0;
 	return ;
 }
