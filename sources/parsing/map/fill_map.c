@@ -5,10 +5,10 @@ static char	*copy_line(const char *s1);
 
 int fill_map(char *path, t_data *data, char *line)
 {
-	int	row;
+	int	y;
 	int	fd;
 
-	row = 0;
+	y = 0;
 	fd = ft_open(path);
 	if (fd == ERROR)
 		return (FAILURE);
@@ -22,7 +22,7 @@ int fill_map(char *path, t_data *data, char *line)
 			break ;
 		while (is_map(line) == TRUE && is_empty_line(line) == FALSE)
 		{	
-			data->map[row] = copy_line(line);
+			data->map[y] = copy_line(line);
 			if (line)
 				free(line);
 			line = get_next_line(fd);
@@ -36,12 +36,12 @@ int fill_map(char *path, t_data *data, char *line)
 					return (FAILURE);
 				}
 			}
-			row++;	
+			y++;	
 		}
 		if (line)
 			free(line);
 	}
-	data->map[row] = NULL;
+	data->map[y] = NULL;
 	close(fd);
 	return (SUCCESS);
 }

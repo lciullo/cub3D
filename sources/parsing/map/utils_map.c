@@ -76,3 +76,24 @@ void get_pos(t_data *data)
 		y++;
 	}	
 }
+
+char **ft_copy_map(t_data *data)
+{
+	int	y;
+	char **copy_map;
+	
+
+	y = 0;
+	copy_map = malloc(sizeof(char *) * (data->size_map + 1));
+	if (!copy_map)
+		return (NULL);
+	while (data->map[y])
+	{
+		copy_map[y] = ft_strdup(data->map[y]);
+		if (!copy_map[y])
+			return (NULL);
+		y++;
+	}
+	copy_map[y] = NULL;
+	return (copy_map);
+}

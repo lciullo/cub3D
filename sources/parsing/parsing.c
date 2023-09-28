@@ -34,8 +34,10 @@ static int parse_map(char *path, t_parsing *utils, t_data *data)
 		return (FAILURE);
 	if (fill_len_line_array(data) == FAILURE)
 		return (FAILURE);
-	if (is_valid_map(data, utils) == FAILURE)
+	if (is_one_player(data, utils) == FAILURE)
 		return (FAILURE);
 	get_pos(data);
+	if (is_map_closed(data) == FAILURE)
+		return (FAILURE);
 	return (SUCCESS);
 }
