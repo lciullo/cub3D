@@ -1,8 +1,8 @@
 #include "cub3D.h"
 
-static void draw_north_vector(t_data *data, t_draw *draw, int x_start, int y_start, double c_angle, double s_angle, int nbr_r, float b_carre);
+static void draw_north_vector(t_data *data, t_draw *draw, int x_start, int y_start, double c_angle, double s_angle, int nbr_r, int decalage);
 
-void draw_col(t_draw *draw, t_data *data, double distance, float distance_screen, int vision_center, int x);
+void draw_col(t_draw *draw, double distance, int x);
 
 #include "stdio.h"
 
@@ -10,18 +10,13 @@ void draw_direction_vector(t_data *data, t_draw *draw)
 {
 	int	i = 1;
 	float	decalage;
-	float	b_carre;
 
 	while (i < SIZE_X)
 	{
 		decalage = ((float)i / SIZE_X) + 1;
-		b_carre = pow((SIZE_X / 2) / tan((decalage + (M_PI) / 3) + data->angle), 2);
-		draw_north_vector(data, draw, data->px_map, data->py_map, cosf((decalage * M_PI / 3) + data->angle), -sinf((decalage * M_PI / 3) + data->angle), i, b_carre);
-		//draw_north_vector(data, draw, data->px_map, data->py_map, cosf(M_PI_2 + data->angle), -sinf(M_PI_2 + data->angle));
+		draw_north_vector(data, draw, data->px_map, data->py_map, cosf((decalage * M_PI / 3) + data->angle), -sinf((decalage * M_PI / 3) + data->angle), i, decalage);
 		i++;
 	}
-	//draw_north_vector(data, draw, data->px_map, data->py_map, cosf((2 * M_PI / 3) + data->angle), -sin((2 * M_PI / 3) + data->angle));
-	//draw_north_vector(data, draw, data->px_map, data->py_map, cos((1 * M_PI / 3) + data->angle), -sin((1 * M_PI / 3) + data->angle));
 }
 
 void find_direction(t_data *data)
@@ -47,7 +42,7 @@ void find_direction(t_data *data)
 
 #include <stdio.h>
 
-static void draw_north_vector(t_data *data, t_draw *draw, int x_start, int y_start, double c_angle, double s_angle, int nbr_r, float b_carre)
+static void draw_north_vector(t_data *data, t_draw *draw, int x_start, int y_start, double c_angle, double s_angle, int nbr_r, int decalage)
 {
 	int x;
 	int y;
@@ -57,6 +52,7 @@ static void draw_north_vector(t_data *data, t_draw *draw, int x_start, int y_sta
 	int		first_x;
 	int		first_y;
 	double		distance;
+	double		distance_2;
 
 	t = 0;
 	x = x_start + t * c_angle;
@@ -79,24 +75,26 @@ static void draw_north_vector(t_data *data, t_draw *draw, int x_start, int y_sta
 		last_y = y;
 	}
 	distance = sqrt(pow((last_x - first_x), 2) + pow((last_y - first_y), 2));
-	draw_col(draw, data, distance, sqrt(pow(SIZE_X / 2, 2) + b_carre), (SIZE_Y / 2), nbr_r - 1);
-	//pas faire en fonction de l'angle
+	distance_2 = distance * cos(data->angle - (decalage * M_PI / 3));
+	draw_col(draw, distance_2, nbr_r - 1);
 }
 
-void draw_col(t_draw *draw, t_data *data, double distance, float distance_screen, int vision_center, int x)
+void	draw_col(t_draw *draw, double distance, int x)
 {
-	int	c_size;
-	float	true_wall_size;
 	int	y;
-	int	y_max;
+	int	size_wall;
+	int	half_size_wall;
 
-	true_wall_size = (SIZE_Y / distance) * distance_screen;
-	c_size = vision_center - (true_wall_size / 2);
-	y = c_size;
-	y_max = y + true_wall_size;
-	(void)data;
-	printf("%f %f %f\n", distance, true_wall_size, distance_screen);
-	while (y <= y_max)
+	size_wall = (1 / distance) * 40000;
+	half_size_wall = size_wall / 2;
+	y = SIZE_Y / 2;
+	while (y > ((SIZE_Y / 2) - half_size_wall))
+	{
+		my_mlx_pixel_put(draw, x, y, H_GREY);
+		y--;
+	}
+	y = SIZE_Y / 2;
+	while (y < ((SIZE_Y / 2) + half_size_wall))
 	{
 		my_mlx_pixel_put(draw, x, y, H_GREY);
 		y++;
