@@ -1,5 +1,7 @@
 #include "cub3D.h"
 
+#include <stdio.h>
+
 int	launch_mlx(t_data *data)
 {
 	data->gap = 10;
