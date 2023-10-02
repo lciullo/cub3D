@@ -15,7 +15,7 @@ int	check_around(t_data *data, int y, int x, char **copy)
 
 int check_up(t_data *data, int y, int x, char **copy)
 {
-	if ((y <= 0) || (x >= (data->len_line[y - 1] - 1)))
+	if ((y <= 0) || (x > (data->len_line[y - 1] - 1)))
 		return (FAILURE);
 	if (copy[y - 1][x] == '1')
 		return (3);
@@ -28,7 +28,7 @@ int check_down(t_data *data, int y, int x, char **copy)
 {
 	if (y >= (data->size_map - 1))
 		return (FAILURE);
-	if (x >= (data->len_line[y + 1] - 1))
+	if (x > (data->len_line[y + 1] - 1))
 		return (FAILURE);
 	if (copy[y + 1][x] == '1')
 		return (3);
@@ -39,7 +39,7 @@ int check_down(t_data *data, int y, int x, char **copy)
 
 int check_left(int y, int x, char **copy)
 {
-	if (x == 0)
+	if (x <= 0)
 		return (FAILURE);
 	if (copy[y][x - 1] == '1')
 		return (3);
