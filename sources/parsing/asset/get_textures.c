@@ -1,6 +1,8 @@
 #include "cub3D.h"
 
-static void	skip_white_space(char *line);
+static void	get_texture(char *line);
+static int len_of_texture_line(char *s);
+static char  *copy_texture(char *texture, char *s);
 
 int read_map_textures(char *path, t_data *data)
 {
@@ -17,31 +19,54 @@ int read_map_textures(char *path, t_data *data)
 		line = get_next_line(fd);
 		if (line == NULL)
 			break ;
-		if (ft_strchr(line, 'W') && ft_strchr(line, 'E'))
-		{
-			skip_white_space(line);
-		}
+		if ((ft_strchr(line, 'W') && ft_strchr(line, 'E')) || \
+			(ft_strchr(line, 'N') && ft_strchr(line, 'O')) || \
+			(ft_strchr(line, 'S') && ft_strchr(line, 'O')) ||
+			(ft_strchr(line, 'E') && ft_strchr(line, 'A')))
+				get_texture(line);
 		free(line);
 	}
 	close(fd);
 	return (SUCCESS);
 }
 
-
-static void ft_copy(char c, int index, char *texture)
+static void	get_texture(char *s)
 {
-	texture[index] = c;
+	char 	*texture;
+
+	texture = malloc(sizeof(char) * (len_of_texture_line(s) + 1));
+	if (!texture)
+		return ;
+	texture = copy_texture(texture, s);
+	ft_dprintf(1, "texture %s\n", texture);
 }
 
-static void	skip_white_space(char *s)
+static char  *copy_texture(char *texture, char *s)
 {
-	int 	i;
-	int		len;
-	char 	*texture;
+	int i = 0;
+	int index = 0;
+	while (s[i] != '\0' && s[i] != '\n')
+	{
+		if ((s[i] == ' ' || s[i] == '\t' || s[i] == '\v' || s[i] == '\r'))
+			i++;
+		else
+		{	
+			texture[index] = s[i];
+			index++;
+			i++;
+		}
+	}
+	texture[index] = '\0';
+	return (texture);
+}
+
+static int len_of_texture_line(char *s)
+{
+	int i;
+	int	len;
 
 	i = 0;
 	len = 0;
-	texture = NULL;
 	while (s[i] != '\0' && s[i] != '\n')
 	{
 		if ((s[i] != '\0') && (s[i] == ' ' || s[i] == '\t' || s[i] == '\v' || s[i] == '\r'))
@@ -52,21 +77,6 @@ static void	skip_white_space(char *s)
 			i++;
 		}
 	}
-	texture = malloc(sizeof(char) * (len + 1));
-	if (!texture)
-		return ;
-	i = 0;
-	int index = 0;
-	while (s[i] != '\0' && s[i] != '\n')
-	{
-		if ((s[i] == ' ' || s[i] == '\t' || s[i] == '\v' || s[i] == '\r'))
-			i++;
-		else
-		{	
-			ft_copy(s[i], index, texture);
-			index++;
-			i++;
-		}
-	}
-	texture[index] = '\0';
+	return (len);
 }
+
