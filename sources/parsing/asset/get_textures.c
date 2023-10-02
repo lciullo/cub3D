@@ -17,7 +17,7 @@ int read_map_textures(char *path, t_data *data)
 		line = get_next_line(fd);
 		if (line == NULL)
 			break ;
-		if (ft_strchr(line, 'W'))
+		if (ft_strchr(line, 'W') && ft_strchr(line, 'E'))
 		{
 			skip_white_space(line);
 		}
@@ -31,7 +31,6 @@ int read_map_textures(char *path, t_data *data)
 static void ft_copy(char c, int index, char *texture)
 {
 	texture[index] = c;
-	ft_dprintf(1,"texture[index] %c\n", texture[index]);
 }
 
 static void	skip_white_space(char *s)
@@ -53,7 +52,6 @@ static void	skip_white_space(char *s)
 			i++;
 		}
 	}
-	ft_dprintf(1, "len %d\n", len);
 	texture = malloc(sizeof(char) * (len + 1));
 	if (!texture)
 		return ;
@@ -70,4 +68,5 @@ static void	skip_white_space(char *s)
 			i++;
 		}
 	}
+	texture[index] = '\0';
 }
