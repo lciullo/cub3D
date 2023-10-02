@@ -1,13 +1,16 @@
 #include "cub3D.h"
 
-static int parse_map(char *path, t_parsing *utils, t_data *data);
-static int parse_file(char *file);
+static int	parse_map(char *path, t_parsing *utils, t_data *data);
+static int	parse_file(char *file);
+static int	parse_textures(char *path, t_data *data);
 
 int parsing(char *file, t_data *data, t_parsing *utils)
 {
 	if (parse_file(file) == FAILURE)
 		return (FAILURE);
 	if (parse_map(file, utils, data) == FAILURE)
+		return (FAILURE);
+	if (parse_textures(file, data) == FAILURE)
 		return (FAILURE);
 	return (SUCCESS);
 }
@@ -38,6 +41,13 @@ static int parse_map(char *path, t_parsing *utils, t_data *data)
 		return (FAILURE);
 	get_pos(data);
 	if (is_map_closed(data) == FAILURE)
+		return (FAILURE);
+	return (SUCCESS);
+}
+
+static int	parse_textures(char *path, t_data *data)
+{
+	if (read_map_textures(path, data) == FAILURE)
 		return (FAILURE);
 	return (SUCCESS);
 }
