@@ -1,82 +1,70 @@
 #include "cub3D.h"
 
-static void draw_north_vector(t_data *data, t_draw *draw, int x_start, int y_start, double c_angle, double s_angle, int nbr_r, int decalage);
+static void draw_north_vector(t_data *data, t_draw *draw, int x_start, int y_start, double c_angle, double s_angle, int nbr_r, float decalage);
 
-void draw_col(t_draw *draw, double distance, int x);
+void	draw_col(t_draw *draw, double distance, int x, float decalage);
 
 #include "stdio.h"
 
 void draw_direction_vector(t_data *data, t_draw *draw)
 {
 	int	i = 1;
+	int	x;
 	float	decalage;
 
+	x = SIZE_X;
 	while (i < SIZE_X)
 	{
 		decalage = ((float)i / SIZE_X) + 1;
-		draw_north_vector(data, draw, data->px_map, data->py_map, cosf((decalage * M_PI / 3) + data->angle), -sinf((decalage * M_PI / 3) + data->angle), i, decalage);
+		draw_north_vector(data, draw, data->px_map, data->py_map, cosf((decalage * (M_PI / 3)) + data->angle), -sinf((decalage * (M_PI / 3) + data->angle)), x, (decalage - 1.5) * (M_PI / 3));
 		i++;
+		x--;
+
 	}
 }
 
-static void draw_north_vector(t_data *data, t_draw *draw, int x_start, int y_start, double c_angle, double s_angle, int nbr_r, int decalage)
+static void draw_north_vector(t_data *data, t_draw *draw, int x_start, int y_start, double c_angle, double s_angle, int nbr_r, float decalage)
 {
 	int x;
 	int y;
 	float t;
-	int		last_x;
-	int		last_y;
-	int		first_x;
-	int		first_y;
 	double		distance;
-	double		distance_2;
 
 	t = 0;
 	x = x_start + t * c_angle;
 	y = y_start + t * s_angle;
-	last_x = 0;
-	last_y = 0;
-	first_x = x;
-	first_y = y;
-	(void)draw;
+	distance = 0;
 	while (1)
 	{
 		//(y % SQUARE_SIZE == 0 || x % SQUARE_SIZE == 0) && 
 		if (data->map[y / SQUARE_SIZE][x / SQUARE_SIZE] == '1')
 			break ;
-		my_mlx_pixel_put(draw, x, y, H_GREEN);
 		t += 1;
-		x = x_start + t * c_angle;
-		y = y_start + t * s_angle;
-		last_x = x;
-		last_y = y;
+		x = x_start + t * c_angle / 10;
+		y = y_start + t * s_angle / 10;
+		distance += 0.1;
 	}
-	distance = sqrt(pow((last_x - first_x), 2) + pow((last_y - first_y), 2));
-	distance_2 = distance * cos(decalage);
-	(void)nbr_r;
-	//draw_col(draw, distance_2, nbr_r - 1);
+	draw_col(draw, distance, nbr_r - 1, decalage);
 }
 
-void	draw_col(t_draw *draw, double distance, int x)
+void	draw_col(t_draw *draw, double distance, int x, float decalage)
 {
 	int	y;
+	int	i = 0;
 	int	size_wall;
 	int	half_size_wall;
 
-	size_wall = (1 / distance) * 40000;
+	// (void)decalage;
+	size_wall = (1 / (distance * cos(decalage))) * 40000;
 	half_size_wall = size_wall / 2;
-	y = SIZE_Y / 2;
-	while (y > ((SIZE_Y / 2) - half_size_wall))
-	{
-		my_mlx_pixel_put(draw, x, y, H_GREY);
-		y--;
-	}
-	y = SIZE_Y / 2;
+	y = (SIZE_Y / 2) - half_size_wall;
 	while (y < ((SIZE_Y / 2) + half_size_wall))
 	{
 		my_mlx_pixel_put(draw, x, y, H_GREY);
 		y++;
+		i++;
 	}
+// 	printf("%d %d %f\n", i, size_wall, decalage);
 }
 
 void find_direction(t_data *data)
