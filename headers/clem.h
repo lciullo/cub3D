@@ -27,6 +27,17 @@ typedef struct	s_draw {
 	int		endian;
 }				t_draw;
 
+typedef struct s_draw_vector {
+	t_data	*data;
+	t_draw	*draw;
+	float	px_map;
+	float	py_map;
+	float	c_angle;
+	float	s_angle;
+	float	decalage;
+	int		x;
+}	t_draw_vector;
+
 /*======================= PROTOTYPES =======================*/
 
 /* ---- draw/draw_direction.c ----*/

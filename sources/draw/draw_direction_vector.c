@@ -1,29 +1,36 @@
 #include "cub3D.h"
 
-static void draw_north_vector(t_data *data, t_draw *draw, int x_start, int y_start, double c_angle, double s_angle, int nbr_r, float decalage);
+static void draw_north_vector(t_draw_vector *draw_vector);
 
-void	draw_col(t_draw *draw, double distance, int x, float decalage);
+void	draw_col(t_draw_vector *draw_vector, double distance);
 
 #include "stdio.h"
 
 void draw_direction_vector(t_data *data, t_draw *draw)
 {
 	int	i = 1;
-	int	x;
-	float	decalage;
+	t_draw_vector	draw_vector;
 
-	x = SIZE_X;
+	draw_vector.x = SIZE_X;
+	draw_vector.draw = draw;
+	draw_vector.data = data;
+	draw_vector.px_map = data->px_map;
+	draw_vector.py_map = data->py_map;
 	while (i < SIZE_X)
 	{
-		decalage = ((float)i / SIZE_X) + 1;
-		draw_north_vector(data, draw, data->px_map, data->py_map, cosf((decalage * (M_PI / 3)) + data->angle), -sinf((decalage * (M_PI / 3) + data->angle)), x, (decalage - 1.5) * (M_PI / 3));
+		draw_vector.decalage = ((float)i / SIZE_X) + 1;
+		draw_vector.c_angle = cosf((draw_vector.decalage * (M_PI / 3)) + \
+		data->angle);
+		draw_vector.s_angle = -sinf((draw_vector.decalage * (M_PI / 3) + \
+		data->angle));
+		draw_vector.decalage = (draw_vector.decalage - 1.5) * (M_PI / 3);
+		draw_north_vector(&draw_vector);
 		i++;
-		x--;
-
+		draw_vector.x--;
 	}
 }
 
-static void draw_north_vector(t_data *data, t_draw *draw, int x_start, int y_start, double c_angle, double s_angle, int nbr_r, float decalage)
+static void draw_north_vector(t_draw_vector *draw_vector)
 {
 	int x;
 	int y;
@@ -31,23 +38,23 @@ static void draw_north_vector(t_data *data, t_draw *draw, int x_start, int y_sta
 	double		distance;
 
 	t = 0;
-	x = x_start + t * c_angle;
-	y = y_start + t * s_angle;
+	x = draw_vector->px_map + t * draw_vector->c_angle;
+	y = draw_vector->py_map + t * draw_vector->s_angle;
 	distance = 0;
 	while (1)
 	{
 		//(y % SQUARE_SIZE == 0 || x % SQUARE_SIZE == 0) && 
-		if (data->map[y / SQUARE_SIZE][x / SQUARE_SIZE] == '1')
+		if (draw_vector->data->map[y / SQUARE_SIZE][x / SQUARE_SIZE] == '1')
 			break ;
 		t += 1;
-		x = x_start + t * c_angle / 10;
-		y = y_start + t * s_angle / 10;
+		x = draw_vector->px_map + t * draw_vector->c_angle / 10;
+		y = draw_vector->py_map + t * draw_vector->s_angle / 10;
 		distance += 0.1;
 	}
-	draw_col(draw, distance, nbr_r - 1, decalage);
+	draw_col(draw_vector, distance);
 }
 
-void	draw_col(t_draw *draw, double distance, int x, float decalage)
+void	draw_col(t_draw_vector *draw_vector, double distance)
 {
 	int	y;
 	int	i = 0;
@@ -55,12 +62,12 @@ void	draw_col(t_draw *draw, double distance, int x, float decalage)
 	int	half_size_wall;
 
 	// (void)decalage;
-	size_wall = (1 / (distance * cos(decalage))) * 40000;
+	size_wall = (1 / (distance * cos(draw_vector->decalage))) * 40000;
 	half_size_wall = size_wall / 2;
 	y = (SIZE_Y / 2) - half_size_wall;
 	while (y < ((SIZE_Y / 2) + half_size_wall))
 	{
-		my_mlx_pixel_put(draw, x, y, H_GREY);
+		my_mlx_pixel_put(draw_vector->draw, draw_vector->x, y, H_GREY);
 		y++;
 		i++;
 	}

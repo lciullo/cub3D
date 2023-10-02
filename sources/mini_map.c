@@ -7,11 +7,9 @@ void    mini_map(t_data *data, t_draw *draw)
 	int	y;
 	int	x_square;
 	int	y_square;
-	// int	len_max;
 
 	y = 0;
 	y_square = 0;
-	// len_max = find_len_max(data->len_line, data->size_map);
 	draw_direction_vector(data, draw);
 	while (data->map[y])
 	{
