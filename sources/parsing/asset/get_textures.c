@@ -6,7 +6,7 @@
 /*   By: lciullo <lciullo@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/03 09:17:32 by lciullo           #+#    #+#             */
-/*   Updated: 2023/10/03 15:28:41 by lciullo          ###   ########.fr       */
+/*   Updated: 2023/10/03 15:38:50 by lciullo          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,6 +18,7 @@ static char	*copy_texture(char *texture, char *s);
 static	int	find_asset(char *line, t_parsing *utils);
 static	int	store_direction(char *texture, t_parsing *utils);
 static int	get_color(char *s, t_parsing *utils);
+static int	check_xpm_format(char *texture);
 
 int	read_map_textures(char *path, t_data *data, t_parsing *utils)
 {
@@ -45,19 +46,34 @@ int	read_map_textures(char *path, t_data *data, t_parsing *utils)
 	return (SUCCESS);
 }
 
-int	type_texture_check(char *texture)
+int	type_texture_check(t_parsing *utils)
 {
-	size_t	len;
-
-	len = ft_strlen(texture);
-	if (texture[len - 1] != 'm' || texture[len - 2] != 'p' || texture[len - 3] != 'x'\
-		|| texture[len - 4] != '.')
+	if ((check_xpm_format(utils->north_path) == FAILURE) || \
+		(check_xpm_format(utils->south_path) == FAILURE) || \
+		(check_xpm_format(utils->west_path) == FAILURE) || \
+		(check_xpm_format(utils->east_path) == FAILURE))
 	{
-		ft_dprintf(2, "Error\nMap name must be finished by .cub\n");
+		ft_dprintf(2, "Error\nTexture must be on .xpm format\n");
 		return (FAILURE);
 	}
 	return (SUCCESS);
 }
+
+static int	check_xpm_format(char *texture)
+{
+	size_t	len;
+
+	len = ft_strlen(texture);
+	if (texture[len - 1] != 'm' || texture[len - 2] != 'p' \
+		|| texture[len - 3] != 'x'\
+		|| texture[len - 4] != '.')
+	{
+		ft_dprintf(2, "Error\nTexture name must be finished by .xpm\n");
+		return (FAILURE);
+	}
+	return (SUCCESS);
+}
+
 
 static	int	find_asset(char *line, t_parsing *utils)
 {
