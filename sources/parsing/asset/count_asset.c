@@ -6,14 +6,14 @@
 /*   By: lciullo <lciullo@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/03 11:21:10 by lciullo           #+#    #+#             */
-/*   Updated: 2023/10/03 11:46:56 by lciullo          ###   ########.fr       */
+/*   Updated: 2023/10/03 12:46:21 by lciullo          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3D.h"
 
 static	void	count_asset(char *line, t_parsing *utils);
-static int		check_count(t_parsing *utils);
+static	int	check_count(t_parsing *utils);
 
 int	is_right_asset_number(char *path, t_data *data, t_parsing *utils)
 {
@@ -54,9 +54,12 @@ static	void	count_asset(char *line, t_parsing *utils)
 	else if (ft_strchr(line, 'F'))
 		utils->f_color++;
 }
+
 static int	check_count(t_parsing *utils)
 {
-	if ((utils->west != 1) && (utils->south != 1) && (utils->north != 1) && (utils->east != 1) && (utils->c_color != 1) && (utils->f_color != 1))
+	if ((utils->west != 1) || (utils->south != 1) \
+		|| (utils->north != 1) || (utils->east != 1) \
+		|| (utils->c_color != 1) || (utils->f_color != 1))
 	{
 		ft_dprintf(2, "Error\nWrong number of textures or color\n");
 		return (FAILURE);

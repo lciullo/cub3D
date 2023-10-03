@@ -6,7 +6,7 @@
 /*   By: lciullo <lciullo@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/03 09:09:14 by lciullo           #+#    #+#             */
-/*   Updated: 2023/10/03 09:09:30 by lciullo          ###   ########.fr       */
+/*   Updated: 2023/10/03 15:24:46 by lciullo          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -63,9 +63,7 @@ int	check_left(int y, int x, char **copy)
 int	check_right(t_data *data, int y, int x, char **copy)
 {
 	if ((y <= 0) || (x >= (data->len_line[y] - 1)))
-	{	
 		return (FAILURE);
-	}
 	if (copy[y][x + 1] == '1')
 		return (3);
 	if (copy[y][x + 1] != '0')

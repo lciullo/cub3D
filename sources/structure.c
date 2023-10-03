@@ -6,7 +6,7 @@
 /*   By: lciullo <lciullo@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/03 10:17:09 by lciullo           #+#    #+#             */
-/*   Updated: 2023/10/03 11:33:35 by lciullo          ###   ########.fr       */
+/*   Updated: 2023/10/03 15:07:11 by lciullo          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,5 +30,11 @@ void	init_struct(t_data *data, t_parsing *utils)
 	utils->west = 0;
 	utils->c_color = 0;
 	utils->f_color = 0;
+	utils->north_path = NULL;
+	utils->west_path = NULL;
+	utils->east_path = NULL;
+	utils->south_path = NULL;
+	utils->color_c_path = NULL;
+	utils->color_f_path = NULL;
 	return ;
 }

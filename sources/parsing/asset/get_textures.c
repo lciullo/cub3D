@@ -6,16 +6,18 @@
 /*   By: lciullo <lciullo@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/03 09:17:32 by lciullo           #+#    #+#             */
-/*   Updated: 2023/10/03 11:28:14 by lciullo          ###   ########.fr       */
+/*   Updated: 2023/10/03 15:28:41 by lciullo          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3D.h"
 
-static void	get_texture(char *line);
+static int	get_texture(char *line, t_parsing *utils);
 static int	len_of_texture_line(char *s);
 static char	*copy_texture(char *texture, char *s);
-static	int	find_texture(char *line, t_parsing *utils);
+static	int	find_asset(char *line, t_parsing *utils);
+static	int	store_direction(char *texture, t_parsing *utils);
+static int	get_color(char *s, t_parsing *utils);
 
 int	read_map_textures(char *path, t_data *data, t_parsing *utils)
 {
@@ -32,7 +34,7 @@ int	read_map_textures(char *path, t_data *data, t_parsing *utils)
 		line = get_next_line(fd);
 		if (line == NULL)
 			break ;
-		if (find_texture(line, utils) == FAILURE)
+		if (find_asset(line, utils) == FAILURE)
 		{
 			free(line);
 			return (FAILURE);
@@ -43,41 +45,78 @@ int	read_map_textures(char *path, t_data *data, t_parsing *utils)
 	return (SUCCESS);
 }
 
-static	int	find_texture(char *line, t_parsing *utils)
+int	type_texture_check(char *texture)
 {
-	if (ft_strchr(line, 'W') && ft_strchr(line, 'E'))
+	size_t	len;
+
+	len = ft_strlen(texture);
+	if (texture[len - 1] != 'm' || texture[len - 2] != 'p' || texture[len - 3] != 'x'\
+		|| texture[len - 4] != '.')
 	{
-		get_texture(line);
-		utils->west++;
-	}
-	else if (ft_strchr(line, 'N') && ft_strchr(line, 'O'))
-	{
-		get_texture(line);
-		utils->north++;
-	}
-	else if (ft_strchr(line, 'S') && ft_strchr(line, 'O'))
-	{
-		get_texture(line);
-		utils->south++;
-	}
-	else if (ft_strchr(line, 'E') && ft_strchr(line, 'A'))
-	{
-		get_texture(line);
-		utils->east++;
+		ft_dprintf(2, "Error\nMap name must be finished by .cub\n");
+		return (FAILURE);
 	}
 	return (SUCCESS);
 }
 
-static void	get_texture(char *s)
+static	int	find_asset(char *line, t_parsing *utils)
+{
+	if ((ft_strchr(line, 'W') && ft_strchr(line, 'E')) || \
+		(ft_strchr(line, 'N') && ft_strchr(line, 'O')) || \
+		(ft_strchr(line, 'S') && ft_strchr(line, 'O')) || \
+		(ft_strchr(line, 'E') && ft_strchr(line, 'A')))
+	{
+		if (get_texture(line, utils) == FAILURE)
+			return (FAILURE);
+	}
+	else if (ft_strchr(line, 'C') || ft_strchr(line, 'F'))
+	{
+		if (get_color(line, utils) == FAILURE)
+			return (FAILURE);
+	}
+	return (SUCCESS);
+}
+
+static int	get_texture(char *s, t_parsing *utils)
 {
 	char	*texture;
 
 	texture = malloc(sizeof(char) * (len_of_texture_line(s) + 1));
 	if (!texture)
-		return ;
+		return (FAILURE);
 	texture = copy_texture(texture, s);
-	ft_dprintf(1, "texture %s\n", texture);
+	store_direction(texture, utils);
 	free(texture);
+	return (SUCCESS);
+}
+
+static int	get_color(char *s, t_parsing *utils)
+{
+	char	*texture;
+
+	texture = malloc(sizeof(char) * (len_of_texture_line(s) + 1));
+	if (!texture)
+		return (FAILURE);
+	texture = copy_texture(texture, s);
+	if (ft_strchr(s, 'C'))
+		utils->color_c_path = ft_substr(texture, 1, ft_strlen(texture));
+	if (ft_strchr(s, 'F'))
+		utils->color_f_path = ft_substr(texture, 1, ft_strlen(texture));
+	free(texture);
+	return (SUCCESS);
+}
+
+static	int	store_direction(char *texture, t_parsing *utils)
+{
+	if (ft_strchr(texture, 'N'))
+		utils->north_path = ft_substr(texture, 2, ft_strlen(texture));
+	else if (ft_strchr(texture, 'S'))
+		utils->south_path = ft_substr(texture, 2, ft_strlen(texture));
+	else if (ft_strchr(texture, 'E'))
+		utils->east_path = ft_substr(texture, 2, ft_strlen(texture));
+	if (ft_strchr(texture, 'W'))
+		utils->west_path = ft_substr(texture, 2, ft_strlen(texture));
+	return (SUCCESS);
 }
 
 static char	*copy_texture(char *texture, char *s)
@@ -92,7 +131,7 @@ static char	*copy_texture(char *texture, char *s)
 		if ((s[i] == ' ' || s[i] == '\t' || s[i] == '\v' || s[i] == '\r'))
 			i++;
 		else
-		{	
+		{
 			texture[index] = s[i];
 			index++;
 			i++;
@@ -115,7 +154,7 @@ static int	len_of_texture_line(char *s)
 			|| s[i] == '\t' || s[i] == '\v' || s[i] == '\r'))
 			i++;
 		else
-		{	
+		{
 			len++;
 			i++;
 		}
