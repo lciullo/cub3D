@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   file.c                                             :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: lciullo <lciullo@student.42.fr>            +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2023/10/03 09:16:23 by lciullo           #+#    #+#             */
+/*   Updated: 2023/10/03 09:16:28 by lciullo          ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "cub3D.h"
 
 int	type_file_check(char *file)
@@ -14,11 +26,11 @@ int	type_file_check(char *file)
 	return (SUCCESS);
 }
 
-int is_empty_map(char *file, char *line)
+int	is_empty_map(char *file, char *line)
 {
-	int loop;
-	int fd;
-	
+	int	loop;
+	int	fd;
+
 	loop = 0;
 	fd = ft_open(file);
 	if (fd == ERROR)
@@ -45,7 +57,7 @@ int is_empty_map(char *file, char *line)
 
 int	ft_open(char *path)
 {
-	int fd;
+	int	fd;
 
 	fd = open(path, O_RDONLY);
 	if (fd == ERROR)

@@ -4,7 +4,7 @@ int	main(int ac, char **av)
 {
 	t_data		data;
 	t_parsing	utils;	
-  
+
 	(void)av;
 	data.angle = 0;
 	if (ac != 2)

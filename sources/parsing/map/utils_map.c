@@ -1,9 +1,20 @@
-#include "cub3D.h"
-#include <stdio.h>
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   utils_map.c                                        :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: lciullo <lciullo@student.42.fr>            +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2023/10/03 09:13:49 by lciullo           #+#    #+#             */
+/*   Updated: 2023/10/03 09:15:03 by lciullo          ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
 
-int is_map(char *line)
+#include "cub3D.h"
+
+int	is_map(char *line)
 {
-	int i;
+	int	i;
 
 	i = 0;
 	if (!line)
@@ -18,17 +29,17 @@ int is_map(char *line)
 	return (TRUE);
 }
 
-int is_valid(char c)
+int	is_valid(char c)
 {
 	if ((c == '1') || (c == '0') || (c == ' ') || (c == 'W') || \
-		 (c == 'S') || (c == 'N') || (c == 'E') || (c == '\n'))
+		(c == 'S') || (c == 'N') || (c == 'E') || (c == '\n'))
 		return (TRUE);
 	return (FALSE);
 }
 
 int	is_empty_line(char *line)
 {
-	int 	i;
+	int		i;
 	size_t	count;
 
 	i = 0;
@@ -44,10 +55,10 @@ int	is_empty_line(char *line)
 	return (FALSE);
 }
 
-void get_pos(t_data *data)
+void	get_pos(t_data *data)
 {
-	int y;
-	int x;
+	int	y;
+	int	x;
 
 	y = 0;
 	x = 0;
@@ -56,7 +67,8 @@ void get_pos(t_data *data)
 		x = 0;
 		while (data->map[y][x])
 		{
-			if (data->map[y][x] == 'N' || data->map[y][x] == 'S' || data->map[y][x] == 'E' || data->map[y][x] == 'W')
+			if (data->map[y][x] == 'N' || data->map[y][x] == 'S' \
+				|| data->map[y][x] == 'E' || data->map[y][x] == 'W')
 			{
 				data->y_pers = y;
 				data->x_pers = x;
@@ -77,11 +89,10 @@ void get_pos(t_data *data)
 	}	
 }
 
-char **ft_copy_map(t_data *data)
+char	**ft_copy_map(t_data *data)
 {
-	int	y;
-	char **copy_map;
-	
+	int		y;
+	char	**copy_map;
 
 	y = 0;
 	copy_map = malloc(sizeof(char *) * (data->size_map + 1));
