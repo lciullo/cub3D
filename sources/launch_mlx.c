@@ -28,7 +28,7 @@ void	generate_image(t_data *data)
 	&map.line_length, &map.endian);
 	mini_map(data, &map);
 	mlx_put_image_to_window(data->mlx, data->win, map.img, 0, 0);
-	mlx_destroy_image(data->mlx, map.img);
+	mlx_destroy_image(data->mlx, map.img);  	                                                                                                                             
 }
 
 int	render_next_frame(t_data *data)

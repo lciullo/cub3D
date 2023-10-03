@@ -43,7 +43,6 @@ static void draw_north_vector(t_draw_vector *draw_vector)
 	distance = 0;
 	while (1)
 	{
-		//(y % SQUARE_SIZE == 0 || x % SQUARE_SIZE == 0) && 
 		if (draw_vector->data->map[y / SQUARE_SIZE][x / SQUARE_SIZE] == '1')
 			break ;
 		t += 1;
@@ -61,7 +60,6 @@ void	draw_col(t_draw_vector *draw_vector, double distance)
 	int	size_wall;
 	int	half_size_wall;
 
-	// (void)decalage;
 	size_wall = (1 / (distance * cos(draw_vector->decalage))) * 40000;
 	half_size_wall = size_wall / 2;
 	y = (SIZE_Y / 2) - half_size_wall;
@@ -71,7 +69,6 @@ void	draw_col(t_draw_vector *draw_vector, double distance)
 		y++;
 		i++;
 	}
-// 	printf("%d %d %f\n", i, size_wall, decalage);
 }
 
 void find_direction(t_data *data)

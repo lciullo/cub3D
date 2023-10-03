@@ -81,4 +81,6 @@ void    mini_map(t_data *data, t_draw *draw);
 int		find_len_max(int *len_line, int size_map);
 void 	find_direction(t_data *data);
 
+int    collision_front(t_data *data);
+
 #endif
