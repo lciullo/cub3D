@@ -11,12 +11,12 @@ void draw_direction_vector(t_data *data, t_draw *draw)
 	int	i = 1;
 	t_draw_vector	draw_vector;
 
-	draw_vector.x = SIZE_X;
+	draw_vector.x = SIZE_X - 1;
 	draw_vector.draw = draw;
 	draw_vector.data = data;
 	draw_vector.px_map = data->px_map;
 	draw_vector.py_map = data->py_map;
-	while (i < SIZE_X)
+	while (i <= SIZE_X)
 	{
 		draw_vector.decalage = ((float)i / SIZE_X) + 1;
 		draw_vector.c_angle = cosf((draw_vector.decalage * (M_PI / 3)) + \
@@ -43,8 +43,10 @@ static void draw_north_vector(t_draw_vector *draw_vector)
 	distance = 0;
 	while (1)
 	{
-		if (draw_vector->data->map[y / SQUARE_SIZE][x / SQUARE_SIZE] == '1')
-			break ;
+		if (draw_vector->data->map[y / SQUARE_SIZE][x / SQUARE_SIZE] == '1' || \
+		draw_vector->data->map[(y + 1) / SQUARE_SIZE][x / SQUARE_SIZE] == '1' \
+		|| draw_vector->data->map[y / SQUARE_SIZE][(x + 1)/ SQUARE_SIZE] == '1')
+			break ;	
 		t += 1;
 		x = draw_vector->px_map + t * draw_vector->c_angle / 10;
 		y = draw_vector->py_map + t * draw_vector->s_angle / 10;
@@ -56,18 +58,26 @@ static void draw_north_vector(t_draw_vector *draw_vector)
 void	draw_col(t_draw_vector *draw_vector, double distance)
 {
 	int	y;
-	int	i = 0;
 	int	size_wall;
 	int	half_size_wall;
 
 	size_wall = (1 / (distance * cos(draw_vector->decalage))) * 40000;
 	half_size_wall = size_wall / 2;
-	y = (SIZE_Y / 2) - half_size_wall;
-	while (y < ((SIZE_Y / 2) + half_size_wall))
+	y = 0;
+	while (y <= (SIZE_Y / 2) - half_size_wall)
+	{
+		my_mlx_pixel_put(draw_vector->draw, draw_vector->x, y, H_WHITE);
+		y++;
+	}
+	while (y <= ((SIZE_Y / 2) + half_size_wall))
 	{
 		my_mlx_pixel_put(draw_vector->draw, draw_vector->x, y, H_GREY);
 		y++;
-		i++;
+	}
+	while (y < SIZE_Y)
+	{
+		my_mlx_pixel_put(draw_vector->draw, draw_vector->x, y, H_ORANGE);
+		y++;
 	}
 }
 
