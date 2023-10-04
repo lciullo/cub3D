@@ -66,9 +66,7 @@ typedef struct s_data {
 	void		*mlx;
 	void		*win;
 	char		**map;
-	char		**directions;
-	char 		**colors; 
-	int 		size_map;
+	int			size_map;
 	int			*len_line;
 	float		px_map;
 	float		py_map;
@@ -80,6 +78,8 @@ typedef struct s_data {
 	bool		E;
 	int			x_pers;
 	int			y_pers;
+	int			celling;
+	int			floor;
 	float		xf_p;
 	float		yf_p;
 	float		x_dir;
@@ -87,13 +87,24 @@ typedef struct s_data {
 }	t_data;
 
 typedef struct s_parsing {
-	
-	int	nb_colors;
-	int nb_directions;
-	int	nb_player;               
+	int		nb_colors;
+	int		nb_directions;
+	int		nb_player;
+	int		east;
+	int		west;
+	int		north;
+	int		south;
+	int		c_color;
+	int		f_color;
+	char	*north_path;
+	char	*south_path;
+	char	*east_path;
+	char	*west_path;
+	char	*color_c_path;
+	char	*color_f_path;
 }	t_parsing;
 
-void init_struct(t_data *data, t_parsing *utils);
+void	init_struct(t_data *data, t_parsing *utils);
 
 # include "lisa.h"
 # include "clem.h"

@@ -1,8 +1,20 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   is_valid_map.c                                     :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: lciullo <lciullo@student.42.fr>            +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2023/10/03 09:11:23 by lciullo           #+#    #+#             */
+/*   Updated: 2023/10/03 09:11:27 by lciullo          ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "cub3D.h"
 
 static void	count_nb_player(t_data *data, t_parsing *utils);
 
-int is_one_player(t_data *data, t_parsing *utils)
+int	is_one_player(t_data *data, t_parsing *utils)
 {
 	count_nb_player(data, utils);
 	if (utils->nb_player != 1)

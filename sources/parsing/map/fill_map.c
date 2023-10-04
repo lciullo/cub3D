@@ -1,9 +1,21 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   fill_map.c                                         :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: lciullo <lciullo@student.42.fr>            +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2023/10/03 09:09:47 by lciullo           #+#    #+#             */
+/*   Updated: 2023/10/03 09:10:03 by lciullo          ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "cub3D.h"
 
-static int len_of_line(const char *s1);
+static int	len_of_line(const char *s1);
 static char	*copy_line(const char *s1);
 
-int fill_map(char *path, t_data *data, char *line)
+int	fill_map(char *path, t_data *data, char *line)
 {
 	int	y;
 	int	fd;
@@ -46,16 +58,16 @@ int fill_map(char *path, t_data *data, char *line)
 	return (SUCCESS);
 }
 
-static int len_of_line(const char *s1)
+static int	len_of_line(const char *s1)
 {
-	int i;
+	int	i;
 
 	i = 0;
 	while (s1[i] != '\0' && s1[i] != '\n')
 	{
 		i++;
 	}
-	return (i);	
+	return (i);
 }
 
 static char	*copy_line(const char *s1)
