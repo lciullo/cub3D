@@ -6,7 +6,7 @@
 /*   By: lciullo <lciullo@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/03 09:58:31 by lciullo           #+#    #+#             */
-/*   Updated: 2023/10/03 15:35:20 by lciullo          ###   ########.fr       */
+/*   Updated: 2023/10/04 09:11:04 by lciullo          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,7 +54,10 @@ int		move_on_map(t_data *data, int y, int x, char **copy);
 //==== Textures ====
 
 // --- Read map ---
-int		read_map_textures(char *path, t_data *data, t_parsing *utils);
+int		read_to_get_asset(char *path, t_data *data, t_parsing *utils);
 int		is_right_asset_number(char *path, t_data *data, t_parsing *utils);
 int		type_texture_check(t_parsing *utils);
+int		asset_line_len(char *s);
+char	*copy_asset(char *texture, char *s);
+
 #endif
