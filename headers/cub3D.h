@@ -66,8 +66,6 @@ typedef struct s_data {
 	void		*mlx;
 	void		*win;
 	char		**map;
-	char		**directions;
-	char		**colors;
 	int			size_map;
 	int			*len_line;
 	float		px_map;
@@ -80,6 +78,8 @@ typedef struct s_data {
 	bool		E;
 	int			x_pers;
 	int			y_pers;
+	int			celling;
+	int			floor;
 	float		xf_p;
 	float		yf_p;
 	float		x_dir;

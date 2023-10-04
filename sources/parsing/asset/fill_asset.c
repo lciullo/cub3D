@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   get_textures.c                                     :+:      :+:    :+:   */
+/*   fill_asset.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: lciullo <lciullo@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/03 09:17:32 by lciullo           #+#    #+#             */
-/*   Updated: 2023/10/04 09:11:27 by lciullo          ###   ########.fr       */
+/*   Updated: 2023/10/04 09:13:01 by lciullo          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,6 @@ static int	get_texture(char *line, t_parsing *utils);
 static	int	find_asset(char *line, t_parsing *utils);
 static	int	store_direction(char *texture, t_parsing *utils);
 static int	get_color(char *s, t_parsing *utils);
-
 
 int	read_to_get_asset(char *path, t_data *data, t_parsing *utils)
 {

@@ -6,7 +6,7 @@
 /*   By: lciullo <lciullo@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/03 09:09:03 by lciullo           #+#    #+#             */
-/*   Updated: 2023/10/04 09:05:01 by lciullo          ###   ########.fr       */
+/*   Updated: 2023/10/04 11:03:59 by lciullo          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -65,6 +65,8 @@ static int	parse_textures(char *path, t_data *data, t_parsing *utils)
 	if (read_to_get_asset(path, data, utils) == FAILURE)
 		return (FAILURE);
 	if (type_texture_check(utils) == FAILURE)
+		return (FAILURE);
+	if (get_colors(utils, data) == FAILURE)
 		return (FAILURE);
 	return (SUCCESS);
 }

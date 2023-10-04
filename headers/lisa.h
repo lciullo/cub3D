@@ -6,7 +6,7 @@
 /*   By: lciullo <lciullo@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/03 09:58:31 by lciullo           #+#    #+#             */
-/*   Updated: 2023/10/04 09:11:04 by lciullo          ###   ########.fr       */
+/*   Updated: 2023/10/04 10:59:09 by lciullo          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,5 +59,5 @@ int		is_right_asset_number(char *path, t_data *data, t_parsing *utils);
 int		type_texture_check(t_parsing *utils);
 int		asset_line_len(char *s);
 char	*copy_asset(char *texture, char *s);
-
+int		get_colors(t_parsing *utils, t_data *data);
 #endif
