@@ -6,7 +6,7 @@
 /*   By: lciullo <lciullo@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/03 11:21:10 by lciullo           #+#    #+#             */
-/*   Updated: 2023/10/04 09:11:31 by lciullo          ###   ########.fr       */
+/*   Updated: 2023/10/04 16:13:53 by lciullo          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,15 +15,14 @@
 static	void	count_asset(char *line, t_parsing *utils);
 static	int	check_count(t_parsing *utils);
 
-int	is_right_asset_number(char *path, t_data *data, t_parsing *utils)
+int	is_right_asset_number(char *path, t_parsing *utils)
 {
 	char	*line;
 	int		fd;
 
 	line = NULL;
-	(void)data;
 	fd = open(path, O_RDONLY);
-	if (fd == -1)
+	if (fd == ERROR)
 		return (ft_dprintf(2, "Error\nThe file couldn't be opened\n"), FAILURE);
 	while (1)
 	{
@@ -31,9 +30,11 @@ int	is_right_asset_number(char *path, t_data *data, t_parsing *utils)
 		if (line == NULL)
 			break ;
 		count_asset(line, utils);
-		free(line);
+		if (line)
+			free(line);
 	}
-	close(fd);
+	if (fd > 2)
+		close(fd);
 	if (check_count(utils) == FAILURE)
 		return (FAILURE);
 	return (SUCCESS);

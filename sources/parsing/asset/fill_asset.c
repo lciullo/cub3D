@@ -6,7 +6,7 @@
 /*   By: lciullo <lciullo@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/03 09:17:32 by lciullo           #+#    #+#             */
-/*   Updated: 2023/10/04 09:13:01 by lciullo          ###   ########.fr       */
+/*   Updated: 2023/10/04 16:21:36 by lciullo          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,15 +17,14 @@ static	int	find_asset(char *line, t_parsing *utils);
 static	int	store_direction(char *texture, t_parsing *utils);
 static int	get_color(char *s, t_parsing *utils);
 
-int	read_to_get_asset(char *path, t_data *data, t_parsing *utils)
+int	read_to_get_asset(char *path, t_parsing *utils)
 {
 	char	*line;
 	int		fd;
 
 	line = NULL;
-	(void)data;
 	fd = open(path, O_RDONLY);
-	if (fd == -1)
+	if (fd == ERROR)
 		return (ft_dprintf(2, "Error\nThe file couldn't be opened\n"), FAILURE);
 	while (1)
 	{
@@ -34,12 +33,15 @@ int	read_to_get_asset(char *path, t_data *data, t_parsing *utils)
 			break ;
 		if (find_asset(line, utils) == FAILURE)
 		{
-			free(line);
+			if (line)
+				free(line);
 			return (FAILURE);
 		}
-		free(line);
+		if (line)
+			free(line);
 	}
-	close(fd);
+	if (fd > 2)
+		close(fd);
 	return (SUCCESS);
 }
 
