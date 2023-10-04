@@ -57,18 +57,21 @@ static void draw_north_vector(t_draw_vector *draw_vector)
 
 void	draw_col(t_draw_vector *draw_vector, double distance)
 {
-	int	y;
-	int	size_wall;
-	int	half_size_wall;
+	long	y;
+	long	size_wall;
+	long	half_size_wall;
 
-	size_wall = (1 / (distance * cos(draw_vector->decalage))) * 40000;
+	if (distance == 0)
+		distance = 0.2;
+	size_wall = (1 / (distance  * cos(draw_vector->decalage))) * 40000;
 	half_size_wall = size_wall / 2;
 	y = 0;
-	while (y <= (SIZE_Y / 2) - half_size_wall)
+	while (y < ((SIZE_Y / 2) - half_size_wall))
 	{
 		my_mlx_pixel_put(draw_vector->draw, draw_vector->x, y, draw_vector->data->celling);
 		y++;
 	}
+	y = (SIZE_Y / 2) - half_size_wall;
 	while (y <= ((SIZE_Y / 2) + half_size_wall))
 	{
 		my_mlx_pixel_put(draw_vector->draw, draw_vector->x, y, H_GREY);
@@ -79,6 +82,7 @@ void	draw_col(t_draw_vector *draw_vector, double distance)
 		my_mlx_pixel_put(draw_vector->draw, draw_vector->x, y, draw_vector->data->floor);
 		y++;
 	}
+	// draw_vector->data->floor
 }
 
 void find_direction(t_data *data)
