@@ -6,7 +6,7 @@
 /*   By: lciullo <lciullo@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/03 09:13:49 by lciullo           #+#    #+#             */
-/*   Updated: 2023/10/03 09:15:03 by lciullo          ###   ########.fr       */
+/*   Updated: 2023/10/04 14:46:36 by lciullo          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -86,7 +86,7 @@ void	get_pos(t_data *data)
 			x++;
 		}
 		y++;
-	}	
+	}
 }
 
 char	**ft_copy_map(t_data *data)

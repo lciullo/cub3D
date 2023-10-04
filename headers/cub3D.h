@@ -86,22 +86,34 @@ typedef struct s_data {
 	float		y_dir;
 }	t_data;
 
+typedef struct	s_draw {
+	void	*img;
+	char	*addr;
+	int		bits_per_pixel;
+	int		line_length;
+	int		endian;
+}				t_draw;
+
 typedef struct s_parsing {
-	int		nb_colors;
-	int		nb_directions;
-	int		nb_player;
-	int		east;
-	int		west;
-	int		north;
-	int		south;
-	int		c_color;
-	int		f_color;
-	char	*north_path;
-	char	*south_path;
-	char	*east_path;
-	char	*west_path;
-	char	*color_c_path;
-	char	*color_f_path;
+	int			nb_colors;
+	int			nb_directions;
+	int			nb_player;
+	int			east;
+	int			west;
+	int			north;
+	int			south;
+	int			c_color;
+	int			f_color;
+	char		*north_path;
+	char		*south_path;
+	char		*east_path;
+	char		*west_path;
+	char		*color_c_path;
+	char		*color_f_path;
+	t_draw		texture_no;
+	t_draw		texture_so;
+	t_draw		texture_we;
+	t_draw		texture_ea;
 }	t_parsing;
 
 void	init_struct(t_data *data, t_parsing *utils);

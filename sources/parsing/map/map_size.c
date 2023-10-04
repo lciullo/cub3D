@@ -6,14 +6,13 @@
 /*   By: lciullo <lciullo@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/03 09:13:27 by lciullo           #+#    #+#             */
-/*   Updated: 2023/10/03 09:13:28 by lciullo          ###   ########.fr       */
+/*   Updated: 2023/10/04 16:00:12 by lciullo          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3D.h"
 
 static int	read_map(int fd, t_data *data, char *line);
-static int	count_map_size(t_data *data, int fd, char *line);
 
 int	get_size_map(char *path, t_data *data, char *line)
 {
@@ -27,17 +26,27 @@ int	get_size_map(char *path, t_data *data, char *line)
 	return (SUCCESS);
 }
 
-static int	read_map(int fd, t_data *data, char *line)
+static int read_map(int fd, t_data *data, char *line)
 {
+	int	map;
+
+	map = FALSE;
 	while (1)
 	{
 		line = get_next_line(fd);
+		if (line && is_empty_line(line) == FALSE && map == TRUE)
+		{
+			if (line)
+				free(line);
+			ft_dprintf(2, "Error\nDon't put empty line on map\n");
+			close(fd);
+			return (FAILURE);
+		}
 		if (line == NULL)
 			break ;
-		while ((is_map(line) == TRUE))
+		while ((is_map(line) == TRUE) && is_empty_line(line) == FALSE)
 		{
-			if (count_map_size(data, fd, line) == FAILURE)
-				return (FAILURE);
+			map = TRUE;
 			if (line)
 				free(line);
 			line = get_next_line(fd);
@@ -50,28 +59,13 @@ static int	read_map(int fd, t_data *data, char *line)
 	return (SUCCESS);
 }
 
-static int	count_map_size(t_data *data, int fd, char *line)
-{
-	if (data->size_map == 0 && is_empty_line(line) == TRUE)
-		data->size_map--;
-	if ((data->size_map != 0 && data->size_map != -1) \
-		&& is_empty_line(line) == TRUE)
-	{
-		if (line)
-			free(line);
-		ft_dprintf(2, "Error\nDon't put empty line on map\n");
-		close(fd);
-		return (FAILURE);
-	}
-	return (SUCCESS);
-}
 
 int	fill_len_line_array(t_data *data)
 {
 	int	i;
 
 	i = 0;
-	data->len_line = malloc((sizeof (int **)) * (data->size_map + 1));
+	data->len_line = malloc((sizeof(int **)) * (data->size_map + 1));
 	if (!data->len_line)
 		return (FAILURE);
 	while (data->map[i])

@@ -19,14 +19,6 @@
 # define H_PURPLE			0x800080
 # define H_GREY				0x808080
 
-typedef struct	s_draw {
-	void	*img;
-	char	*addr;
-	int		bits_per_pixel;
-	int		line_length;
-	int		endian;
-}				t_draw;
-
 typedef struct s_draw_vector {
 	t_data	*data;
 	t_draw	*draw;

@@ -6,7 +6,7 @@
 /*   By: lciullo <lciullo@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/03 09:09:47 by lciullo           #+#    #+#             */
-/*   Updated: 2023/10/03 09:10:03 by lciullo          ###   ########.fr       */
+/*   Updated: 2023/10/04 16:00:04 by lciullo          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,7 @@ int	fill_map(char *path, t_data *data, char *line)
 	fd = ft_open(path);
 	if (fd == ERROR)
 		return (FAILURE);
-	data->map = malloc(sizeof(char **) * (data->size_map + 1));
+	data->map = malloc(sizeof(char **) * (data->size_map));
 	if (!data->map)
 		return (FAILURE);
 	while (1)
@@ -33,7 +33,7 @@ int	fill_map(char *path, t_data *data, char *line)
 		if (line == NULL)
 			break ;
 		while (is_map(line) == TRUE && is_empty_line(line) == FALSE)
-		{	
+		{
 			data->map[y] = copy_line(line);
 			if (line)
 				free(line);
