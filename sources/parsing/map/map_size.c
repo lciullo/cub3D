@@ -6,7 +6,7 @@
 /*   By: lciullo <lciullo@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/03 09:13:27 by lciullo           #+#    #+#             */
-/*   Updated: 2023/10/03 09:13:28 by lciullo          ###   ########.fr       */
+/*   Updated: 2023/10/04 12:57:45 by lciullo          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,6 +41,12 @@ static int	read_map(int fd, t_data *data, char *line)
 			if (line)
 				free(line);
 			line = get_next_line(fd);
+			if (!line)
+			{
+				ft_dprintf(2, "Error\nDon't put empty line on map\n");
+				close(fd);
+				return (FAILURE);
+			}
 			data->size_map++;
 		}
 		if (line)
