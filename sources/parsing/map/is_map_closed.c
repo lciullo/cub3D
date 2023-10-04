@@ -6,7 +6,7 @@
 /*   By: lciullo <lciullo@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/03 09:10:54 by lciullo           #+#    #+#             */
-/*   Updated: 2023/10/03 09:10:54 by lciullo          ###   ########.fr       */
+/*   Updated: 2023/10/04 13:01:08 by lciullo          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,7 +40,7 @@ int	is_map_closed(t_data *data)
 	if (!copy_map)
 		return (FAILURE);
 	if (move_on_map(data, data->y_pers, data->x_pers, copy_map) == FAILURE)
-	{	
+	{
 		ft_dprintf(2, "Error\nMap isn't closed\n");
 		return (FAILURE);
 	}
