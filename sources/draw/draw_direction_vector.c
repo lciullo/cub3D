@@ -66,7 +66,7 @@ void	draw_col(t_draw_vector *draw_vector, double distance)
 	y = 0;
 	while (y <= (SIZE_Y / 2) - half_size_wall)
 	{
-		my_mlx_pixel_put(draw_vector->draw, draw_vector->x, y, H_WHITE);
+		my_mlx_pixel_put(draw_vector->draw, draw_vector->x, y, draw_vector->data->celling);
 		y++;
 	}
 	while (y <= ((SIZE_Y / 2) + half_size_wall))
@@ -76,7 +76,7 @@ void	draw_col(t_draw_vector *draw_vector, double distance)
 	}
 	while (y < SIZE_Y)
 	{
-		my_mlx_pixel_put(draw_vector->draw, draw_vector->x, y, H_ORANGE);
+		my_mlx_pixel_put(draw_vector->draw, draw_vector->x, y, draw_vector->data->floor);
 		y++;
 	}
 }
