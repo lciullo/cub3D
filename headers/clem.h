@@ -38,10 +38,11 @@ typedef struct s_draw_vector {
 	int		x;
 }	t_draw_vector;
 
+
 /*======================= PROTOTYPES =======================*/
 
 /* ---- draw/draw_direction.c ----*/
-void	draw_direction_vector(t_data *data, t_draw *draw);
+void draw_direction_vector(t_data *data, t_draw *draw);
 
 /* ---- draw/draw_rectangle.c ----*/
 void	draw_frame(t_draw *draw, int color);
@@ -80,5 +81,7 @@ void	print_error_messages(int error_code);
 void    mini_map(t_data *data, t_draw *draw);
 int		find_len_max(int *len_line, int size_map);
 void 	find_direction(t_data *data);
+
+int    collision_front(t_data *data);
 
 #endif

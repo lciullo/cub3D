@@ -1,5 +1,6 @@
 #include "cub3D.h"
 
+#include <stdio.h>
 
 void    mini_map(t_data *data, t_draw *draw)
 {
@@ -28,22 +29,4 @@ void    mini_map(t_data *data, t_draw *draw)
 		y_square += SQUARE_SIZE;
 	}
 	draw_square(draw, ((data->px_map - ((SQUARE_SIZE / 2)) + 10) / 4) , ((data->py_map - ((SQUARE_SIZE / 2)) +10 ) / 4) , H_PURPLE, ((SQUARE_SIZE / 2)) / 4);
-}
-
-int	find_len_max(int *len_line, int size_map)
-{
-	int	i;
-	int	len_max;
-
-	i = 0;
-	len_max = 0;
-	while (i < size_map)
-	{
-		if (i == 0)
-		 	len_max = len_line[i];
-		else if (len_line[i] > len_max)
-		 	len_max = len_line[i];
-		i++;
-	}
-	return (len_max);
 }
