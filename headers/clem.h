@@ -79,7 +79,6 @@ int		quit_game(t_data *data);
 void	print_error_messages(int error_code);
 
 void    mini_map(t_data *data, t_draw *draw);
-int		find_len_max(int *len_line, int size_map);
 void 	find_direction(t_data *data);
 
 int    collision_front(t_data *data);
