@@ -24,17 +24,9 @@ int	main(int ac, char **av)
 
 static void	free_parsing(t_parsing *utils, t_data *data)
 {
-	int	i;
-
-	i = 0;
-	while (i < data->size_map)
-	{
-		free(data->map[i]);
-		i++;
-	}
-	free(data->map[i]);
-	data->map = NULL;
-	free(data->len_line);
+	secure_free_array(data->map, data->size_map);
+	if (data->len_line)
+		free(data->len_line);
 	if (utils->north_path)
 		free(utils->north_path);
 	if (utils->south_path)

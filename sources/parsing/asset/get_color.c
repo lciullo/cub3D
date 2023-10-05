@@ -6,7 +6,7 @@
 /*   By: lisa <lisa@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/04 10:13:38 by lciullo           #+#    #+#             */
-/*   Updated: 2023/10/05 12:14:41 by lisa             ###   ########.fr       */
+/*   Updated: 2023/10/05 12:37:19 by lisa             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,9 +37,6 @@ static	int	convert_rgb_to_int(char *color)
 	g = 0;
 	b = 0;
 	res = 0;
-	array = malloc(sizeof(char *) * (3 + 1));
-	if (!array)
-		return (FAILURE);
 	array = ft_split(color, ',');
 	if (!array)
 		return (FAILURE);

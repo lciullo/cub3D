@@ -6,7 +6,7 @@
 /*   By: lisa <lisa@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/03 09:10:54 by lciullo           #+#    #+#             */
-/*   Updated: 2023/10/05 12:09:12 by lisa             ###   ########.fr       */
+/*   Updated: 2023/10/05 13:58:23 by lisa             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,7 +32,7 @@ int	move_on_map(t_data *data, int y, int x, char **copy)
 	return (SUCCESS);
 }
 
-int	is_map_closed(t_data *data)
+int	is_map_closed(t_data *data, t_parsing *utils)
 {
 	char	**copy_map;
 
@@ -42,6 +42,22 @@ int	is_map_closed(t_data *data)
 	if (move_on_map(data, data->y_pers, data->x_pers, copy_map) == FAILURE)
 	{
 		ft_dprintf(2, "Error\nMap isn't closed\n");
+		secure_free_array(copy_map, data->size_map);
+		secure_free_array(data->map, data->size_map);
+		if (data->len_line)
+			free(data->len_line);
+		if (utils->north_path)
+			free(utils->north_path);
+		if (utils->south_path)
+			free(utils->south_path);
+		if (utils->west_path)
+			free(utils->west_path);
+		if (utils->east_path)
+			free(utils->east_path);
+		if (utils->color_c_path)
+			free(utils->color_c_path);
+		if (utils->color_f_path)
+			free(utils->color_f_path);
 		return (FAILURE);
 	}
 	secure_free_array(copy_map, data->size_map);

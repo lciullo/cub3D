@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parsing.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lciullo <lciullo@student.42.fr>            +#+  +:+       +#+        */
+/*   By: lisa <lisa@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/03 09:09:03 by lciullo           #+#    #+#             */
-/*   Updated: 2023/10/04 16:17:11 by lciullo          ###   ########.fr       */
+/*   Updated: 2023/10/05 13:57:20 by lisa             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -66,7 +66,7 @@ static int	parse_map(char *path, t_parsing *utils, t_data *data)
 	if (is_one_player(data, utils) == FAILURE)
 		return (FAILURE);
 	get_pos(data);
-	if (is_map_closed(data) == FAILURE)
+	if (is_map_closed(data, utils) == FAILURE)
 		return (FAILURE);
 	return (SUCCESS);
 }

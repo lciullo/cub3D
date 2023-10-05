@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   lisa.h                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lciullo <lciullo@student.42.fr>            +#+  +:+       +#+        */
+/*   By: lisa <lisa@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/03 09:58:31 by lciullo           #+#    #+#             */
-/*   Updated: 2023/10/04 16:17:30 by lciullo          ###   ########.fr       */
+/*   Updated: 2023/10/05 13:57:00 by lisa             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,7 +43,7 @@ int		is_one_player(t_data *data, t_parsing *utils);
 void	get_pos(t_data *data);
 
 //--- Is Map Closed ---
-int		is_map_closed(t_data *data);
+int		is_map_closed(t_data *data, t_parsing *utils);
 int		check_around(t_data *data, int y, int x, char **copy);
 int		check_up(t_data *data, int y, int x, char **copy);
 int		check_down(t_data *data, int y, int x, char **copy);
