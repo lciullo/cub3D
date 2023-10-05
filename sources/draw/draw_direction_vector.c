@@ -82,7 +82,6 @@ void	draw_col(t_draw_vector *draw_vector, double distance)
 		my_mlx_pixel_put(draw_vector->draw, draw_vector->x, y, draw_vector->data->floor);
 		y++;
 	}
-	// draw_vector->data->floor
 }
 
 void find_direction(t_data *data)
