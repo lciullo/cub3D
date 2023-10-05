@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   utils_map.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lciullo <lciullo@student.42.fr>            +#+  +:+       +#+        */
+/*   By: lisa <lisa@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/03 09:13:49 by lciullo           #+#    #+#             */
-/*   Updated: 2023/10/04 14:46:36 by lciullo          ###   ########.fr       */
+/*   Updated: 2023/10/05 12:08:36 by lisa             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -95,7 +95,7 @@ char	**ft_copy_map(t_data *data)
 	char	**copy_map;
 
 	y = 0;
-	copy_map = malloc(sizeof(char *) * (data->size_map + 1));
+	copy_map = (char **)ft_calloc((data->size_map + 1), sizeof(char *));
 	if (!copy_map)
 		return (NULL);
 	while (data->map[y])

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   fill_asset.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lciullo <lciullo@student.42.fr>            +#+  +:+       +#+        */
+/*   By: lisa <lisa@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/03 09:17:32 by lciullo           #+#    #+#             */
-/*   Updated: 2023/10/04 16:21:36 by lciullo          ###   ########.fr       */
+/*   Updated: 2023/10/05 12:30:17 by lisa             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,6 +40,8 @@ int	read_to_get_asset(char *path, t_parsing *utils)
 		if (line)
 			free(line);
 	}
+	if (line)
+			free(line);
 	if (fd > 2)
 		close(fd);
 	return (SUCCESS);
@@ -72,7 +74,8 @@ static int	get_texture(char *s, t_parsing *utils)
 		return (FAILURE);
 	texture = copy_asset(texture, s);
 	store_direction(texture, utils);
-	free(texture);
+	if (texture)
+		free(texture);
 	return (SUCCESS);
 }
 
@@ -86,21 +89,22 @@ static int	get_color(char *s, t_parsing *utils)
 	texture = copy_asset(texture, s);
 	if (ft_strchr(s, 'C'))
 		utils->color_c_path = ft_substr(texture, 1, ft_strlen(texture));
-	if (ft_strchr(s, 'F'))
+	else if (ft_strchr(s, 'F'))
 		utils->color_f_path = ft_substr(texture, 1, ft_strlen(texture));
-	free(texture);
+	if (texture)
+		free(texture);
 	return (SUCCESS);
 }
 
 static	int	store_direction(char *texture, t_parsing *utils)
 {
-	if (ft_strchr(texture, 'N'))
+	if (texture && texture[0] == 'N')
 		utils->north_path = ft_substr(texture, 2, ft_strlen(texture));
-	else if (ft_strchr(texture, 'S'))
+	if (texture && texture[0] == 'S')
 		utils->south_path = ft_substr(texture, 2, ft_strlen(texture));
-	else if (ft_strchr(texture, 'E'))
+	if (texture && texture[0] == 'E')
 		utils->east_path = ft_substr(texture, 2, ft_strlen(texture));
-	if (ft_strchr(texture, 'W'))
+	if (texture && texture[0] == 'W')
 		utils->west_path = ft_substr(texture, 2, ft_strlen(texture));
 	return (SUCCESS);
 }

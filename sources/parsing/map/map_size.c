@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   map_size.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lciullo <lciullo@student.42.fr>            +#+  +:+       +#+        */
+/*   By: lisa <lisa@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/03 09:13:27 by lciullo           #+#    #+#             */
-/*   Updated: 2023/10/04 16:00:12 by lciullo          ###   ########.fr       */
+/*   Updated: 2023/10/05 11:42:23 by lisa             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -65,7 +65,7 @@ int	fill_len_line_array(t_data *data)
 	int	i;
 
 	i = 0;
-	data->len_line = malloc((sizeof(int **)) * (data->size_map + 1));
+	data->len_line = (int *)ft_calloc(data->size_map + 1, sizeof(int));
 	if (!data->len_line)
 		return (FAILURE);
 	while (data->map[i])

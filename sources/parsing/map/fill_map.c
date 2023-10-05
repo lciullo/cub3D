@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   fill_map.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lciullo <lciullo@student.42.fr>            +#+  +:+       +#+        */
+/*   By: lisa <lisa@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/03 09:09:47 by lciullo           #+#    #+#             */
-/*   Updated: 2023/10/04 16:00:04 by lciullo          ###   ########.fr       */
+/*   Updated: 2023/10/05 12:07:56 by lisa             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,7 @@ int	fill_map(char *path, t_data *data, char *line)
 	fd = ft_open(path);
 	if (fd == ERROR)
 		return (FAILURE);
-	data->map = malloc(sizeof(char **) * (data->size_map));
+	data->map = (char **)ft_calloc((data->size_map + 1), sizeof(char *));
 	if (!data->map)
 		return (FAILURE);
 	while (1)

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   get_color.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lciullo <lciullo@student.42.fr>            +#+  +:+       +#+        */
+/*   By: lisa <lisa@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/04 10:13:38 by lciullo           #+#    #+#             */
-/*   Updated: 2023/10/04 11:01:41 by lciullo          ###   ########.fr       */
+/*   Updated: 2023/10/05 12:14:41 by lisa             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,5 +47,6 @@ static	int	convert_rgb_to_int(char *color)
 	g = ft_atoi(array[1]);
 	b = ft_atoi(array[2]);
 	res = 256 * 256 * r + 256 * g + b;
+	secure_free_array(array, 4);
 	return (res);
 }

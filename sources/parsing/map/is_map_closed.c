@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   is_map_closed.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lciullo <lciullo@student.42.fr>            +#+  +:+       +#+        */
+/*   By: lisa <lisa@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/03 09:10:54 by lciullo           #+#    #+#             */
-/*   Updated: 2023/10/04 13:01:08 by lciullo          ###   ########.fr       */
+/*   Updated: 2023/10/05 12:09:12 by lisa             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,5 +44,6 @@ int	is_map_closed(t_data *data)
 		ft_dprintf(2, "Error\nMap isn't closed\n");
 		return (FAILURE);
 	}
+	secure_free_array(copy_map, data->size_map);
 	return (SUCCESS);
 }

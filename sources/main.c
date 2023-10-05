@@ -1,6 +1,6 @@
 #include "cub3D.h"
 
-//static void	free_parsing(t_parsing *utils, t_data *data);
+static void	free_parsing(t_parsing *utils, t_data *data);
 
 int	main(int ac, char **av)
 {
@@ -16,24 +16,25 @@ int	main(int ac, char **av)
 	init_struct(&data, &utils);
 	if (parsing(av[1], &data, &utils) == FAILURE)
 		return (FAILURE);
+	free_parsing(&utils, &data);
 	/*if (launch_mlx(&data) == FAILURE)
 		return (FAILURE);*/
 	return (0);
 }
 
-/*static void	free_parsing(t_parsing *utils, t_data *data)
+static void	free_parsing(t_parsing *utils, t_data *data)
 {
 	int	i;
-	int	index;
 
 	i = 0;
-	index = 0;
-	while (data->map[i])
+	while (i < data->size_map)
 	{
 		free(data->map[i]);
 		i++;
 	}
-	while
+	free(data->map[i]);
+	data->map = NULL;
+	free(data->len_line);
 	if (utils->north_path)
 		free(utils->north_path);
 	if (utils->south_path)
@@ -46,4 +47,4 @@ int	main(int ac, char **av)
 		free(utils->color_c_path);
 	if (utils->color_f_path)
 		free(utils->color_f_path);
-}*/
+}
