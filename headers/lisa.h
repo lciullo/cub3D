@@ -6,7 +6,7 @@
 /*   By: lisa <lisa@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/03 09:58:31 by lciullo           #+#    #+#             */
-/*   Updated: 2023/10/05 13:57:00 by lisa             ###   ########.fr       */
+/*   Updated: 2023/10/08 12:37:30 by lisa             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,4 +60,12 @@ int		type_texture_check(t_parsing *utils);
 int		asset_line_len(char *s);
 char	*copy_asset(char *texture, char *s);
 int		get_colors(t_parsing *utils, t_data *data);
+
+// --- Free textures ---
+
+void    free_textures(t_parsing *utils);
+void	clean_gnl(int fd, char *line);
+void	free_color_c_path(t_parsing *utils, char *texture);
+void	free_color_f_path(t_parsing *utils, char *texture);
+void    free_asset(t_parsing *utils);
 #endif

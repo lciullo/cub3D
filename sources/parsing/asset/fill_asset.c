@@ -6,7 +6,7 @@
 /*   By: lisa <lisa@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/03 09:17:32 by lciullo           #+#    #+#             */
-/*   Updated: 2023/10/05 19:53:24 by lisa             ###   ########.fr       */
+/*   Updated: 2023/10/08 12:33:31 by lisa             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,17 +33,13 @@ int	read_to_get_asset(char *path, t_parsing *utils)
 			break ;
 		if (find_asset(line, utils) == FAILURE)
 		{
-			if (line)
-				free(line);
+			clean_gnl(fd, line);
 			return (FAILURE);
 		}
 		if (line)
 			free(line);
 	}
-	if (line)
-		free(line);
-	if (fd > 2)
-		close(fd);
+	clean_gnl(fd, line);
 	return (SUCCESS);
 }
 
@@ -54,30 +50,8 @@ static	int	find_asset(char *line, t_parsing *utils)
 		(ft_strchr(line, 'S') && ft_strchr(line, 'O')) || \
 		(ft_strchr(line, 'E') && ft_strchr(line, 'A')))
 	{
-		if (get_texture(line, utils) == FAILURE)
-		{
-			if (utils->north_path != NULL)
-			{
-				free(utils->north_path);
-				utils->north_path = NULL;
-			}
-			if (utils->south_path != NULL)
-			{
-				free(utils->south_path );
-				utils->south_path = NULL;
-			}
-			if (utils->east_path != NULL)
-			{
-				free(utils->east_path);
-				utils->east_path = NULL;
-			}
-			if (utils->west_path != NULL)
-			{
-				free(utils->west_path);
-				utils->west_path = NULL;
-			}
+		if (get_texture(line, utils) == FAILURE)	
 			return (FAILURE);
-		}
 	}
 	else if (ft_strchr(line, 'C') || ft_strchr(line, 'F'))
 	{
@@ -100,12 +74,19 @@ static int	get_texture(char *s, t_parsing *utils)
 	texture = copy_asset(texture, s);
 	if (store_direction(texture, utils) == FAILURE)
 	{
-		free(texture);
+		if (texture)
+		{
+			free(texture);
+			texture = NULL;
+		}
 		ft_dprintf(2, "Error\nMalloc failed in store_texture\n");
 		return (FAILURE);
 	}
 	if (texture)
+	{
 		free(texture);
+		texture = NULL;
+	}
 	return (SUCCESS);
 }
 
@@ -119,8 +100,18 @@ static int	get_color(char *s, t_parsing *utils)
 	texture = copy_asset(texture, s);
 	if (ft_strchr(s, 'C'))
 		utils->color_c_path = ft_substr(texture, 1, ft_strlen(texture));
+	if (!utils->color_c_path)
+	{
+		free_color_c_path(utils, texture);
+		return (FAILURE);
+	}
 	else if (ft_strchr(s, 'F'))
 		utils->color_f_path = ft_substr(texture, 1, ft_strlen(texture));
+	if (!utils->color_f_path)
+	{
+		free_color_f_path(utils, texture);
+		return (FAILURE);
+	}
 	if (texture)
 		free(texture);
 	return (SUCCESS);

@@ -6,7 +6,7 @@
 /*   By: lisa <lisa@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/03 09:09:03 by lciullo           #+#    #+#             */
-/*   Updated: 2023/10/05 13:57:20 by lisa             ###   ########.fr       */
+/*   Updated: 2023/10/08 12:43:17 by lisa             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,13 +14,13 @@
 
 static int	parse_map(char *path, t_parsing *utils, t_data *data);
 static int	parse_file(char *file);
-static int	parse_textures(char *path, t_data *data, t_parsing *utils);
+static int	parse_asset(char *path, t_data *data, t_parsing *utils);
 
 int	parsing(char *file, t_data *data, t_parsing *utils)
 {
 	if (parse_file(file) == FAILURE)
 		return (FAILURE);
-	if (parse_textures(file, data, utils) == FAILURE)
+	if (parse_asset(file, data, utils) == FAILURE)
 		return (FAILURE);
 	if (parse_map(file, utils, data) == FAILURE)
 		return (FAILURE);
@@ -39,7 +39,7 @@ static	int	parse_file(char *file)
 	return (SUCCESS);
 }
 
-static int	parse_textures(char *path, t_data *data, t_parsing *utils)
+static int	parse_asset(char *path, t_data *data, t_parsing *utils)
 {
 	if (is_right_asset_number(path, utils) == FAILURE)
 		return (FAILURE);
