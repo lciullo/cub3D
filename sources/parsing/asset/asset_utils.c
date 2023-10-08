@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   asset_utils.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lciullo <lciullo@student.42.fr>            +#+  +:+       +#+        */
+/*   By: lisa <lisa@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/03 11:21:10 by lciullo           #+#    #+#             */
-/*   Updated: 2023/10/04 16:13:53 by lciullo          ###   ########.fr       */
+/*   Updated: 2023/10/08 18:56:35 by lisa             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,8 +33,7 @@ int	is_right_asset_number(char *path, t_parsing *utils)
 		if (line)
 			free(line);
 	}
-	if (fd > 2)
-		close(fd);
+	clean_gnl(fd, line);
 	if (check_count(utils) == FAILURE)
 		return (FAILURE);
 	return (SUCCESS);

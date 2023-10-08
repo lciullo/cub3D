@@ -6,7 +6,7 @@
 /*   By: lisa <lisa@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/03 09:17:32 by lciullo           #+#    #+#             */
-/*   Updated: 2023/10/08 12:33:31 by lisa             ###   ########.fr       */
+/*   Updated: 2023/10/08 20:12:49 by lisa             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,12 +51,18 @@ static	int	find_asset(char *line, t_parsing *utils)
 		(ft_strchr(line, 'E') && ft_strchr(line, 'A')))
 	{
 		if (get_texture(line, utils) == FAILURE)	
+		{
+			ft_dprintf(2, "Error\nTexure missing\n");
 			return (FAILURE);
+		}
 	}
 	else if (ft_strchr(line, 'C') || ft_strchr(line, 'F'))
 	{
 		if (get_color(line, utils) == FAILURE)
+		{
+			ft_dprintf(2, "Error\nColor missing\n");
 			return (FAILURE);
+		}
 	}
 	return (SUCCESS);
 }
@@ -74,19 +80,11 @@ static int	get_texture(char *s, t_parsing *utils)
 	texture = copy_asset(texture, s);
 	if (store_direction(texture, utils) == FAILURE)
 	{
-		if (texture)
-		{
-			free(texture);
-			texture = NULL;
-		}
+		free_texture(texture);
 		ft_dprintf(2, "Error\nMalloc failed in store_texture\n");
 		return (FAILURE);
 	}
-	if (texture)
-	{
-		free(texture);
-		texture = NULL;
-	}
+	free_texture(texture);
 	return (SUCCESS);
 }
 
@@ -99,21 +97,24 @@ static int	get_color(char *s, t_parsing *utils)
 		return (FAILURE);
 	texture = copy_asset(texture, s);
 	if (ft_strchr(s, 'C'))
+	{	
 		utils->color_c_path = ft_substr(texture, 1, ft_strlen(texture));
-	if (!utils->color_c_path)
-	{
-		free_color_c_path(utils, texture);
-		return (FAILURE);
+		if (!utils->color_c_path)
+		{
+			free_color_c_path(utils, texture);
+			return (FAILURE);
+		}
 	}
 	else if (ft_strchr(s, 'F'))
-		utils->color_f_path = ft_substr(texture, 1, ft_strlen(texture));
-	if (!utils->color_f_path)
 	{
-		free_color_f_path(utils, texture);
-		return (FAILURE);
+		utils->color_f_path = ft_substr(texture, 1, ft_strlen(texture));
+		if (!utils->color_f_path)
+		{
+			free_color_f_path(utils, texture);
+			return (FAILURE);
+		}
 	}
-	if (texture)
-		free(texture);
+	free_texture(texture);
 	return (SUCCESS);
 }
 

@@ -24,13 +24,32 @@ void free_textures(t_parsing *utils)
 	}
 }
 
-void	free_color_c_path(t_parsing *utils, char *texture)
+void	free_texture(char *texture)
 {
 	if (texture)
 	{
 		free(texture);
 		texture = NULL;
 	}
+}
+
+void	free_all_colors(t_parsing *utils)
+{
+	if (utils->color_f_path)
+	{
+		free(utils->color_f_path);
+		utils->color_f_path = NULL;
+	}
+	if (utils->color_c_path)
+	{
+		free(utils->color_c_path);
+		utils->color_c_path = NULL;
+	}
+}
+
+void	free_color_c_path(t_parsing *utils, char *texture)
+{
+	free_texture(texture);
 	if (utils->color_f_path)
 	{
 		free(utils->color_f_path);
@@ -41,11 +60,7 @@ void	free_color_c_path(t_parsing *utils, char *texture)
 
 void	free_color_f_path(t_parsing *utils, char *texture)
 {
-	if (texture)
-	{
-		free(texture);
-		texture = NULL;
-	}
+	free_texture(texture);
 	if (utils->color_c_path)
 	{
 		free(utils->color_c_path);

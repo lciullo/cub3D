@@ -6,7 +6,7 @@
 /*   By: lisa <lisa@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/04 09:08:15 by lciullo           #+#    #+#             */
-/*   Updated: 2023/10/05 12:01:42 by lisa             ###   ########.fr       */
+/*   Updated: 2023/10/08 20:32:54 by lisa             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,7 @@ int	type_texture_check(t_parsing *utils)
 		(check_xpm_format(utils->west_path) == FAILURE) || \
 		(check_xpm_format(utils->east_path) == FAILURE))
 	{
-		ft_dprintf(2, "Error\nTexture must be on .xpm format\n");
+		free_asset(utils);
 		return (FAILURE);
 	}
 	return (SUCCESS);

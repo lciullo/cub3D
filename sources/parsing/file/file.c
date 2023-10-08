@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   file.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lciullo <lciullo@student.42.fr>            +#+  +:+       +#+        */
+/*   By: lisa <lisa@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/03 09:16:23 by lciullo           #+#    #+#             */
-/*   Updated: 2023/10/03 15:26:56 by lciullo          ###   ########.fr       */
+/*   Updated: 2023/10/08 21:02:21 by lisa             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,6 +43,8 @@ int	is_empty_map(char *file, char *line)
 			if (loop == 0)
 			{
 				ft_dprintf(2, "Error\nDon't put empty map\n");
+				if (fd > 2)
+					close(fd);
 				return (FAILURE);
 			}
 			break ;
@@ -51,7 +53,8 @@ int	is_empty_map(char *file, char *line)
 			free(line);
 		loop++;
 	}
-	close(fd);
+	if (fd > 2)
+		close(fd);
 	return (SUCCESS);
 }
 

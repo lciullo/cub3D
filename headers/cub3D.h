@@ -84,6 +84,7 @@ typedef struct s_data {
 	float		yf_p;
 	float		x_dir;
 	float		y_dir;
+	int			is_asset;
 }	t_data;
 
 typedef struct	s_draw {

@@ -6,7 +6,7 @@
 /*   By: lisa <lisa@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/03 09:58:31 by lciullo           #+#    #+#             */
-/*   Updated: 2023/10/08 12:37:30 by lisa             ###   ########.fr       */
+/*   Updated: 2023/10/08 19:21:09 by lisa             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -68,4 +68,6 @@ void	clean_gnl(int fd, char *line);
 void	free_color_c_path(t_parsing *utils, char *texture);
 void	free_color_f_path(t_parsing *utils, char *texture);
 void    free_asset(t_parsing *utils);
+void	free_texture(char *texture);
+void	free_all_colors(t_parsing *utils);
 #endif
