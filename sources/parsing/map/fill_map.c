@@ -6,7 +6,7 @@
 /*   By: lciullo <lciullo@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/03 09:09:47 by lciullo           #+#    #+#             */
-/*   Updated: 2023/10/09 15:31:37 by lciullo          ###   ########.fr       */
+/*   Updated: 2023/10/09 17:08:35 by lciullo          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,7 @@ static int	len_of_line(const char *s1);
 static char	*copy_line(const char *s1);
 static int	copy_map(t_data *data, char *line, int fd, int y);
 
-int	fill_map(char *path, t_data *data, char *line)
+int	fill_map(char *path, t_data *data, char *line, t_parsing *utils)
 {
 	int	y;
 	int	fd;
@@ -27,9 +27,17 @@ int	fill_map(char *path, t_data *data, char *line)
 		return (FAILURE);
 	data->map = (char **)ft_calloc(data->size_map + 1, sizeof(char *));
 	if (!data->map)
+	{
+		free_textures(utils);
+		ft_dprintf(2, "Error\nMalloc failed in fill_map\n");
 		return (FAILURE);
+	}
 	if (copy_map(data, line, fd, y) == FAILURE)
+	{
+		free_textures(utils);
+		ft_dprintf(2, "Error\nMalloc failed in fill_map\n");
 		return (FAILURE);
+	}
 	close(fd);
 	return (SUCCESS);
 }
@@ -44,6 +52,12 @@ static int	copy_map(t_data *data, char *line, int fd, int y)
 		while (is_map(line) == TRUE && is_empty_line(line) == FALSE)
 		{
 			data->map[y] = copy_line(line);
+			if (!data->map[y])
+			{
+				secure_free_array(data->map, data->size_map);
+				clean_gnl(fd, line);
+				return (FAILURE);
+			}
 			if (line)
 				free(line);
 			line = get_next_line(fd);

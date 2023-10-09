@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_free_array.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: cllovio <cllovio@student.42.fr>            +#+  +:+       +#+        */
+/*   By: lciullo <lciullo@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/13 09:56:52 by lciullo           #+#    #+#             */
-/*   Updated: 2023/09/12 10:47:52 by cllovio          ###   ########.fr       */
+/*   Updated: 2023/10/09 17:03:50 by lciullo          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,5 +39,6 @@ void	secure_free_array(char **arr, size_t line)
 	}
 	if (line != 0)
 		free(arr);
+	arr = NULL;
 	return ;
 }

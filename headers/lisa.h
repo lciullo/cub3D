@@ -6,7 +6,7 @@
 /*   By: lciullo <lciullo@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/03 09:58:31 by lciullo           #+#    #+#             */
-/*   Updated: 2023/10/09 11:31:34 by lciullo          ###   ########.fr       */
+/*   Updated: 2023/10/09 17:16:28 by lciullo          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,9 +32,9 @@ int		is_valid(char c);
 char	**ft_copy_map(t_data *data);
 
 // --- Fill map ---
-int		get_size_map(char *path, t_data *data, char *line);
-int		fill_map(char *path, t_data *data, char *line);
-int		fill_len_line_array(t_data *data);
+int		get_size_map(char *path, t_data *data, char *line, t_parsing *utils);
+int		fill_map(char *path, t_data *data, char *line, t_parsing *utils);
+int		fill_len_line_array(t_data *data, t_parsing *utils);
 
 //--- Is valid map ---
 int		is_one_player(t_data *data, t_parsing *utils);
