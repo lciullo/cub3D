@@ -6,13 +6,14 @@
 /*   By: lciullo <lciullo@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/03 09:13:27 by lciullo           #+#    #+#             */
-/*   Updated: 2023/10/04 16:00:12 by lciullo          ###   ########.fr       */
+/*   Updated: 2023/10/09 15:25:06 by lciullo          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3D.h"
 
 static int	read_map(int fd, t_data *data, char *line);
+static int	count_height_map(int fd, t_data *data, char *line, int map);
 
 int	get_size_map(char *path, t_data *data, char *line)
 {
@@ -26,20 +27,27 @@ int	get_size_map(char *path, t_data *data, char *line)
 	return (SUCCESS);
 }
 
-static int read_map(int fd, t_data *data, char *line)
+static int	read_map(int fd, t_data *data, char *line)
 {
 	int	map;
 
 	map = FALSE;
+	if (count_height_map(fd, data, line, map) == FAILURE)
+		return (FAILURE);
+	if (fd > 2)
+		close(fd);
+	return (SUCCESS);
+}
+
+static int	count_height_map(int fd, t_data *data, char *line, int map)
+{
 	while (1)
 	{
 		line = get_next_line(fd);
 		if (line && is_empty_line(line) == FALSE && map == TRUE)
 		{
-			if (line)
-				free(line);
-			ft_dprintf(2, "Error\nDon't put empty line on map\n");
-			close(fd);
+			clean_gnl(fd, line);
+			ft_dprintf(2, "Error\nInvalid map\n");
 			return (FAILURE);
 		}
 		if (line == NULL)
@@ -55,19 +63,20 @@ static int read_map(int fd, t_data *data, char *line)
 		if (line)
 			free(line);
 	}
-	close(fd);
 	return (SUCCESS);
 }
-
 
 int	fill_len_line_array(t_data *data)
 {
 	int	i;
 
 	i = 0;
-	data->len_line = malloc((sizeof(int **)) * (data->size_map + 1));
+	data->len_line = (int *)ft_calloc(data->size_map + 1, sizeof(int));
 	if (!data->len_line)
+	{
+		ft_dprintf(2, "Error\nMalloc failed in fill len line array\n");
 		return (FAILURE);
+	}
 	while (data->map[i])
 	{
 		data->len_line[i] = ft_strlen(data->map[i]);

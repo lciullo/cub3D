@@ -6,11 +6,13 @@
 /*   By: lciullo <lciullo@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/03 09:16:23 by lciullo           #+#    #+#             */
-/*   Updated: 2023/10/03 15:26:56 by lciullo          ###   ########.fr       */
+/*   Updated: 2023/10/09 09:35:40 by lciullo          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3D.h"
+
+static	int	count_line_check(int fd, int loop);
 
 int	type_file_check(char *file)
 {
@@ -40,18 +42,27 @@ int	is_empty_map(char *file, char *line)
 		line = get_next_line(fd);
 		if (line == NULL)
 		{
-			if (loop == 0)
-			{
-				ft_dprintf(2, "Error\nDon't put empty map\n");
+			if (count_line_check(fd, loop) == FAILURE)
 				return (FAILURE);
-			}
 			break ;
 		}
 		if (line)
 			free(line);
 		loop++;
 	}
-	close(fd);
+	clean_gnl(fd, line);
+	return (SUCCESS);
+}
+
+static	int	count_line_check(int fd, int loop)
+{
+	if (loop == 0)
+	{
+		ft_dprintf(2, "Error\nDon't put empty map\n");
+		if (fd > 2)
+			close(fd);
+		return (FAILURE);
+	}
 	return (SUCCESS);
 }
 

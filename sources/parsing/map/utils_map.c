@@ -6,7 +6,7 @@
 /*   By: lciullo <lciullo@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/03 09:13:49 by lciullo           #+#    #+#             */
-/*   Updated: 2023/10/04 14:46:36 by lciullo          ###   ########.fr       */
+/*   Updated: 2023/10/09 11:25:39 by lciullo          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,47 +55,13 @@ int	is_empty_line(char *line)
 	return (FALSE);
 }
 
-void	get_pos(t_data *data)
-{
-	int	y;
-	int	x;
-
-	y = 0;
-	x = 0;
-	while (data->map[y])
-	{
-		x = 0;
-		while (data->map[y][x])
-		{
-			if (data->map[y][x] == 'N' || data->map[y][x] == 'S' \
-				|| data->map[y][x] == 'E' || data->map[y][x] == 'W')
-			{
-				data->y_pers = y;
-				data->x_pers = x;
-				data->yf_p = y + 0.5;
-				data->xf_p = x + 0.5;
-				if (data->map[y][x] == 'N')
-					data->N = TRUE;
-				else if (data->map[y][x] == 'S')
-					data->S = TRUE;
-				else if (data->map[y][x] == 'E')
-					data->E = TRUE;
-				else if (data->map[y][x] == 'W')
-					data->W = TRUE;
-			}
-			x++;
-		}
-		y++;
-	}
-}
-
 char	**ft_copy_map(t_data *data)
 {
 	int		y;
 	char	**copy_map;
 
 	y = 0;
-	copy_map = malloc(sizeof(char *) * (data->size_map + 1));
+	copy_map = (char **)ft_calloc((data->size_map + 1), sizeof(char *));
 	if (!copy_map)
 		return (NULL);
 	while (data->map[y])

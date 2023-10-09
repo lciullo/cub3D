@@ -6,7 +6,7 @@
 /*   By: lciullo <lciullo@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/03 09:09:03 by lciullo           #+#    #+#             */
-/*   Updated: 2023/10/04 16:02:08 by lciullo          ###   ########.fr       */
+/*   Updated: 2023/10/09 15:08:15 by lciullo          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,13 +14,13 @@
 
 static int	parse_map(char *path, t_parsing *utils, t_data *data);
 static int	parse_file(char *file);
-static int	parse_textures(char *path, t_data *data, t_parsing *utils);
+static int	parse_asset(char *path, t_data *data, t_parsing *utils);
 
 int	parsing(char *file, t_data *data, t_parsing *utils)
 {
 	if (parse_file(file) == FAILURE)
 		return (FAILURE);
-	if (parse_textures(file, data, utils) == FAILURE)
+	if (parse_asset(file, data, utils) == FAILURE)
 		return (FAILURE);
 	if (parse_map(file, utils, data) == FAILURE)
 		return (FAILURE);
@@ -39,16 +39,17 @@ static	int	parse_file(char *file)
 	return (SUCCESS);
 }
 
-static int	parse_textures(char *path, t_data *data, t_parsing *utils)
+static int	parse_asset(char *path, t_data *data, t_parsing *utils)
 {
-	if (is_right_asset_number(path, data, utils) == FAILURE)
+	if (is_right_asset_number(path, utils) == FAILURE)
 		return (FAILURE);
-	if (read_to_get_asset(path, data, utils) == FAILURE)
+	if (read_to_get_asset(path, utils) == FAILURE)
 		return (FAILURE);
 	if (type_texture_check(utils) == FAILURE)
 		return (FAILURE);
-	if (get_colors(utils, data) == FAILURE)
+	if (get_colors(utils, data) == ERROR)
 		return (FAILURE);
+	free_all_colors(utils);
 	return (SUCCESS);
 }
 
@@ -65,10 +66,8 @@ static int	parse_map(char *path, t_parsing *utils, t_data *data)
 		return (FAILURE);
 	if (is_one_player(data, utils) == FAILURE)
 		return (FAILURE);
-	get_pos(data);
-	if (is_map_closed(data) == FAILURE)
+	get_player_position(data);
+	if (is_map_closed(data, utils) == FAILURE)
 		return (FAILURE);
 	return (SUCCESS);
 }
-
-

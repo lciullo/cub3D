@@ -1,23 +1,24 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_isdigit.c                                       :+:      :+:    :+:   */
+/*   clean_gnl.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lisa <lisa@student.42.fr>                  +#+  +:+       +#+        */
+/*   By: lciullo <lciullo@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/11/07 14:13:42 by cllovio           #+#    #+#             */
-/*   Updated: 2023/10/08 20:16:24 by lisa             ###   ########.fr       */
+/*   Created: 2023/10/09 11:35:20 by lciullo           #+#    #+#             */
+/*   Updated: 2023/10/09 11:35:22 by lciullo          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "library.h"
+#include "cub3D.h"
 
-int	ft_isdigit(int c)
+void	clean_gnl(int fd, char *line)
 {
-	if ((c >= '0' && c <= '9') || (c == ','))
+	if (line)
 	{
-		return (1);
+		free(line);
+		line = NULL;
 	}
-	else
-		return (0);
+	if (fd > 2)
+		close(fd);
 }

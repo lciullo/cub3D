@@ -6,7 +6,7 @@
 /*   By: lciullo <lciullo@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/03 09:10:54 by lciullo           #+#    #+#             */
-/*   Updated: 2023/10/04 13:01:08 by lciullo          ###   ########.fr       */
+/*   Updated: 2023/10/09 10:45:35 by lciullo          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,7 +32,7 @@ int	move_on_map(t_data *data, int y, int x, char **copy)
 	return (SUCCESS);
 }
 
-int	is_map_closed(t_data *data)
+int	is_map_closed(t_data *data, t_parsing *utils)
 {
 	char	**copy_map;
 
@@ -42,7 +42,13 @@ int	is_map_closed(t_data *data)
 	if (move_on_map(data, data->y_pers, data->x_pers, copy_map) == FAILURE)
 	{
 		ft_dprintf(2, "Error\nMap isn't closed\n");
+		secure_free_array(copy_map, data->size_map);
+		secure_free_array(data->map, data->size_map);
+		if (data->len_line)
+			free(data->len_line);
+		free_asset(utils);
 		return (FAILURE);
 	}
+	secure_free_array(copy_map, data->size_map);
 	return (SUCCESS);
 }
