@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parsing.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lisa <lisa@student.42.fr>                  +#+  +:+       +#+        */
+/*   By: lciullo <lciullo@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/03 09:09:03 by lciullo           #+#    #+#             */
-/*   Updated: 2023/10/08 20:39:58 by lisa             ###   ########.fr       */
+/*   Updated: 2023/10/09 09:27:46 by lciullo          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,7 +41,6 @@ static	int	parse_file(char *file)
 
 static int	parse_asset(char *path, t_data *data, t_parsing *utils)
 {
-	
 	if (is_right_asset_number(path, utils) == FAILURE)
 		return (FAILURE);
 	if (read_to_get_asset(path, utils) == FAILURE)
@@ -73,5 +72,3 @@ static int	parse_map(char *path, t_parsing *utils, t_data *data)
 		return (FAILURE);
 	return (SUCCESS);
 }
-
-
