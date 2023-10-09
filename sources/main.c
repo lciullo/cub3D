@@ -17,7 +17,7 @@ int	main(int ac, char **av)
 	if (parsing(av[1], &data, &utils) == FAILURE)
 		return (FAILURE);
 	//free_parsing(&utils, &data);
-	if (launch_mlx(&data) == FAILURE)
+	if (launch_game(&data) == FAILURE)
 		return (FAILURE);
 	return (0);
 }

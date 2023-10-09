@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   clem.h                                             :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: cllovio <cllovio@student.42.fr>            +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2023/10/09 14:44:54 by cllovio           #+#    #+#             */
+/*   Updated: 2023/10/09 14:44:57 by cllovio          ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #ifndef CLEM_H
 # define CLEM_H
 
@@ -19,61 +31,59 @@
 # define H_PURPLE			0x800080
 # define H_GREY				0x808080
 
-typedef struct s_draw_vector {
+typedef struct s_raycasting {
 	t_data	*data;
 	t_draw	*draw;
-	float	px_map;
-	float	py_map;
-	float	c_angle;
-	float	s_angle;
-	float	decalage;
+	float	cos_angle;
+	float	sin_angle;
+	float	shift;
 	int		x;
-}	t_draw_vector;
-
+}	t_raycasting;
 
 /*======================= PROTOTYPES =======================*/
 
-/* ---- draw/draw_direction.c ----*/
-void draw_direction_vector(t_data *data, t_draw *draw);
+/* ---- draw/draw_game.c ----*/
+void	draw_game(t_raycasting *raycasting, double distance);
 
-/* ---- draw/draw_rectangle.c ----*/
-void	draw_frame(t_draw *draw, int color);
-
-/* ---- draw/draw_rectangle.c ----*/
-void	draw_vertical_rectangle(t_draw *draw, int x, int y, int color);
-void	draw_horizontal_rectangle(t_draw *draw, int x, int y, int color);
-
-/* ---- draw/draw_sqaure.c ----*/
-void	draw_square(t_draw *draw, int x, int y, int color, int size);
+/* ---- draw/draw_square.c ----*/
+void	draw_square(t_draw *draw, int x, int y, int color);
 
 /* ---- draw/my_mlx_pixel_put.c ----*/
-void	my_mlx_pixel_put(t_draw *data, int x, int y, int color);
+void	my_mlx_pixel_put(t_draw *draw, int x, int y, int color);
 
-/* ---- hook.c ----*/
+/* ---- game/hook.c ----*/
 void	hook(t_data *data);
-int		key_hook(int key_code, t_data *data);
 
-/* ---- launch_mlx.c ----*/
-int		launch_mlx(t_data *data);
-void	generate_image(t_data *data);
-int		render_next_frame(t_data *data);
+/* ---- game/launch_mlx.c ----*/
+int		launch_game(t_data *data);
 
-/* ---- move.c ----*/
+/* ---- game/mini_map.c ----*/
+void	mini_map(t_data *data, t_draw *draw);
+
+/* ---- game/move.c ----*/
 void	move_up(t_data *data);
 void	move_down(t_data *data);
 void	move_left(t_data *data);
 void	move_right(t_data *data);
 
+/* ---- game/raycasting.c ----*/
+void	raycasting(t_data *data, t_draw *draw);
+
+/* ---- game/render_next_frame.c ----*/
+int		render_next_frame(t_data *data);
+
+/* ---- game/set_start_value.c ----*/
+void	set_start_value(t_data *data);
+
+/* ---- print_eroor.c ----*/
+void	print_error_mlx(void);
+
 /* ---- quit.c ----*/
 int		quit_game(t_data *data);
 
-/* ---- utils.c ----*/
-void	print_error_messages(int error_code);
-
-void    mini_map(t_data *data, t_draw *draw);
-int		find_len_max(int *len_line, int size_map);
-void 	find_direction(t_data *data);
-
-int    collision_front(t_data *data);
+/* ---- structure.c ----*/
+void	init_struct(t_data *data, t_parsing *utils);
+void	init_struct_raycasting(t_raycasting *raycasting, t_data *data, \
+		t_draw *draw);
 
 #endif
