@@ -1,3 +1,4 @@
+
 #include "cub3D.h"
 
 #ifdef __linux__

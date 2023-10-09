@@ -6,14 +6,14 @@
 /*   By: cllovio <cllovio@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/03 10:17:09 by lciullo           #+#    #+#             */
-/*   Updated: 2023/10/09 08:51:59 by cllovio          ###   ########.fr       */
+/*   Updated: 2023/10/09 11:00:09 by cllovio          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3D.h"
 
-void	init_struct_data(t_data *data);
-void	init_struct_parsing(t_parsing *utils);
+static void	init_struct_data(t_data *data);
+static void	init_struct_parsing(t_parsing *utils);
 
 void	init_struct(t_data *data, t_parsing *utils)
 {
@@ -21,7 +21,7 @@ void	init_struct(t_data *data, t_parsing *utils)
 	init_struct_parsing(utils);
 }
 
-void	init_struct_parsing(t_parsing *utils)
+static void	init_struct_parsing(t_parsing *utils)
 {
 	utils->nb_player = 0;
 	utils->north = 0;
@@ -38,7 +38,7 @@ void	init_struct_parsing(t_parsing *utils)
 	utils->color_f_path = NULL;
 }
 
-void	init_struct_data(t_data *data)
+static void	init_struct_data(t_data *data)
 {
 	data->mlx = NULL;
 	data->win = NULL;
