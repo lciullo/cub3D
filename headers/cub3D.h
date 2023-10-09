@@ -68,22 +68,22 @@ typedef struct s_data {
 	char		**map;
 	int			size_map;
 	int			*len_line;
-	float		px_map;
-	float		py_map;
-	float		angle;
 	int			gap;
-	bool		N;
-	bool		S;
-	bool		W;
-	bool		E;
 	int			x_pers;
 	int			y_pers;
 	int			celling;
 	int			floor;
+	float		px_map;
+	float		py_map;
+	float		angle;
 	float		xf_p;
 	float		yf_p;
 	float		x_dir;
 	float		y_dir;
+	bool		N;
+	bool		S;
+	bool		W;
+	bool		E;
 }	t_data;
 
 typedef struct	s_draw {
@@ -116,7 +116,6 @@ typedef struct s_parsing {
 	t_draw		texture_ea;
 }	t_parsing;
 
-void	init_struct(t_data *data, t_parsing *utils);
 
 # include "lisa.h"
 # include "clem.h"

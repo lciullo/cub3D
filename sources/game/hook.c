@@ -1,5 +1,6 @@
 #include "cub3D.h"
 
+static int	key_hook(int key_code, t_data *data);
 
 void	hook(t_data *data)
 {
@@ -9,7 +10,7 @@ void	hook(t_data *data)
 	mlx_loop(data->mlx);
 }
 
-int	key_hook(int key_code, t_data *data)
+static int	key_hook(int key_code, t_data *data)
 {
 	if (key_code == ESC)
 		return (quit_game(data), SUCCESS);

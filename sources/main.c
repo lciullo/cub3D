@@ -14,7 +14,7 @@ int	main(int ac, char **av)
 	init_struct(&data, &utils);
 	if (parsing(av[1], &data, &utils) == FAILURE)
 		return (FAILURE);
-	if (launch_mlx(&data) == FAILURE)
+	if (launch_game(&data) == FAILURE)
 		return (FAILURE);
 	return (0);
 }
