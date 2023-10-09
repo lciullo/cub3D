@@ -6,7 +6,7 @@
 /*   By: lciullo <lciullo@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/03 09:09:03 by lciullo           #+#    #+#             */
-/*   Updated: 2023/10/09 09:27:46 by lciullo          ###   ########.fr       */
+/*   Updated: 2023/10/09 11:34:26 by lciullo          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,7 +47,7 @@ static int	parse_asset(char *path, t_data *data, t_parsing *utils)
 		return (FAILURE);
 	if (type_texture_check(utils) == FAILURE)
 		return (FAILURE);
-	if (get_colors(utils, data) == FAILURE)
+	if (get_colors(utils, data) == ERROR)
 		return (FAILURE);
 	free_all_colors(utils);
 	data->is_asset = true;
@@ -67,7 +67,7 @@ static int	parse_map(char *path, t_parsing *utils, t_data *data)
 		return (FAILURE);
 	if (is_one_player(data, utils) == FAILURE)
 		return (FAILURE);
-	get_pos(data);
+	get_player_position(data);
 	if (is_map_closed(data, utils) == FAILURE)
 		return (FAILURE);
 	return (SUCCESS);

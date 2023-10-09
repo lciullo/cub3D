@@ -3,16 +3,17 @@
 /*                                                        :::      ::::::::   */
 /*   map_size.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lisa <lisa@student.42.fr>                  +#+  +:+       +#+        */
+/*   By: lciullo <lciullo@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/03 09:13:27 by lciullo           #+#    #+#             */
-/*   Updated: 2023/10/08 23:10:46 by lisa             ###   ########.fr       */
+/*   Updated: 2023/10/09 11:36:35 by lciullo          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3D.h"
 
 static int	read_map(int fd, t_data *data, char *line);
+static int	count_height_map(int fd, t_data *data, char *line, int map);
 
 int	get_size_map(char *path, t_data *data, char *line)
 {
@@ -26,20 +27,27 @@ int	get_size_map(char *path, t_data *data, char *line)
 	return (SUCCESS);
 }
 
-static int read_map(int fd, t_data *data, char *line)
+static int	read_map(int fd, t_data *data, char *line)
 {
 	int	map;
 
 	map = FALSE;
+	if (count_height_map(fd, data, line, map) == FAILURE)
+		return (FAILURE);
+	if (fd > 2)
+		close(fd);
+	return (SUCCESS);
+}
+
+static int	count_height_map(int fd, t_data *data, char *line, int map)
+{
 	while (1)
 	{
 		line = get_next_line(fd);
 		if (line && is_empty_line(line) == FALSE && map == TRUE)
 		{
-			if (line)
-				free(line);
+			clean_gnl(fd, line);
 			ft_dprintf(2, "Error\nInvalid map\n");
-			close(fd);
 			return (FAILURE);
 		}
 		if (line == NULL)
@@ -55,11 +63,8 @@ static int read_map(int fd, t_data *data, char *line)
 		if (line)
 			free(line);
 	}
-	if (fd > 2)
-		close(fd);
 	return (SUCCESS);
 }
-
 
 int	fill_len_line_array(t_data *data)
 {

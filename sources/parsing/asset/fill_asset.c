@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   fill_asset.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lisa <lisa@student.42.fr>                  +#+  +:+       +#+        */
+/*   By: lciullo <lciullo@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/03 09:17:32 by lciullo           #+#    #+#             */
-/*   Updated: 2023/10/08 20:12:49 by lisa             ###   ########.fr       */
+/*   Updated: 2023/10/09 10:14:15 by lciullo          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,7 +50,7 @@ static	int	find_asset(char *line, t_parsing *utils)
 		(ft_strchr(line, 'S') && ft_strchr(line, 'O')) || \
 		(ft_strchr(line, 'E') && ft_strchr(line, 'A')))
 	{
-		if (get_texture(line, utils) == FAILURE)	
+		if (get_texture(line, utils) == FAILURE)
 		{
 			ft_dprintf(2, "Error\nTexure missing\n");
 			return (FAILURE);
@@ -97,22 +97,16 @@ static int	get_color(char *s, t_parsing *utils)
 		return (FAILURE);
 	texture = copy_asset(texture, s);
 	if (ft_strchr(s, 'C'))
-	{	
+	{
 		utils->color_c_path = ft_substr(texture, 1, ft_strlen(texture));
 		if (!utils->color_c_path)
-		{
-			free_color_c_path(utils, texture);
-			return (FAILURE);
-		}
+			return (free_color_c_path(utils, texture), FAILURE);
 	}
 	else if (ft_strchr(s, 'F'))
 	{
 		utils->color_f_path = ft_substr(texture, 1, ft_strlen(texture));
 		if (!utils->color_f_path)
-		{
-			free_color_f_path(utils, texture);
-			return (FAILURE);
-		}
+			return (free_color_f_path(utils, texture), FAILURE);
 	}
 	free_texture(texture);
 	return (SUCCESS);
@@ -124,7 +118,7 @@ static	int	store_direction(char *texture, t_parsing *utils)
 	{
 		utils->north_path = ft_substr(texture, 2, ft_strlen(texture));
 		if (!utils->north_path)
-				return (FAILURE);
+			return (FAILURE);
 	}
 	if (texture && texture[0] == 'S')
 	{

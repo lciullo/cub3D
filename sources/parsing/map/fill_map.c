@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   fill_map.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lisa <lisa@student.42.fr>                  +#+  +:+       +#+        */
+/*   By: lciullo <lciullo@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/03 09:09:47 by lciullo           #+#    #+#             */
-/*   Updated: 2023/10/05 12:35:14 by lisa             ###   ########.fr       */
+/*   Updated: 2023/10/09 11:36:28 by lciullo          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,6 +14,8 @@
 
 static int	len_of_line(const char *s1);
 static char	*copy_line(const char *s1);
+static int	copy_map(t_data *data, char *line, int fd, int y);
+static int	is_map_at_end(char *line);
 
 int	fill_map(char *path, t_data *data, char *line)
 {
@@ -24,9 +26,17 @@ int	fill_map(char *path, t_data *data, char *line)
 	fd = ft_open(path);
 	if (fd == ERROR)
 		return (FAILURE);
-	data->map = (char **)ft_calloc((data->size_map + 1), sizeof(char *));
+	data->map = malloc(sizeof(char **) * (data->size_map));
 	if (!data->map)
 		return (FAILURE);
+	if (copy_map(data, line, fd, y) == FAILURE)
+		return (FAILURE);
+	close(fd);
+	return (SUCCESS);
+}
+
+static int	copy_map(t_data *data, char *line, int fd, int y)
+{
 	while (1)
 	{
 		line = get_next_line(fd);
@@ -38,23 +48,30 @@ int	fill_map(char *path, t_data *data, char *line)
 			if (line)
 				free(line);
 			line = get_next_line(fd);
-			if (line)
-			{
-				if (is_map(line) == FALSE)
-				{
-					ft_dprintf(2, "Error\nInvalid characteres\n");
-					if (line)
-						free(line);
-					return (FAILURE);
-				}
-			}
-			y++;	
+			if (is_map_at_end(line) == FAILURE)
+				return (FAILURE);
+			y++;
 		}
 		if (line)
 			free(line);
 	}
 	data->map[y] = NULL;
-	close(fd);
+	return (SUCCESS);
+}
+
+static int	is_map_at_end(char *line)
+{
+	if (line)
+	{
+		if (is_map(line) == FALSE)
+		{
+			if (line)
+				free(line);
+			line = NULL;
+			ft_dprintf(2, "Error\nInvalid Map\n");
+			return (FAILURE);
+		}
+	}
 	return (SUCCESS);
 }
 

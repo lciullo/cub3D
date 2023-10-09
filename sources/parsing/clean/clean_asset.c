@@ -1,6 +1,18 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   clean_asset.c                                      :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: lciullo <lciullo@student.42.fr>            +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2023/10/09 11:35:28 by lciullo           #+#    #+#             */
+/*   Updated: 2023/10/09 11:35:44 by lciullo          ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "cub3D.h"
 
-void free_textures(t_parsing *utils)
+void	free_textures(t_parsing *utils)
 {
 	if (utils->north_path != NULL)
 	{
@@ -9,7 +21,7 @@ void free_textures(t_parsing *utils)
 	}
 	if (utils->south_path != NULL)
 	{
-		free(utils->south_path );
+		free(utils->south_path);
 		utils->south_path = NULL;
 	}
 	if (utils->east_path != NULL)
@@ -69,7 +81,7 @@ void	free_color_f_path(t_parsing *utils, char *texture)
 	free_textures(utils);
 }
 
-void free_asset(t_parsing *utils)
+void	free_asset(t_parsing *utils)
 {
 	free_textures(utils);
 	if (utils->color_c_path)
