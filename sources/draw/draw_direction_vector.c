@@ -1,36 +1,39 @@
 #include "cub3D.h"
 
-static void draw_north_vector(t_draw_vector *draw_vector);
+void	draw_ceilling_and_floor(long *y, t_raycasting *raycasting, int y_max, int color);
+static double get_wall_distance(t_raycasting *raycasting);
+void	draw_game(t_raycasting *raycasting, double distance);
+void	init_angle_struct_raycasting(int i, t_raycasting *raycasting, t_data *data);
+bool	did_we_reach_a_wall(t_raycasting *raycasting, int x, int y);
+void	draw_wall(long *y, t_raycasting *raycasting, int y_max, int color);
 
-void	draw_col(t_draw_vector *draw_vector, double distance);
-
-#include "stdio.h"
-
-void draw_direction_vector(t_data *data, t_draw *draw)
+void	init_angle_struct_raycasting(int i, t_raycasting *raycasting, t_data *data)
 {
-	int	i = 1;
-	t_draw_vector	draw_vector;
+	raycasting->shift = ((float)i / SIZE_X) + 1;
+	raycasting->cos_angle = cosf(raycasting->shift * (M_PI / 3) + data->angle);
+	raycasting->sin_angle = -sinf(raycasting->shift * (M_PI / 3) + data->angle);
+	raycasting->shift = (raycasting->shift - 1.5) * (M_PI / 3);
+}
 
-	draw_vector.x = SIZE_X - 1;
-	draw_vector.draw = draw;
-	draw_vector.data = data;
-	draw_vector.px_map = data->px_map;
-	draw_vector.py_map = data->py_map;
+void raycasting(t_data *data, t_draw *draw)
+{
+	int				i;
+	double			distance;
+	t_raycasting	raycasting;
+
+	i = 1;
+	init_struct_raycasting(&raycasting, data, draw);
 	while (i <= SIZE_X)
 	{
-		draw_vector.decalage = ((float)i / SIZE_X) + 1;
-		draw_vector.c_angle = cosf((draw_vector.decalage * (M_PI / 3)) + \
-		data->angle);
-		draw_vector.s_angle = -sinf((draw_vector.decalage * (M_PI / 3) + \
-		data->angle));
-		draw_vector.decalage = (draw_vector.decalage - 1.5) * (M_PI / 3);
-		draw_north_vector(&draw_vector);
+		init_angle_struct_raycasting(i, &raycasting, data);
+		distance = get_wall_distance(&raycasting);
+		draw_game(&raycasting, distance);
 		i++;
-		draw_vector.x--;
+		raycasting.x--;
 	}
 }
 
-static void draw_north_vector(t_draw_vector *draw_vector)
+static double get_wall_distance(t_raycasting *raycasting)
 {
 	int x;
 	int y;
@@ -38,24 +41,31 @@ static void draw_north_vector(t_draw_vector *draw_vector)
 	double		distance;
 
 	t = 0;
-	x = draw_vector->px_map + t * draw_vector->c_angle;
-	y = draw_vector->py_map + t * draw_vector->s_angle;
+	x = raycasting->data->px_map + t * raycasting->cos_angle;
+	y = raycasting->data->py_map + t * raycasting->sin_angle;
 	distance = 0;
 	while (1)
 	{
-		if (draw_vector->data->map[y / SQUARE_SIZE][x / SQUARE_SIZE] == '1' || \
-		draw_vector->data->map[(y + 1) / SQUARE_SIZE][x / SQUARE_SIZE] == '1' \
-		|| draw_vector->data->map[y / SQUARE_SIZE][(x + 1)/ SQUARE_SIZE] == '1')
+		if (did_we_reach_a_wall(raycasting, x, y) == true)
 			break ;	
 		t += 1;
-		x = draw_vector->px_map + t * draw_vector->c_angle / 10;
-		y = draw_vector->py_map + t * draw_vector->s_angle / 10;
+		x = raycasting->data->px_map + t * raycasting->cos_angle / 10;
+		y = raycasting->data->py_map + t * raycasting->sin_angle / 10;
 		distance += 0.1;
 	}
-	draw_col(draw_vector, distance);
+	return (distance);
 }
 
-void	draw_col(t_draw_vector *draw_vector, double distance)
+bool	did_we_reach_a_wall(t_raycasting *raycasting, int x, int y)
+{
+	if (raycasting->data->map[y / SQUARE_SIZE][x / SQUARE_SIZE] == '1' || \
+	raycasting->data->map[(y + 1) / SQUARE_SIZE][x / SQUARE_SIZE] == '1' \
+	|| raycasting->data->map[y / SQUARE_SIZE][(x + 1)/ SQUARE_SIZE] == '1')
+		return (true);
+	return (false);
+}
+
+void	draw_game(t_raycasting *raycasting, double distance)
 {
 	long	y;
 	long	size_wall;
@@ -63,44 +73,27 @@ void	draw_col(t_draw_vector *draw_vector, double distance)
 
 	if (distance == 0)
 		distance = 0.2;
-	size_wall = (1 / (distance  * cos(draw_vector->decalage))) * 40000;
+	size_wall = (1 / (distance  * cos(raycasting->shift))) * 40000;
 	half_size_wall = size_wall / 2;
 	y = 0;
-	while (y < ((SIZE_Y / 2) - half_size_wall))
-	{
-		my_mlx_pixel_put(draw_vector->draw, draw_vector->x, y, draw_vector->data->celling);
-		y++;
-	}
-	y = (SIZE_Y / 2) - half_size_wall;
-	while (y <= ((SIZE_Y / 2) + half_size_wall))
-	{
-		my_mlx_pixel_put(draw_vector->draw, draw_vector->x, y, H_GREY);
-		y++;
-	}
-	while (y < SIZE_Y)
-	{
-		my_mlx_pixel_put(draw_vector->draw, draw_vector->x, y, draw_vector->data->floor);
-		y++;
-	}
+	draw_ceilling_and_floor(&y, raycasting, ((SIZE_Y / 2) - half_size_wall), raycasting->data->celling);
+	draw_wall(&y, raycasting, ((SIZE_Y / 2) + half_size_wall), H_GREY);
+	draw_ceilling_and_floor(&y, raycasting, SIZE_Y, raycasting->data->floor);
 }
 
-void find_direction(t_data *data)
+void	draw_wall(long *y, t_raycasting *raycasting, int y_max, int color)
 {
-	if (data->N == true)
-		data->N = false;
-	else if (data->S == true)
+	while (*y <= y_max)
 	{
-		data->S = false;
-		data->angle += (M_PI * 180) / 180;
+		my_mlx_pixel_put(raycasting->draw, raycasting->x, *y, color);
+		*y = *y +1;
 	}
-	else if (data->W == true)
+}
+void	draw_ceilling_and_floor(long *y, t_raycasting *raycasting, int y_max, int color)
+{
+	while (*y < y_max)
 	{
-		data->W = false;
-		data->angle += M_PI_2;
-	}
-	else if (data->E == true)
-	{
-		data->E = false;
-		data->angle -= M_PI_2;
+		my_mlx_pixel_put(raycasting->draw, raycasting->x, *y, color);
+		*y = *y + 1;
 	}
 }

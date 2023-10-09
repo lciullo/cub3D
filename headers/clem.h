@@ -19,22 +19,25 @@
 # define H_PURPLE			0x800080
 # define H_GREY				0x808080
 
-typedef struct s_draw_vector {
+typedef struct s_raycasting {
 	t_data	*data;
 	t_draw	*draw;
-	float	px_map;
-	float	py_map;
-	float	c_angle;
-	float	s_angle;
-	float	decalage;
+	float	cos_angle;
+	float	sin_angle;
+	float	shift;
 	int		x;
-}	t_draw_vector;
+}	t_raycasting;
 
 
 /*======================= PROTOTYPES =======================*/
 
+void set_start_value(t_data *data);
+void	init_struct(t_data *data, t_parsing *utils);
+int		launch_game(t_data *data);
+void	init_struct_raycasting(t_raycasting *raycasting, t_data *data, t_draw *draw);
+
 /* ---- draw/draw_direction.c ----*/
-void draw_direction_vector(t_data *data, t_draw *draw);
+void raycasting(t_data *data, t_draw *draw);
 
 /* ---- draw/draw_rectangle.c ----*/
 void	draw_frame(t_draw *draw, int color);
@@ -54,8 +57,6 @@ void	hook(t_data *data);
 int		key_hook(int key_code, t_data *data);
 
 /* ---- launch_mlx.c ----*/
-int		launch_mlx(t_data *data);
-void	generate_image(t_data *data);
 int		render_next_frame(t_data *data);
 
 /* ---- move.c ----*/

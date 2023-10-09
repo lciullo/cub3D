@@ -1,7 +1,5 @@
 #include "cub3D.h"
 
-#include "stdio.h"
-
 void	move_up(t_data *data)
 {
 	float	added_value_y;

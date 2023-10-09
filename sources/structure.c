@@ -3,26 +3,26 @@
 /*                                                        :::      ::::::::   */
 /*   structure.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lciullo <lciullo@student.42.fr>            +#+  +:+       +#+        */
+/*   By: cllovio <cllovio@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/03 10:17:09 by lciullo           #+#    #+#             */
-/*   Updated: 2023/10/04 10:59:28 by lciullo          ###   ########.fr       */
+/*   Updated: 2023/10/09 08:51:59 by cllovio          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3D.h"
 
+void	init_struct_data(t_data *data);
+void	init_struct_parsing(t_parsing *utils);
+
 void	init_struct(t_data *data, t_parsing *utils)
 {
-	data->map = NULL;
-	data->floor = 0;
-	data->celling = 0;
-	data->len_line = 0;
-	data->size_map = 0;
-	data->N = false;
-	data->S = false;
-	data->E = false;
-	data->W = false;
+	init_struct_data(data);
+	init_struct_parsing(utils);
+}
+
+void	init_struct_parsing(t_parsing *utils)
+{
 	utils->nb_player = 0;
 	utils->north = 0;
 	utils->south = 0;
@@ -36,5 +36,36 @@ void	init_struct(t_data *data, t_parsing *utils)
 	utils->south_path = NULL;
 	utils->color_c_path = NULL;
 	utils->color_f_path = NULL;
-	return ;
+}
+
+void	init_struct_data(t_data *data)
+{
+	data->mlx = NULL;
+	data->win = NULL;
+	data->map = NULL;
+	data->size_map = 0;
+	data->len_line = 0;
+	data->gap = 10;
+	data->x_pers = 0;
+	data->y_pers = 0;
+	data->celling = 0;
+	data->floor = 0;
+	data->px_map = 0;
+	data->py_map = 0;
+	data->angle = 0;
+	data->xf_p = 0;
+	data->yf_p = 0;
+	data->x_dir = 0;
+	data->y_dir = 0;
+	data->N = false;
+	data->S = false;
+	data->W = false;
+	data->E = false;
+}
+
+void	init_struct_raycasting(t_raycasting *raycasting, t_data *data, t_draw *draw)
+{
+	raycasting->x = SIZE_X - 1;
+	raycasting->draw = draw;
+	raycasting->data = data;
 }

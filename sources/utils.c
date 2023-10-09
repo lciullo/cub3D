@@ -1,11 +1,5 @@
 #include "cub3D.h"
 
-void	init_struct_data(t_data *data)
-{
-	data->mlx = NULL;
-	data->win = NULL;
-}
-
 void	print_error_messages(int error_code)
 {
 	if (error_code == MLX)

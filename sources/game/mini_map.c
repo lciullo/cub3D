@@ -1,7 +1,5 @@
 #include "cub3D.h"
 
-#include <stdio.h>
-
 void    mini_map(t_data *data, t_draw *draw)
 {
 	int	x;
@@ -11,7 +9,6 @@ void    mini_map(t_data *data, t_draw *draw)
 
 	y = 0;
 	y_square = 0;
-	draw_direction_vector(data, draw);
 	while (data->map[y])
 	{
 		x = 0;

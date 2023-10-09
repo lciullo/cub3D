@@ -1,6 +1,5 @@
 #include "cub3D.h"
 
-
 void	hook(t_data *data)
 {
 	mlx_hook(data->win, ON_KEYDOWN, 27, key_hook, data);
