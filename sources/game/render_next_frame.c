@@ -1,6 +1,18 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   render_next_frame.c                                :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: cllovio <cllovio@student.42.fr>            +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2023/10/09 14:38:18 by cllovio           #+#    #+#             */
+/*   Updated: 2023/10/09 14:38:45 by cllovio          ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "cub3D.h"
 
-static int init_image(t_data *data, t_draw *draw);
+static int	init_image(t_data *data, t_draw *draw);
 
 int	render_next_frame(t_data *data)
 {
@@ -16,7 +28,7 @@ int	render_next_frame(t_data *data)
 	return (SUCCESS);
 }
 
-static int init_image(t_data *data, t_draw *draw)
+static int	init_image(t_data *data, t_draw *draw)
 {
 	draw->img = mlx_new_image(data->mlx, SIZE_X, SIZE_Y);
 	if (draw->img == NULL)

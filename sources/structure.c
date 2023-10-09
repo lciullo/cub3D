@@ -6,7 +6,7 @@
 /*   By: cllovio <cllovio@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/03 10:17:09 by lciullo           #+#    #+#             */
-/*   Updated: 2023/10/09 11:00:09 by cllovio          ###   ########.fr       */
+/*   Updated: 2023/10/09 14:44:08 by cllovio          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -63,7 +63,8 @@ static void	init_struct_data(t_data *data)
 	data->E = false;
 }
 
-void	init_struct_raycasting(t_raycasting *raycasting, t_data *data, t_draw *draw)
+void	init_struct_raycasting(t_raycasting *raycasting, \
+		t_data *data, t_draw *draw)
 {
 	raycasting->x = SIZE_X - 1;
 	raycasting->draw = draw;

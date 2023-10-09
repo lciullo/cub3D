@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   hook.c                                             :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: cllovio <cllovio@student.42.fr>            +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2023/10/09 14:33:59 by cllovio           #+#    #+#             */
+/*   Updated: 2023/10/09 14:34:50 by cllovio          ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "cub3D.h"
 
 static int	key_hook(int key_code, t_data *data);
@@ -24,13 +36,13 @@ static int	key_hook(int key_code, t_data *data)
 		move_right(data);
 	if (key_code == LEFT_KEY)
 	{
-		data->angle += M_PI /36;
+		data->angle += M_PI / 36;
 		// if (data->angle < 0)
 		// 	data->angle = 2 * M_PI;
 	}
 	if (key_code == RIGHT_KEY)
 	{
-		data->angle -=  M_PI / 36;
+		data->angle -= M_PI / 36;
 		// if (data->angle > 2 * M_PI)
 		// 	data->angle = 0;
 	}

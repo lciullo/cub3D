@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   clem.h                                             :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: cllovio <cllovio@student.42.fr>            +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2023/10/09 14:44:54 by cllovio           #+#    #+#             */
+/*   Updated: 2023/10/09 14:44:57 by cllovio          ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #ifndef CLEM_H
 # define CLEM_H
 
@@ -34,7 +46,7 @@ typedef struct s_raycasting {
 void	draw_game(t_raycasting *raycasting, double distance);
 
 /* ---- draw/draw_square.c ----*/
-void	draw_square(t_draw *draw, int x, int y, int color, int size);
+void	draw_square(t_draw *draw, int x, int y, int color);
 
 /* ---- draw/my_mlx_pixel_put.c ----*/
 void	my_mlx_pixel_put(t_draw *draw, int x, int y, int color);
