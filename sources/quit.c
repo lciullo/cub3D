@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   quit.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: cllovio <cllovio@student.42.fr>            +#+  +:+       +#+        */
+/*   By: lciullo <lciullo@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/09 14:43:32 by cllovio           #+#    #+#             */
-/*   Updated: 2023/10/09 14:43:34 by cllovio          ###   ########.fr       */
+/*   Updated: 2023/10/09 17:41:31 by lciullo          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,6 +18,7 @@ int	quit_game(t_data *data)
 {
 	mlx_destroy_window(data->mlx, data->win);
 	mlx_destroy_display(data->mlx);
+	secure_free_array(data->map, data->size_map);
 	free(data->mlx);
 	exit(0);
 	return (0);
@@ -29,6 +30,8 @@ int	quit_game(t_data *data)
 {
 	mlx_destroy_window(data->mlx, data->win);
 	free(data->mlx);
+	secure_free_array(data->map, data->size_map);
+	free_textures(utils);
 	exit(0);
 	return (0);
 }

@@ -6,7 +6,7 @@
 /*   By: lciullo <lciullo@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/03 09:09:03 by lciullo           #+#    #+#             */
-/*   Updated: 2023/10/09 15:08:15 by lciullo          ###   ########.fr       */
+/*   Updated: 2023/10/09 17:11:23 by lciullo          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,11 +58,11 @@ static int	parse_map(char *path, t_parsing *utils, t_data *data)
 	char	*line;
 
 	line = NULL;
-	if (get_size_map(path, data, line) == FAILURE)
+	if (get_size_map(path, data, line, utils) == FAILURE)
 		return (FAILURE);
-	if (fill_map(path, data, line) == FAILURE)
+	if (fill_map(path, data, line, utils) == FAILURE)
 		return (FAILURE);
-	if (fill_len_line_array(data) == FAILURE)
+	if (fill_len_line_array(data, utils) == FAILURE)
 		return (FAILURE);
 	if (is_one_player(data, utils) == FAILURE)
 		return (FAILURE);

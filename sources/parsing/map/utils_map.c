@@ -6,7 +6,7 @@
 /*   By: lciullo <lciullo@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/03 09:13:49 by lciullo           #+#    #+#             */
-/*   Updated: 2023/10/09 11:25:39 by lciullo          ###   ########.fr       */
+/*   Updated: 2023/10/09 17:36:55 by lciullo          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -63,12 +63,19 @@ char	**ft_copy_map(t_data *data)
 	y = 0;
 	copy_map = (char **)ft_calloc((data->size_map + 1), sizeof(char *));
 	if (!copy_map)
+	{
+		ft_dprintf(2, "Error\nMalloc failed in ft_copy_map\n");
 		return (NULL);
+	}
 	while (data->map[y])
 	{
 		copy_map[y] = ft_strdup(data->map[y]);
 		if (!copy_map[y])
+		{
+			secure_free_array(copy_map, data->size_map);
+			ft_dprintf(2, "Error\nMalloc failed in ft_copy_map\n");
 			return (NULL);
+		}
 		y++;
 	}
 	copy_map[y] = NULL;
