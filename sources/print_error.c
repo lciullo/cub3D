@@ -1,19 +1,18 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   my_mlx_pixel_put.c                                 :+:      :+:    :+:   */
+/*   print_error.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: cllovio <cllovio@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/10/09 14:20:39 by cllovio           #+#    #+#             */
-/*   Updated: 2023/10/09 14:29:44 by cllovio          ###   ########.fr       */
+/*   Created: 2023/10/09 14:43:27 by cllovio           #+#    #+#             */
+/*   Updated: 2023/10/09 14:43:29 by cllovio          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3D.h"
 
-void	my_mlx_pixel_put(t_draw *draw, int x, int y, int color)
+void	print_error_mlx(void)
 {
-	if ((x >= 0 && x < SIZE_X) && (y >= 0 && y < SIZE_Y))
-		((int *)draw->addr)[y * (draw->line_length >> 2) + x] = color;
+	ft_dprintf(2, RED"Error\nA function from the mlx failed\n"END);
 }

@@ -1,14 +1,30 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   draw_square.c                                      :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: cllovio <cllovio@student.42.fr>            +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2023/10/09 14:20:31 by cllovio           #+#    #+#             */
+/*   Updated: 2023/10/09 14:29:11 by cllovio          ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "cub3D.h"
 
-void	draw_square(t_draw *draw, int x, int y, int color, int size)
+static int	get_size(int color);
+
+void	draw_square(t_draw *draw, int x, int y, int color)
 {
 	int	i;
 	int	j;
+	int	size;
 	int	x_value;
 
 	i = 0;
 	j = 0;
 	x_value = x;
+	size = get_size(color);
 	while (j < size)
 	{
 		i = 0;
@@ -22,4 +38,13 @@ void	draw_square(t_draw *draw, int x, int y, int color, int size)
 		j++;
 		y++;
 	}
+}
+
+static int	get_size(int color)
+{
+	if (color == H_PINK || color == H_GREY)
+		return (SQUARE_SIZE / 4);
+	else if (color == H_PURPLE)
+		return ((SQUARE_SIZE / 2) / 4);
+	return (0);
 }
