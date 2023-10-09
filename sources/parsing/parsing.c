@@ -6,7 +6,7 @@
 /*   By: lciullo <lciullo@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/03 09:09:03 by lciullo           #+#    #+#             */
-/*   Updated: 2023/10/09 11:34:26 by lciullo          ###   ########.fr       */
+/*   Updated: 2023/10/09 15:08:15 by lciullo          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,7 +50,6 @@ static int	parse_asset(char *path, t_data *data, t_parsing *utils)
 	if (get_colors(utils, data) == ERROR)
 		return (FAILURE);
 	free_all_colors(utils);
-	data->is_asset = true;
 	return (SUCCESS);
 }
 

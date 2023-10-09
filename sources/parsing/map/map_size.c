@@ -6,7 +6,7 @@
 /*   By: lciullo <lciullo@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/03 09:13:27 by lciullo           #+#    #+#             */
-/*   Updated: 2023/10/09 11:36:35 by lciullo          ###   ########.fr       */
+/*   Updated: 2023/10/09 15:25:06 by lciullo          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -73,7 +73,10 @@ int	fill_len_line_array(t_data *data)
 	i = 0;
 	data->len_line = (int *)ft_calloc(data->size_map + 1, sizeof(int));
 	if (!data->len_line)
+	{
+		ft_dprintf(2, "Error\nMalloc failed in fill len line array\n");
 		return (FAILURE);
+	}
 	while (data->map[i])
 	{
 		data->len_line[i] = ft_strlen(data->map[i]);

@@ -6,7 +6,7 @@
 /*   By: lciullo <lciullo@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/03 09:09:47 by lciullo           #+#    #+#             */
-/*   Updated: 2023/10/09 11:36:28 by lciullo          ###   ########.fr       */
+/*   Updated: 2023/10/09 15:31:37 by lciullo          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,6 @@
 static int	len_of_line(const char *s1);
 static char	*copy_line(const char *s1);
 static int	copy_map(t_data *data, char *line, int fd, int y);
-static int	is_map_at_end(char *line);
 
 int	fill_map(char *path, t_data *data, char *line)
 {
@@ -26,7 +25,7 @@ int	fill_map(char *path, t_data *data, char *line)
 	fd = ft_open(path);
 	if (fd == ERROR)
 		return (FAILURE);
-	data->map = malloc(sizeof(char **) * (data->size_map));
+	data->map = (char **)ft_calloc(data->size_map + 1, sizeof(char *));
 	if (!data->map)
 		return (FAILURE);
 	if (copy_map(data, line, fd, y) == FAILURE)
@@ -48,30 +47,12 @@ static int	copy_map(t_data *data, char *line, int fd, int y)
 			if (line)
 				free(line);
 			line = get_next_line(fd);
-			if (is_map_at_end(line) == FAILURE)
-				return (FAILURE);
 			y++;
 		}
 		if (line)
 			free(line);
 	}
 	data->map[y] = NULL;
-	return (SUCCESS);
-}
-
-static int	is_map_at_end(char *line)
-{
-	if (line)
-	{
-		if (is_map(line) == FALSE)
-		{
-			if (line)
-				free(line);
-			line = NULL;
-			ft_dprintf(2, "Error\nInvalid Map\n");
-			return (FAILURE);
-		}
-	}
 	return (SUCCESS);
 }
 

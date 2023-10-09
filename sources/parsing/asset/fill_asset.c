@@ -6,7 +6,7 @@
 /*   By: lciullo <lciullo@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/03 09:17:32 by lciullo           #+#    #+#             */
-/*   Updated: 2023/10/09 10:14:15 by lciullo          ###   ########.fr       */
+/*   Updated: 2023/10/09 14:54:40 by lciullo          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,7 +52,7 @@ static	int	find_asset(char *line, t_parsing *utils)
 	{
 		if (get_texture(line, utils) == FAILURE)
 		{
-			ft_dprintf(2, "Error\nTexure missing\n");
+			free_asset(utils);
 			return (FAILURE);
 		}
 	}
@@ -60,7 +60,8 @@ static	int	find_asset(char *line, t_parsing *utils)
 	{
 		if (get_color(line, utils) == FAILURE)
 		{
-			ft_dprintf(2, "Error\nColor missing\n");
+			ft_dprintf(2, "Error\nMalloc failed in get_color\n");
+			free_asset(utils);
 			return (FAILURE);
 		}
 	}
@@ -100,13 +101,13 @@ static int	get_color(char *s, t_parsing *utils)
 	{
 		utils->color_c_path = ft_substr(texture, 1, ft_strlen(texture));
 		if (!utils->color_c_path)
-			return (free_color_c_path(utils, texture), FAILURE);
+			return (free_texture(texture), FAILURE);
 	}
 	else if (ft_strchr(s, 'F'))
 	{
 		utils->color_f_path = ft_substr(texture, 1, ft_strlen(texture));
 		if (!utils->color_f_path)
-			return (free_color_f_path(utils, texture), FAILURE);
+			return (free_texture(texture), FAILURE);
 	}
 	free_texture(texture);
 	return (SUCCESS);

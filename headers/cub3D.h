@@ -111,6 +111,9 @@ typedef struct s_parsing {
 	char		*west_path;
 	char		*color_c_path;
 	char		*color_f_path;
+	int			r;
+	int			g;
+	int			b;
 	t_draw		texture_no;
 	t_draw		texture_so;
 	t_draw		texture_we;

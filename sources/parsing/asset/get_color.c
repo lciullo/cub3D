@@ -6,7 +6,7 @@
 /*   By: lciullo <lciullo@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/04 10:13:38 by lciullo           #+#    #+#             */
-/*   Updated: 2023/10/09 09:48:54 by lciullo          ###   ########.fr       */
+/*   Updated: 2023/10/09 15:06:37 by lciullo          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,7 +61,7 @@ static	int	convert_rgb_to_int(char *color, t_parsing *utils)
 	res = 0;
 	if (is_valid_color_format(color) == FAILURE)
 	{
-		ft_dprintf(2, "Error\nWrong color format\n");
+		ft_dprintf(2, "Error\nWrong color format usage : 0,0,0\n");
 		free_asset(utils);
 		return (ERROR);
 	}
@@ -87,7 +87,7 @@ static int	get_res(t_parsing *utils, int res, char **array)
 	if ((utils->r < 0) || (utils->g < 0) || (utils->b < 0) \
 		|| (utils->r > 255) || (utils->g > 255) || (utils->b > 255))
 	{
-		ft_dprintf(2, "Error\nAdd only interger from 0 to 255\n");
+		ft_dprintf(2, "Error\nAdd only positif interger from 0 to 255\n");
 		secure_free_array(array, 4);
 		free_asset(utils);
 		return (ERROR);

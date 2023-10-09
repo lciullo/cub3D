@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   structure.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lisa <lisa@student.42.fr>                  +#+  +:+       +#+        */
+/*   By: lciullo <lciullo@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/03 10:17:09 by lciullo           #+#    #+#             */
-/*   Updated: 2023/10/08 20:39:37 by lisa             ###   ########.fr       */
+/*   Updated: 2023/10/09 15:08:20 by lciullo          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,11 +19,13 @@ void	init_struct(t_data *data, t_parsing *utils)
 	data->celling = 0;
 	data->len_line = 0;
 	data->size_map = 0;
-	data->is_asset = false;
 	data->N = false;
 	data->S = false;
 	data->E = false;
 	data->W = false;
+	utils->r = 0;
+	utils->g = 0;
+	utils->b = 0;
 	utils->nb_player = 0;
 	utils->north = 0;
 	utils->south = 0;
