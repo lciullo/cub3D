@@ -6,13 +6,13 @@
 /*   By: cllovio <cllovio@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/09 14:42:04 by cllovio           #+#    #+#             */
-/*   Updated: 2023/10/09 14:43:06 by cllovio          ###   ########.fr       */
+/*   Updated: 2023/10/09 14:46:59 by cllovio          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3D.h"
 
-static bool	is_it_a_direction(char *c);
+static bool	is_it_a_direction(char c);
 
 void	mini_map(t_data *data, t_draw *draw)
 {
@@ -43,7 +43,7 @@ void	mini_map(t_data *data, t_draw *draw)
 	((data->py_map - ((SQUARE_SIZE / 2)) + 10) / 4), H_PURPLE);
 }
 
-static bool	is_it_a_direction(char *c)
+static bool	is_it_a_direction(char c)
 {
 	if (c == '0' || c == 'N' || c == 'S' || c == 'W' || c == 'E')
 		return (true);
