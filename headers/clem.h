@@ -6,7 +6,7 @@
 /*   By: cllovio <cllovio@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/09 14:44:54 by cllovio           #+#    #+#             */
-/*   Updated: 2023/10/09 14:44:57 by cllovio          ###   ########.fr       */
+/*   Updated: 2023/10/09 16:53:33 by cllovio          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,7 @@
 
 # define SIZE_X				1920
 # define SIZE_Y				1080
-# define SQUARE_SIZE		40
+# define SQUARE_SIZE		64
 
 # define H_WHITE			0xffffff
 # define H_BLACK			0x000000
@@ -43,13 +43,14 @@ typedef struct s_raycasting {
 /*======================= PROTOTYPES =======================*/
 
 /* ---- draw/draw_game.c ----*/
-void	draw_game(t_raycasting *raycasting, double distance);
+void	draw_game(t_data *data, t_raycasting *raycasting, double distance);
 
 /* ---- draw/draw_square.c ----*/
 void	draw_square(t_draw *draw, int x, int y, int color);
 
 /* ---- draw/my_mlx_pixel_put.c ----*/
 void	my_mlx_pixel_put(t_draw *draw, int x, int y, int color);
+int		my_mlx_pixel_get(t_draw *img, int x, int y);
 
 /* ---- game/hook.c ----*/
 void	hook(t_data *data);
