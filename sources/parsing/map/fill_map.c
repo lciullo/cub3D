@@ -6,7 +6,7 @@
 /*   By: lciullo <lciullo@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/03 09:09:47 by lciullo           #+#    #+#             */
-/*   Updated: 2023/10/09 17:08:35 by lciullo          ###   ########.fr       */
+/*   Updated: 2023/10/10 13:23:58 by lciullo          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,7 @@ static int	len_of_line(const char *s1);
 static char	*copy_line(const char *s1);
 static int	copy_map(t_data *data, char *line, int fd, int y);
 
-int	fill_map(char *path, t_data *data, char *line, t_parsing *utils)
+int	fill_map(char *path, t_data *data, char *line)
 {
 	int	y;
 	int	fd;
@@ -28,13 +28,13 @@ int	fill_map(char *path, t_data *data, char *line, t_parsing *utils)
 	data->map = (char **)ft_calloc(data->size_map + 1, sizeof(char *));
 	if (!data->map)
 	{
-		free_textures(utils);
+		free_textures(data);
 		ft_dprintf(2, "Error\nMalloc failed in fill_map\n");
 		return (FAILURE);
 	}
 	if (copy_map(data, line, fd, y) == FAILURE)
 	{
-		free_textures(utils);
+		free_textures(data);
 		ft_dprintf(2, "Error\nMalloc failed in fill_map\n");
 		return (FAILURE);
 	}

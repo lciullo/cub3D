@@ -6,13 +6,13 @@
 /*   By: lciullo <lciullo@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/03 09:10:54 by lciullo           #+#    #+#             */
-/*   Updated: 2023/10/09 17:43:59 by lciullo          ###   ########.fr       */
+/*   Updated: 2023/10/10 13:26:16 by lciullo          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3D.h"
 
-int	is_map_closed(t_data *data, t_parsing *utils)
+int	is_map_closed(t_data *data)
 {
 	char	**copy_map;
 
@@ -22,7 +22,7 @@ int	is_map_closed(t_data *data, t_parsing *utils)
 		secure_free_array(data->map, data->size_map);
 		if (data->len_line)
 			free(data->len_line);
-		free_textures(utils);
+		free_textures(data);
 		return (FAILURE);
 	}
 	if (move_on_map(data, data->y_pers, data->x_pers, copy_map) == FAILURE)
@@ -32,7 +32,7 @@ int	is_map_closed(t_data *data, t_parsing *utils)
 		secure_free_array(data->map, data->size_map);
 		if (data->len_line)
 			free(data->len_line);
-		free_textures(utils);
+		free_textures(data);
 		return (FAILURE);
 	}
 	secure_free_array(copy_map, data->size_map);

@@ -6,28 +6,28 @@
 /*   By: lciullo <lciullo@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/04 10:13:38 by lciullo           #+#    #+#             */
-/*   Updated: 2023/10/09 15:06:37 by lciullo          ###   ########.fr       */
+/*   Updated: 2023/10/10 13:21:11 by lciullo          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3D.h"
 
-static int	convert_rgb_to_int(char *color, t_parsing *utils);
+static int	convert_rgb_to_int(char *color, t_parsing *utils, t_data *data);
 static int	is_valid_color_format(char *color);
-static int	get_res(t_parsing *utils, int res, char **array);
+static int	get_res(t_parsing *utils, int res, char **array, t_data *data);
 
 int	get_colors(t_parsing *utils, t_data *data)
 {
-	data->celling = convert_rgb_to_int(utils->color_c_path, utils);
+	data->celling = convert_rgb_to_int(utils->color_c_path, utils, data);
 	if (data->celling == ERROR)
 	{
-		free_asset(utils);
+		free_asset(utils, data);
 		return (ERROR);
 	}
-	data->floor = convert_rgb_to_int(utils->color_f_path, utils);
+	data->floor = convert_rgb_to_int(utils->color_f_path, utils, data);
 	if (data->floor == ERROR)
 	{
-		free_asset(utils);
+		free_asset(utils, data);
 		return (ERROR);
 	}
 	return (SUCCESS);
@@ -53,7 +53,7 @@ static int	is_valid_color_format(char *color)
 	return (SUCCESS);
 }
 
-static	int	convert_rgb_to_int(char *color, t_parsing *utils)
+static	int	convert_rgb_to_int(char *color, t_parsing *utils, t_data *data)
 {
 	int		res;
 	char	**array;
@@ -62,24 +62,24 @@ static	int	convert_rgb_to_int(char *color, t_parsing *utils)
 	if (is_valid_color_format(color) == FAILURE)
 	{
 		ft_dprintf(2, "Error\nWrong color format usage : 0,0,0\n");
-		free_asset(utils);
+		free_asset(utils, data);
 		return (ERROR);
 	}
 	array = ft_split(color, ',');
 	if (!array)
 	{
 		ft_dprintf(2, "Error\nMalloc failed in convert rgb to int\n");
-		free_asset(utils);
+		free_asset(utils, data);
 		return (ERROR);
 	}
-	res = get_res(utils, res, array);
+	res = get_res(utils, res, array, data);
 	if (res == ERROR)
 		return (ERROR);
 	secure_free_array(array, 4);
 	return (res);
 }
 
-static int	get_res(t_parsing *utils, int res, char **array)
+static int	get_res(t_parsing *utils, int res, char **array, t_data *data)
 {
 	utils->r = ft_atoi(array[0]);
 	utils->g = ft_atoi(array[1]);
@@ -89,7 +89,7 @@ static int	get_res(t_parsing *utils, int res, char **array)
 	{
 		ft_dprintf(2, "Error\nAdd only positif interger from 0 to 255\n");
 		secure_free_array(array, 4);
-		free_asset(utils);
+		free_asset(utils, data);
 		return (ERROR);
 	}
 	res = 256 * 256 * utils->r + 256 * utils->g + utils->b;

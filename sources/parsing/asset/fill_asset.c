@@ -6,18 +6,18 @@
 /*   By: lciullo <lciullo@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/03 09:17:32 by lciullo           #+#    #+#             */
-/*   Updated: 2023/10/09 14:54:40 by lciullo          ###   ########.fr       */
+/*   Updated: 2023/10/10 13:34:32 by lciullo          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3D.h"
 
-static int	get_texture(char *line, t_parsing *utils);
-static	int	find_asset(char *line, t_parsing *utils);
-static	int	store_direction(char *texture, t_parsing *utils);
+static int	get_texture(char *line, t_data *data);
+static	int	find_asset(char *line, t_parsing *utils, t_data *data);
+static	int	store_direction(char *texture, t_data *data);
 static int	get_color(char *s, t_parsing *utils);
 
-int	read_to_get_asset(char *path, t_parsing *utils)
+int	read_to_get_asset(char *path, t_parsing *utils, t_data *data)
 {
 	char	*line;
 	int		fd;
@@ -31,7 +31,7 @@ int	read_to_get_asset(char *path, t_parsing *utils)
 		line = get_next_line(fd);
 		if (line == NULL)
 			break ;
-		if (find_asset(line, utils) == FAILURE)
+		if (find_asset(line, utils, data) == FAILURE)
 		{
 			clean_gnl(fd, line);
 			return (FAILURE);
@@ -43,16 +43,16 @@ int	read_to_get_asset(char *path, t_parsing *utils)
 	return (SUCCESS);
 }
 
-static	int	find_asset(char *line, t_parsing *utils)
+static	int	find_asset(char *line, t_parsing *utils, t_data *data)
 {
 	if ((ft_strchr(line, 'W') && ft_strchr(line, 'E')) || \
 		(ft_strchr(line, 'N') && ft_strchr(line, 'O')) || \
 		(ft_strchr(line, 'S') && ft_strchr(line, 'O')) || \
 		(ft_strchr(line, 'E') && ft_strchr(line, 'A')))
 	{
-		if (get_texture(line, utils) == FAILURE)
+		if (get_texture(line, data) == FAILURE)
 		{
-			free_asset(utils);
+			free_asset(utils, data);
 			return (FAILURE);
 		}
 	}
@@ -61,25 +61,25 @@ static	int	find_asset(char *line, t_parsing *utils)
 		if (get_color(line, utils) == FAILURE)
 		{
 			ft_dprintf(2, "Error\nMalloc failed in get_color\n");
-			free_asset(utils);
+			free_asset(utils, data);
 			return (FAILURE);
 		}
 	}
 	return (SUCCESS);
 }
 
-static int	get_texture(char *s, t_parsing *utils)
+static int	get_texture(char *line, t_data *data)
 {
 	char	*texture;
 
-	texture = malloc(sizeof(char) * (asset_line_len(s) + 1));
+	texture = malloc(sizeof(char) * (asset_line_len(line) + 1));
 	if (!texture)
 	{
 		ft_dprintf(2, "Error\nMalloc failed in get_texture\n");
 		return (FAILURE);
 	}
-	texture = copy_asset(texture, s);
-	if (store_direction(texture, utils) == FAILURE)
+	texture = copy_asset(texture, line);
+	if (store_direction(texture, data) == FAILURE)
 	{
 		free_texture(texture);
 		ft_dprintf(2, "Error\nMalloc failed in store_texture\n");
@@ -113,30 +113,30 @@ static int	get_color(char *s, t_parsing *utils)
 	return (SUCCESS);
 }
 
-static	int	store_direction(char *texture, t_parsing *utils)
+static	int	store_direction(char *texture, t_data *data)
 {
 	if (texture && texture[0] == 'N')
 	{
-		utils->north_path = ft_substr(texture, 2, ft_strlen(texture));
-		if (!utils->north_path)
+		data->north_path = ft_substr(texture, 2, ft_strlen(texture));
+		if (!data->north_path)
 			return (FAILURE);
 	}
 	if (texture && texture[0] == 'S')
 	{
-		utils->south_path = ft_substr(texture, 2, ft_strlen(texture));
-		if (!utils->south_path)
+		data->south_path = ft_substr(texture, 2, ft_strlen(texture));
+		if (!data->south_path)
 			return (FAILURE);
 	}
 	if (texture && texture[0] == 'E')
 	{
-		utils->east_path = ft_substr(texture, 2, ft_strlen(texture));
-		if (!utils->east_path)
+		data->east_path = ft_substr(texture, 2, ft_strlen(texture));
+		if (!data->east_path)
 			return (FAILURE);
 	}
 	if (texture && texture[0] == 'W')
 	{
-		utils->west_path = ft_substr(texture, 2, ft_strlen(texture));
-		if (!utils->west_path)
+		data->west_path = ft_substr(texture, 2, ft_strlen(texture));
+		if (!data->west_path)
 			return (FAILURE);
 	}
 	return (SUCCESS);
