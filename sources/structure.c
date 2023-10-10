@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   structure.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: cllovio <cllovio@student.42.fr>            +#+  +:+       +#+        */
+/*   By: lciullo <lciullo@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/03 10:17:09 by lciullo           #+#    #+#             */
-/*   Updated: 2023/10/09 14:44:08 by cllovio          ###   ########.fr       */
+/*   Updated: 2023/10/10 13:28:39 by lciullo          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,10 +30,6 @@ static void	init_struct_parsing(t_parsing *utils)
 	utils->west = 0;
 	utils->c_color = 0;
 	utils->f_color = 0;
-	utils->north_path = NULL;
-	utils->west_path = NULL;
-	utils->east_path = NULL;
-	utils->south_path = NULL;
 	utils->color_c_path = NULL;
 	utils->color_f_path = NULL;
 }
@@ -57,6 +53,10 @@ static void	init_struct_data(t_data *data)
 	data->yf_p = 0;
 	data->x_dir = 0;
 	data->y_dir = 0;
+	data->north_path = NULL;
+	data->west_path = NULL;
+	data->east_path = NULL;
+	data->south_path = NULL;
 	data->N = false;
 	data->S = false;
 	data->W = false;

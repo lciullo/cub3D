@@ -87,7 +87,11 @@ typedef struct s_data {
 	float		xf_p;
 	float		yf_p;
 	float		x_dir;
-	float		y_dir;
+	float		y_dir;	
+	char		*north_path;
+	char		*south_path;
+	char		*east_path;
+	char		*west_path;
 	bool		N;
 	bool		S;
 	bool		W;
@@ -105,10 +109,6 @@ typedef struct s_parsing {
 	int			south;
 	int			c_color;
 	int			f_color;
-	char		*north_path;
-	char		*south_path;
-	char		*east_path;
-	char		*west_path;
 	char		*color_c_path;
 	char		*color_f_path;
 	int			r;
