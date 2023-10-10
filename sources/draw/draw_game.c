@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   draw_game.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: cllovio <cllovio@student.42.fr>            +#+  +:+       +#+        */
+/*   By: cllovio <cllovio@student.42lyon.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/09 14:20:24 by cllovio           #+#    #+#             */
-/*   Updated: 2023/10/10 14:49:51 by cllovio          ###   ########.fr       */
+/*   Updated: 2023/10/10 17:25:27 by cllovio          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,21 +37,17 @@ void	draw_game(t_data *data, t_raycasting *raycasting, double distance)
 
 static void	draw_wall(long *y, t_raycasting *raycasting, t_data *data, int y_max, int color)
 {
-	// int y_bis;
-	// y_bis = *y;
 	(void)color;
 	int color_1;
 	t_draw test;
-	int size = 100;
+	// int size = 100;
 
-	// init_texture(&test, "./textures/north.xpm", data->mlx);
-	test.img = mlx_xpm_file_to_image(data->mlx, data->north_path, &size, &size);
-	test.addr = mlx_get_data_addr(test.img, &test.bits_per_pixel, &test.line_length, &test.endian);
+	init_texture(&test, "./textures/north.xpm", data->mlx);
+	// test.img = mlx_xpm_file_to_image(data->mlx, data->north_path, &size, &size);
+	// test.addr = mlx_get_data_addr(test.img, &test.bits_per_pixel, &test.line_length, &test.endian);
 	while (*y <= y_max)
 	{
-		// printf("%d %ld\n", raycasting->x, *y);
-		// my_mlx_pixel_get(data->N_texture, ((raycasting->x % SQUARE_SIZE) * 100) / SQUARE_SIZE, ((*y % SQUARE_SIZE) * 100) / SQUARE_SIZE);
-		color_1 = my_mlx_pixel_get(data->N_texture, ((raycasting->x % SQUARE_SIZE) * 100) / SQUARE_SIZE, ((*y % SQUARE_SIZE) * 100) / SQUARE_SIZE);
+		color_1 = my_mlx_pixel_get(&test, ((raycasting->x % SQUARE_SIZE) * 100) / SQUARE_SIZE, ((*y % SQUARE_SIZE) * 100) / SQUARE_SIZE);
 		my_mlx_pixel_put(raycasting->draw, raycasting->x, *y, color_1);
 		(*y)++;
 	}

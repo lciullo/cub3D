@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   launch_game.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: cllovio <cllovio@student.42.fr>            +#+  +:+       +#+        */
+/*   By: cllovio <cllovio@student.42lyon.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/09 14:31:19 by cllovio           #+#    #+#             */
-/*   Updated: 2023/10/10 14:48:42 by cllovio          ###   ########.fr       */
+/*   Updated: 2023/10/10 17:22:40 by cllovio          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,10 +34,6 @@ static int	init_mlx(t_data *data)
 	data->win = mlx_new_window(data->mlx, SIZE_X, SIZE_Y, "cubi_rose");
 	if (data->win == NULL)
 		return (print_error_mlx(), quit_game(data), FAILURE);
-	// init_texture(data->N_texture, "./textures/north.xpm", data->mlx);
-	// init_texture(&data->E_texture, data->east_path, data->mlx);
-	// init_texture(&data->S_texture, data->south_path, data->mlx);
-	// init_texture(&data->W_texture, data->west_path, data->mlx);
 	return (SUCCESS);
 }
 
