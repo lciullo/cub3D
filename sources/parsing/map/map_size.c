@@ -6,7 +6,7 @@
 /*   By: lciullo <lciullo@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/03 09:13:27 by lciullo           #+#    #+#             */
-/*   Updated: 2023/10/09 17:19:21 by lciullo          ###   ########.fr       */
+/*   Updated: 2023/10/10 13:24:42 by lciullo          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,7 @@
 static int	read_map(int fd, t_data *data, char *line);
 static int	count_height_map(int fd, t_data *data, char *line, int map);
 
-int	get_size_map(char *path, t_data *data, char *line, t_parsing *utils)
+int	get_size_map(char *path, t_data *data, char *line)
 {
 	int	fd;
 
@@ -24,7 +24,7 @@ int	get_size_map(char *path, t_data *data, char *line, t_parsing *utils)
 		return (FAILURE);
 	if (read_map(fd, data, line) == FAILURE)
 	{
-		free_textures(utils);
+		free_textures(data);
 		return (FAILURE);
 	}
 	return (SUCCESS);
@@ -69,7 +69,7 @@ static int	count_height_map(int fd, t_data *data, char *line, int map)
 	return (SUCCESS);
 }
 
-int	fill_len_line_array(t_data *data, t_parsing *utils)
+int	fill_len_line_array(t_data *data)
 {
 	int	i;
 
@@ -77,7 +77,7 @@ int	fill_len_line_array(t_data *data, t_parsing *utils)
 	data->len_line = (int *)ft_calloc(data->size_map + 1, sizeof(int));
 	if (!data->len_line)
 	{
-		free_textures(utils);
+		free_textures(data);
 		secure_free_array(data->map, data->size_map);
 		ft_dprintf(2, "Error\nMalloc failed in fill len line array\n");
 		return (FAILURE);
