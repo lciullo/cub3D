@@ -96,10 +96,10 @@ typedef struct s_data {
 	bool		S;
 	bool		W;
 	bool		E;
-	t_draw		*N_texture;
-	t_draw		*S_texture;
-	t_draw		*W_texture;
-	t_draw		*E_texture;
+	t_draw		N_texture;
+	t_draw		S_texture;
+	t_draw		W_texture;
+	t_draw		E_texture;
 }	t_data;
 
 typedef struct s_parsing {
