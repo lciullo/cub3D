@@ -6,7 +6,7 @@
 /*   By: cllovio <cllovio@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/09 14:20:24 by cllovio           #+#    #+#             */
-/*   Updated: 2023/10/09 17:36:49 by cllovio          ###   ########.fr       */
+/*   Updated: 2023/10/10 14:49:51 by cllovio          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,15 +39,23 @@ static void	draw_wall(long *y, t_raycasting *raycasting, t_data *data, int y_max
 {
 	// int y_bis;
 	// y_bis = *y;
-	//(void)color;
+	(void)color;
+	int color_1;
+	t_draw test;
+	int size = 100;
+
+	// init_texture(&test, "./textures/north.xpm", data->mlx);
+	test.img = mlx_xpm_file_to_image(data->mlx, data->north_path, &size, &size);
+	test.addr = mlx_get_data_addr(test.img, &test.bits_per_pixel, &test.line_length, &test.endian);
 	while (*y <= y_max)
 	{
 		// printf("%d %ld\n", raycasting->x, *y);
-		color = my_mlx_pixel_get(data->N_texture->img, ((raycasting->x % SQUARE_SIZE) * 100) / SQUARE_SIZE, ((*y % SQUARE_SIZE) * 100) / SQUARE_SIZE);
-		printf("%d", color);
-		//my_mlx_pixel_put(raycasting->draw, raycasting->x, *y, color);
-		*y = *y +1;
+		// my_mlx_pixel_get(data->N_texture, ((raycasting->x % SQUARE_SIZE) * 100) / SQUARE_SIZE, ((*y % SQUARE_SIZE) * 100) / SQUARE_SIZE);
+		color_1 = my_mlx_pixel_get(data->N_texture, ((raycasting->x % SQUARE_SIZE) * 100) / SQUARE_SIZE, ((*y % SQUARE_SIZE) * 100) / SQUARE_SIZE);
+		my_mlx_pixel_put(raycasting->draw, raycasting->x, *y, color_1);
+		(*y)++;
 	}
+	mlx_destroy_image(data->mlx, test.img);
 }
 
 void	draw_ceilling_and_floor(long *y, t_raycasting *raycasting, int y_max, \
@@ -56,6 +64,6 @@ void	draw_ceilling_and_floor(long *y, t_raycasting *raycasting, int y_max, \
 	while (*y < y_max)
 	{
 		my_mlx_pixel_put(raycasting->draw, raycasting->x, *y, color);
-		*y = *y + 1;
+		(*y)++;
 	}
 }

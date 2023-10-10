@@ -6,7 +6,7 @@
 /*   By: cllovio <cllovio@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/09 14:20:39 by cllovio           #+#    #+#             */
-/*   Updated: 2023/10/09 16:48:28 by cllovio          ###   ########.fr       */
+/*   Updated: 2023/10/10 13:34:14 by cllovio          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,10 +18,12 @@ void	my_mlx_pixel_put(t_draw *draw, int x, int y, int color)
 		((int *)draw->addr)[y * (draw->line_length >> 2) + x] = color;
 }
 
-int my_mlx_pixel_get(t_draw *img, int x, int y)
-{
-    char    *dst;
+#include "stdio.h"
 
-    dst = img->addr + (y * img->line_length + x * (img->bits_per_pixel / 8));
-    return (*(unsigned int *)dst);
+int	my_mlx_pixel_get(t_draw *img, int x, int y)
+{
+	char	*dst;
+
+	dst = img->addr + (y * img->line_length + x * (img->bits_per_pixel / 8));
+	return (*(unsigned int *)dst);
 }

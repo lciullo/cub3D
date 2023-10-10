@@ -6,7 +6,7 @@
 /*   By: cllovio <cllovio@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/09 14:38:18 by cllovio           #+#    #+#             */
-/*   Updated: 2023/10/09 14:38:45 by cllovio          ###   ########.fr       */
+/*   Updated: 2023/10/10 14:19:05 by cllovio          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,6 +14,7 @@
 
 static int	init_image(t_data *data, t_draw *draw);
 
+#include <stdio.h>
 int	render_next_frame(t_data *data)
 {
 	t_draw	draw;

@@ -6,7 +6,7 @@
 /*   By: cllovio <cllovio@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/09 14:44:54 by cllovio           #+#    #+#             */
-/*   Updated: 2023/10/09 16:53:33 by cllovio          ###   ########.fr       */
+/*   Updated: 2023/10/10 14:11:24 by cllovio          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -87,4 +87,5 @@ void	init_struct(t_data *data, t_parsing *utils);
 void	init_struct_raycasting(t_raycasting *raycasting, t_data *data, \
 		t_draw *draw);
 
+void init_texture(t_draw *texture, char *texture_path, void *mlx);
 #endif

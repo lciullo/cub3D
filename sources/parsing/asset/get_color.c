@@ -6,10 +6,11 @@
 /*   By: cllovio <cllovio@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/04 10:13:38 by lciullo           #+#    #+#             */
-/*   Updated: 2023/10/10 14:31:19 by cllovio          ###   ########.fr       */
+/*   Updated: 2023/10/10 14:34:55 by cllovio          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
+#include "cub3D.h"
 
 static int	convert_rgb_to_int(char *color, t_parsing *utils, t_data *data);
 static int	is_valid_color_format(char *color);

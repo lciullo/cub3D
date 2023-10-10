@@ -6,14 +6,14 @@
 /*   By: cllovio <cllovio@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/09 14:31:19 by cllovio           #+#    #+#             */
-/*   Updated: 2023/10/09 17:09:23 by cllovio          ###   ########.fr       */
+/*   Updated: 2023/10/10 14:48:42 by cllovio          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3D.h"
 
 static int	init_mlx(t_data *data);
-void init_texture(t_data *data);
+void init_texture(t_draw *texture, char *texture_path, void *mlx);
 
 int	launch_game(t_data *data)
 {
@@ -24,32 +24,32 @@ int	launch_game(t_data *data)
 	return (SUCCESS);
 }
 
+#include <stdio.h>
+
 static int	init_mlx(t_data *data)
-{
+{	
 	data->mlx = mlx_init();
 	if (data->mlx == NULL)
 		return (print_error_mlx(), quit_game(data), FAILURE);
-	init_texture(data);
 	data->win = mlx_new_window(data->mlx, SIZE_X, SIZE_Y, "cubi_rose");
 	if (data->win == NULL)
 		return (print_error_mlx(), quit_game(data), FAILURE);
+	// init_texture(data->N_texture, "./textures/north.xpm", data->mlx);
+	// init_texture(&data->E_texture, data->east_path, data->mlx);
+	// init_texture(&data->S_texture, data->south_path, data->mlx);
+	// init_texture(&data->W_texture, data->west_path, data->mlx);
 	return (SUCCESS);
 }
 
-void init_texture(t_data *data)
+void init_texture(t_draw *texture, char *texture_path, void *mlx)
 {
 	int	size_1;
-	int	size_2;
 
 	size_1 = 100;
-	size_2 = 100;
-	data->N_texture = malloc(sizeof(t_draw));
-	if (!(data->N_texture))
+	texture->img = mlx_xpm_file_to_image(mlx, texture_path, &size_1, &size_1);
+	if (!(texture->img))
 		return ;
-	data->N_texture->img = mlx_xpm_file_to_image(data->mlx, "./textures/north.xpm", &size_1, &size_2);
-	if ((data->N_texture->img))
-		return ;
-	data->N_texture->addr = mlx_get_data_addr(data->N_texture->img, &data->N_texture->bits_per_pixel, &data->N_texture->line_length, &data->N_texture->endian);
-	if (!(data->N_texture->img))
+	texture->addr = mlx_get_data_addr(texture->img, &texture->bits_per_pixel, &texture->line_length, &texture->endian);
+	if (!(texture->img))
 		return ;
 }
