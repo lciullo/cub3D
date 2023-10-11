@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   clem.h                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: cllovio <cllovio@student.42lyon.fr>        +#+  +:+       +#+        */
+/*   By: cllovio <cllovio@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/09 14:44:54 by cllovio           #+#    #+#             */
-/*   Updated: 2023/10/10 17:25:41 by cllovio          ###   ########.fr       */
+/*   Updated: 2023/10/11 20:37:04 by cllovio          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -74,7 +74,7 @@ void	raycasting(t_data *data, t_draw *draw);
 int		render_next_frame(t_data *data);
 
 /* ---- game/set_start_value.c ----*/
-void	set_start_value(t_data *data);
+int		set_start_value(t_data *data);
 
 /* ---- print_eroor.c ----*/
 void	print_error_mlx(void);
@@ -86,7 +86,5 @@ int		quit_game(t_data *data);
 void	init_struct(t_data *data, t_parsing *utils);
 void	init_struct_raycasting(t_raycasting *raycasting, t_data *data, \
 		t_draw *draw);
-
-void init_texture(t_draw *texture, char *texture_path, void *mlx);
 
 #endif
