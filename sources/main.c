@@ -1,5 +1,7 @@
 #include "cub3D.h"
 
+//static void	free_parsing(t_parsing *utils, t_data *data);
+
 int	main(int ac, char **av)
 {
 	t_data		data;

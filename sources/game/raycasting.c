@@ -6,7 +6,7 @@
 /*   By: cllovio <cllovio@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/09 14:36:07 by cllovio           #+#    #+#             */
-/*   Updated: 2023/10/09 14:38:04 by cllovio          ###   ########.fr       */
+/*   Updated: 2023/10/09 16:54:01 by cllovio          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,7 +29,7 @@ void	raycasting(t_data *data, t_draw *draw)
 	{
 		init_angle_struct_raycasting(i, &raycasting, data);
 		distance = get_wall_distance(&raycasting);
-		draw_game(&raycasting, distance);
+		draw_game(data, &raycasting, distance);
 		i++;
 		raycasting.x--;
 	}
