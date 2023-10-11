@@ -6,7 +6,7 @@
 /*   By: lciullo <lciullo@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/03 09:13:49 by lciullo           #+#    #+#             */
-/*   Updated: 2023/10/09 17:36:55 by lciullo          ###   ########.fr       */
+/*   Updated: 2023/10/11 11:23:42 by lciullo          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,6 +61,8 @@ char	**ft_copy_map(t_data *data)
 	char	**copy_map;
 
 	y = 0;
+	if (!data->map)
+		return (NULL);
 	copy_map = (char **)ft_calloc((data->size_map + 1), sizeof(char *));
 	if (!copy_map)
 	{

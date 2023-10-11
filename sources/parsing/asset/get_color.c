@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   get_color.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: cllovio <cllovio@student.42.fr>            +#+  +:+       +#+        */
+/*   By: lciullo <lciullo@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/04 10:13:38 by lciullo           #+#    #+#             */
-/*   Updated: 2023/10/10 14:34:55 by cllovio          ###   ########.fr       */
+/*   Updated: 2023/10/11 10:40:11 by lciullo          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,6 +59,8 @@ static	int	convert_rgb_to_int(char *color, t_parsing *utils, t_data *data)
 	char	**array;
 
 	res = 0;
+	if (!color)
+		return (FAILURE);
 	if (is_valid_color_format(color) == FAILURE)
 	{
 		ft_dprintf(2, "Error\nWrong color format usage : 0,0,0\n");
