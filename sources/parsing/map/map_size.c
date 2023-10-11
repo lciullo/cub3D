@@ -6,7 +6,7 @@
 /*   By: lciullo <lciullo@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/03 09:13:27 by lciullo           #+#    #+#             */
-/*   Updated: 2023/10/10 13:24:42 by lciullo          ###   ########.fr       */
+/*   Updated: 2023/10/11 11:34:41 by lciullo          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,6 +37,8 @@ static int	read_map(int fd, t_data *data, char *line)
 	map = FALSE;
 	if (count_height_map(fd, data, line, map) == FAILURE)
 		return (FAILURE);
+	if (data->size_map == 0)
+		return (FAILURE);
 	if (fd > 2)
 		close(fd);
 	return (SUCCESS);
@@ -66,6 +68,7 @@ static int	count_height_map(int fd, t_data *data, char *line, int map)
 		if (line)
 			free(line);
 	}
+	clean_gnl(fd, line);
 	return (SUCCESS);
 }
 
