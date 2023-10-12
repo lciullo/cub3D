@@ -2,7 +2,7 @@
 # ---- Variables ---- #
 NAME		=	cub3D
 OS			=	$(shell uname)
-BONUS		= 	no
+BONUS_RULES		= 	no
 
 # ---- Includes ---- #
 
@@ -25,6 +25,7 @@ HEADERS		=	$(DIR_HEADERS)cub3D.h \
 				$(DIR_LIB)/headers/library.h 
 
 # ---- Sources ---- #
+DIR_OBJS	    =	.objs/
 
 DIR_MANDATORY	=	sources/mandatory/
 
@@ -90,15 +91,13 @@ BONUS			= 	$(DIR_BONUS)draw/draw_game.c\
 					$(DIR_BONUS)parsing/clean/clean_asset.c \
 					$(DIR_BONUS)parsing/clean/clean_gnl.c 
 	
-
-# ---- Objs directory ---- #
-
-DIR_OBJS	=	.objs/
-
-OBJS		=	$(addprefix $(DIR_OBJS),$(MANDATORY:.c=.o))
-
 # ---- Flags ---- #
+
+ifeq ($(BONUS_RULES), no)
 CFLAGS		=	-Wall -Wextra -Werror -O3 -g3 -Wno-deprecated-declarations -I $(DIR_LIB) -I $(DIR_MLX) -I $(DIR_HEADERS)
+else
+CFLAGS		=	-Wall -Wextra -Werror -O3 -g3 -Wno-deprecated-declarations -I $(DIR_LIB) -I $(DIR_MLX) -I $(DIR_HEADERS_BONUS)
+endif
 
 # ---- MLX ---- #
 
@@ -110,7 +109,13 @@ else ifeq ($(OS), Linux)
 MLX_FLAGS 	+= -lmlx -lX11 -lXext -L$(DIR_MLX)
 endif
 
+# ---- Objs directory ---- #
 
+ifeq ($(BONUS_RULES), no)
+OBJS		=	$(addprefix $(DIR_OBJS),$(MANDATORY:.c=.o))
+else
+OBJS		=	$(addprefix $(DIR_OBJS),$(BONUS:.c=.o))
+endif
 
 # ---- Command ---- #
 
@@ -126,14 +131,23 @@ ${NAME}:	$(LIB) ${OBJS}
 			make -C $(DIR_MLX)
 			$(CC) $(CFLAGS) $(OBJS) $(LIB) $(MLX_FLAGS) -o $(NAME)
 
+ifeq ($(BONUS_RULES), no)
 $(DIR_OBJS)%.o: %.c	$(HEADERS)
 			@ mkdir -p ${dir $@}
 			$(CC) $(CFLAGS) -c $< -o $@ -I $(DIR_HEADERS)
+else
+$(DIR_OBJS)%.o: %.c	$(HEADERS)
+			@ mkdir -p ${dir $@}
+			$(CC) $(CFLAGS) -c $< -o $@ -I $(DIR_HEADERS_BONUS)
+endif
 
 # ---- Library rule ---- #
 
 $(LIB) :
 			$(MAKE) -C $(DIR_LIB)
+
+bonus_rules:
+			$(MAKE) re BONUS_RULES=yes
 
 # ---- Clean rules ---- #
 
@@ -148,4 +162,4 @@ fclean:		clean
 re :		fclean 
 			$(MAKE) all
 
-.PHONY :	all lib clean fclean re
+.PHONY :	all lib clean fclean bonus_rules re
