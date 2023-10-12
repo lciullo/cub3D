@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   clem.h                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: cllovio <cllovio@student.42lyon.fr>        +#+  +:+       +#+        */
+/*   By: cllovio <cllovio@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/09 14:44:54 by cllovio           #+#    #+#             */
-/*   Updated: 2023/10/12 09:28:55 by cllovio          ###   ########.fr       */
+/*   Updated: 2023/10/12 13:30:48 by cllovio          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,6 +18,7 @@
 # define SIZE_X				1920
 # define SIZE_Y				1080
 # define SQUARE_SIZE		64
+# define SIZE_IMG			256
 
 # define H_WHITE			0xffffff
 # define H_BLACK			0x000000
@@ -39,6 +40,12 @@ typedef struct s_raycasting {
 	float	shift;
 	int		x;
 }	t_raycasting;
+
+typedef struct s_col_point {
+	float	x;
+	float	y;
+	float	distance;
+}	t_col_point;
 
 /*======================= PROTOTYPES =======================*/
 

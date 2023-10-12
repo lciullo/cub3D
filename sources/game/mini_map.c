@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   mini_map.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: cllovio <cllovio@student.42lyon.fr>        +#+  +:+       +#+        */
+/*   By: cllovio <cllovio@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/09 14:42:04 by cllovio           #+#    #+#             */
-/*   Updated: 2023/10/12 09:37:51 by cllovio          ###   ########.fr       */
+/*   Updated: 2023/10/12 12:46:07 by cllovio          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,16 +30,16 @@ void	mini_map(t_data *data, t_draw *draw)
 		while (data->map[y][x])
 		{
 			if (data->map[y][x] == '1' || data->map[y][x] == ' ')
-				draw_square(draw, x_square / 4, y_square / 4, H_PINK);
+				draw_square(draw, x_square / 2, y_square / 2, H_PINK);
 			else if (is_it_a_direction(data->map[y][x]) == true)
-				draw_square(draw, x_square / 4, y_square / 4, H_GREY);
+				draw_square(draw, x_square / 2, y_square / 2, H_GREY);
 			x++;
 			x_square += SQUARE_SIZE;
 		}
 		y++;
 		y_square += SQUARE_SIZE;
 	}
-	draw_square(draw, ((data->px_map) / 4), ((data->py_map) / 4), H_PURPLE);
+	draw_square(draw, ((data->px_map - (SQUARE_SIZE / 4)) / 2), ((data->py_map - (SQUARE_SIZE / 4)) / 2), H_PURPLE);
 }
 
 static bool	is_it_a_direction(char c)

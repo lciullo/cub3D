@@ -7,6 +7,7 @@
 # include "../mlx/mlx_linux/mlx.h"
 # include "../mlx/mlx_mac/mlx.h"
 
+# include "../mlx/mlx_linux/mlx_int.h"
 /*======================= COULEUR =======================*/
 
 # define END "\033[0m"

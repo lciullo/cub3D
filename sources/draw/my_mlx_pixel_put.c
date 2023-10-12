@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   my_mlx_pixel_put.c                                 :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: cllovio <cllovio@student.42lyon.fr>        +#+  +:+       +#+        */
+/*   By: cllovio <cllovio@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/09 14:20:39 by cllovio           #+#    #+#             */
-/*   Updated: 2023/10/12 09:34:45 by cllovio          ###   ########.fr       */
+/*   Updated: 2023/10/12 10:54:05 by cllovio          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,10 +20,10 @@ void	my_mlx_pixel_put(t_draw *draw, int x, int y, int color)
 
 int	my_mlx_pixel_get(t_draw *img, int x, int y)
 {
-	char	*dst;
+	char	*color;
 
-	dst = img->addr + (y * img->line_length + x * (img->bits_per_pixel / 8));
-	if (!(x >= 0 && x < 100) || !(y >= 0 && y < 100))
-		return (*(uint32_t *)(img->addr + (99 * img->line_length + 99 * (img->bits_per_pixel / 8))));
-	return (*(unsigned int *)dst);
+	color = img->addr + (y * img->line_length + x * (img->bits_per_pixel / 8));
+	// if (!(x >= 0 && x < 100) || !(y >= 0 && y < 100))
+	// 	return (*(uint32_t *)(img->addr + (99 * img->line_length + 99 * (img->bits_per_pixel / 8))));
+	return (*(unsigned int *)color);
 }
