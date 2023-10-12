@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   is_valid_player.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lciullo <lciullo@student.42.fr>            +#+  +:+       +#+        */
+/*   By: cllovio <cllovio@student.42lyon.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/03 09:11:23 by lciullo           #+#    #+#             */
-/*   Updated: 2023/10/10 13:25:10 by lciullo          ###   ########.fr       */
+/*   Updated: 2023/10/12 09:36:01 by cllovio          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -75,8 +75,8 @@ static	void	fill_player_directions(t_data *data, int y, int x)
 {
 	data->y_pers = y;
 	data->x_pers = x;
-	data->yf_p = y + 0.5;
-	data->xf_p = x + 0.5;
+	data->yf_p = y + (SQUARE_SIZE >> 1);
+	data->xf_p = x + (SQUARE_SIZE >> 1);
 	if (data->map[y][x] == 'N')
 		data->N = TRUE;
 	else if (data->map[y][x] == 'S')

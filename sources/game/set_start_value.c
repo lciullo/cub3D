@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   set_start_value.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: cllovio <cllovio@student.42.fr>            +#+  +:+       +#+        */
+/*   By: cllovio <cllovio@student.42lyon.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/09 14:35:08 by cllovio           #+#    #+#             */
-/*   Updated: 2023/10/11 20:38:02 by cllovio          ###   ########.fr       */
+/*   Updated: 2023/10/12 09:40:11 by cllovio          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,8 +17,8 @@ static int	init_texture(t_draw *texture, char *texture_path, void *mlx);
 
 int	set_start_value(t_data *data)
 {
-	data->px_map = (data->xf_p * SQUARE_SIZE);
-	data->py_map = (data->yf_p * SQUARE_SIZE);
+	data->px_map = (data->x_pers * SQUARE_SIZE) + (SQUARE_SIZE / 4);
+	data->py_map = (data->y_pers * SQUARE_SIZE) + (SQUARE_SIZE / 4);
 	if (init_texture(&data->N_texture, data->north_path, data->mlx) == FAILURE)
 		return (FAILURE);
 	if (init_texture(&data->S_texture, data->south_path, data->mlx) == FAILURE)

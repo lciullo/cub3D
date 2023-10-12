@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   mini_map.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: cllovio <cllovio@student.42.fr>            +#+  +:+       +#+        */
+/*   By: cllovio <cllovio@student.42lyon.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/09 14:42:04 by cllovio           #+#    #+#             */
-/*   Updated: 2023/10/09 14:46:59 by cllovio          ###   ########.fr       */
+/*   Updated: 2023/10/12 09:37:51 by cllovio          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,8 +39,7 @@ void	mini_map(t_data *data, t_draw *draw)
 		y++;
 		y_square += SQUARE_SIZE;
 	}
-	draw_square(draw, ((data->px_map - ((SQUARE_SIZE / 2)) + 10) / 4), \
-	((data->py_map - ((SQUARE_SIZE / 2)) + 10) / 4), H_PURPLE);
+	draw_square(draw, ((data->px_map) / 4), ((data->py_map) / 4), H_PURPLE);
 }
 
 static bool	is_it_a_direction(char c)
