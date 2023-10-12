@@ -1,4 +1,4 @@
-DIR_SRCS	=	sources/
+DIR_SRCS	=	sources/mandatory/
 
 SRCS		= 	$(DIR_SRCS)main.c \
 				$(DIR_SRCS)structure.c \

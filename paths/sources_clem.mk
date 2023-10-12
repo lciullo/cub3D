@@ -1,4 +1,4 @@
-DIR_SRCS	=	sources/
+DIR_SRCS	=	sources/mandatory/
 
 SRCS	+=	$(DIR_SRCS)draw/draw_game.c\
 			$(DIR_SRCS)draw/draw_square.c\
