@@ -6,7 +6,7 @@
 /*   By: lciullo <lciullo@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/09 14:33:59 by cllovio           #+#    #+#             */
-/*   Updated: 2023/10/12 17:27:24 by lciullo          ###   ########.fr       */
+/*   Updated: 2023/10/12 17:36:11 by lciullo          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,6 +29,8 @@ void	hook(t_data *data)
 	mlx_hook(data->win, ON_KEYDOWN, 27, key_hook, data);
 	mlx_hook(data->win, ON_DESTROY, 0, quit_game, data);
 	mlx_hook(data->win, 6, 1L << 6, mouse_move , data);
+	/*mlx_hook(game->screen.win, 2, 1L << 0, key_press, game);
+	mlx_hook(game->screen.win, 3, 1L << 1, key_release, game);*/
 	mlx_loop_hook(data->mlx, render_next_frame, data);
 	mlx_loop(data->mlx);
 }
