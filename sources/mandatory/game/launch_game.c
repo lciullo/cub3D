@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   launch_game.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: cllovio <cllovio@student.42.fr>            +#+  +:+       +#+        */
+/*   By: lciullo <lciullo@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/09 14:31:19 by cllovio           #+#    #+#             */
-/*   Updated: 2023/10/11 20:37:34 by cllovio          ###   ########.fr       */
+/*   Updated: 2023/10/12 17:23:19 by lciullo          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,7 +25,7 @@ int	launch_game(t_data *data)
 #include <stdio.h>
 
 static int	init_mlx(t_data *data)
-{	
+{
 	data->mlx = mlx_init();
 	if (data->mlx == NULL)
 		return (print_error_mlx(), quit_game(data), FAILURE);

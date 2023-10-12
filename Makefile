@@ -1,20 +1,34 @@
+# **************************************************************************** #
+#                                                                              #
+#                                                         :::      ::::::::    #
+#    Makefile                                           :+:      :+:    :+:    #
+#                                                     +:+ +:+         +:+      #
+#    By: lciullo <lciullo@student.42.fr>            +#+  +:+       +#+         #
+#                                                 +#+#+#+#+#+   +#+            #
+#    Created: 2023/10/12 17:01:18 by lciullo           #+#    #+#              #
+#    Updated: 2023/10/12 17:03:34 by lciullo          ###   ########.fr        #
+#                                                                              #
+# **************************************************************************** #
 
 # ---- Variables ---- #
-NAME		=	cub3D
-OS			=	$(shell uname)
+NAME			=	cub3D
+OS				=	$(shell uname)
 BONUS_RULES		= 	no
+RMF				=	rm -rf
 
-# ---- Includes ---- #
+# ---- Libraries ---- #
 
-DIR_LIB		=	library/
+DIR_LIB			=	library/
 
-LIB			=	$(DIR_LIB)library.a
+LIB				=	$(DIR_LIB)library.a
 
 ifeq ($(OS), Darwin)
 DIR_MLX	=	mlx/mlx_mac
 else ifeq ($(OS), Linux)
 DIR_MLX	=	mlx/mlx_linux
 endif
+
+# ---- Headers ---- #
 
 DIR_HEADERS		=	headers/mandatory/
 
@@ -25,6 +39,7 @@ HEADERS		=	$(DIR_HEADERS)cub3D.h \
 				$(DIR_LIB)/headers/library.h 
 
 # ---- Sources ---- #
+
 DIR_OBJS	    =	.objs/
 
 DIR_MANDATORY	=	sources/mandatory/
@@ -117,10 +132,6 @@ else
 OBJS		=	$(addprefix $(DIR_OBJS),$(BONUS:.c=.o))
 endif
 
-# ---- Command ---- #
-
-RMF		=	rm -rf
-
 # ====================== RULES ====================== #
 
 # ---- Compilation rules ---- #
@@ -146,7 +157,7 @@ endif
 $(LIB) :
 			$(MAKE) -C $(DIR_LIB)
 
-bonus_rules:
+bonus:
 			$(MAKE) re BONUS_RULES=yes
 
 # ---- Clean rules ---- #

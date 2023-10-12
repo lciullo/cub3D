@@ -122,6 +122,8 @@ typedef struct s_data {
 	t_draw		E_texture;
 	int			collision_cor[2];
 	bool		horizontal;
+	int			left_mouse;
+	int			right_mouse;
 }	t_data;
 
 typedef struct s_parsing {
