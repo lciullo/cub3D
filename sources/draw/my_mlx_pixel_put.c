@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   my_mlx_pixel_put.c                                 :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lciullo <lciullo@student.42.fr>            +#+  +:+       +#+        */
+/*   By: cllovio <cllovio@student.42lyon.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/09 14:20:39 by cllovio           #+#    #+#             */
-/*   Updated: 2023/10/11 09:20:21 by lciullo          ###   ########.fr       */
+/*   Updated: 2023/10/12 09:32:37 by cllovio          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,9 +24,8 @@ int	my_mlx_pixel_get(t_draw *img, int x, int y)
 {
 	char	*dst;
 
-	if ((x >= 0 && x < 100) && (y >= 0 && y < 100))
-		dst = img->addr + (y * img->line_length + x * (img->bits_per_pixel / 8));
-	else
-		return (0);
+	dst = img->addr + (y * img->line_length + x * (img->bits_per_pixel / 8));
+	if (!(x >= 0 && x < 100) || !(y >= 0 && y < 100))
+		return (*(uint32_t *)(img->addr + (99 * img->line_length + 99 * (img->bits_per_pixel / 8))));
 	return (*(unsigned int *)dst);
 }

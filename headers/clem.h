@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   clem.h                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: cllovio <cllovio@student.42.fr>            +#+  +:+       +#+        */
+/*   By: cllovio <cllovio@student.42lyon.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/09 14:44:54 by cllovio           #+#    #+#             */
-/*   Updated: 2023/10/11 20:37:04 by cllovio          ###   ########.fr       */
+/*   Updated: 2023/10/12 09:28:55 by cllovio          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,7 +43,7 @@ typedef struct s_raycasting {
 /*======================= PROTOTYPES =======================*/
 
 /* ---- draw/draw_game.c ----*/
-void	draw_game(t_data *data, t_raycasting *raycasting, double distance);
+void	draw_game(t_raycasting *raycasting, double distance);
 
 /* ---- draw/draw_square.c ----*/
 void	draw_square(t_draw *draw, int x, int y, int color);

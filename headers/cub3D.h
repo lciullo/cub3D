@@ -100,6 +100,8 @@ typedef struct s_data {
 	t_draw		S_texture;
 	t_draw		W_texture;
 	t_draw		E_texture;
+	int			collision_cor[2];
+	bool		horizontal;
 }	t_data;
 
 typedef struct s_parsing {
