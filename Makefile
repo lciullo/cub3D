@@ -3,18 +3,28 @@
 NAME		=	cub3D
 OS			=	$(shell uname)
 BONUS		= 	no
-# ---- Directories ---- #
+
+# ---- Includes ---- #
 
 DIR_LIB		=	library/
 
 LIB			=	$(DIR_LIB)library.a
 
-# ---- mlx ---- #
 ifeq ($(OS), Darwin)
 DIR_MLX	=	mlx/mlx_mac
 else ifeq ($(OS), Linux)
 DIR_MLX	=	mlx/mlx_linux
 endif
+
+DIR_HEADERS		=	headers/mandatory/
+
+DIR_HEADERS_BONUS = headers/bonus/
+
+HEADERS		=	$(DIR_HEADERS)cub3D.h \
+				$(DIR_HEADERS_BONUS)cub3D.h \
+				$(DIR_LIB)/headers/library.h 
+
+# ---- Sources ---- #
 
 DIR_MANDATORY	=	sources/mandatory/
 
@@ -80,23 +90,19 @@ BONUS			= 	$(DIR_BONUS)draw/draw_game.c\
 					$(DIR_BONUS)parsing/clean/clean_asset.c \
 					$(DIR_BONUS)parsing/clean/clean_gnl.c 
 	
-DIR_HEADERS		=	headers/mandatory/
 
-DIR_HEADERS_BONUS = headers/bonus/
-
-HEADERS		=	$(DIR_HEADERS)cub3D.h \
-				$(DIR_HEADERS_BONUS)cub3D.h \
-				$(DIR_LIB)/headers/library.h 
+# ---- Objs directory ---- #
 
 DIR_OBJS	=	.objs/
 
 OBJS		=	$(addprefix $(DIR_OBJS),$(MANDATORY:.c=.o))
 
 # ---- Flags ---- #
-CFLAGS		=	-Wall -Wextra -Werror -O3 -g3 -I $(DIR_LIB) -I $(DIR_MLX) -I $(DIR_HEADERS)
-CFLAGS		+=	-Wno-deprecated-declarations
-MLX_FLAGS	=	-L$(DIR_MLX) -lm
+CFLAGS		=	-Wall -Wextra -Werror -O3 -g3 -Wno-deprecated-declarations -I $(DIR_LIB) -I $(DIR_MLX) -I $(DIR_HEADERS)
 
+# ---- MLX ---- #
+
+MLX_FLAGS	=	-L$(DIR_MLX) -lm
 
 ifeq ($(OS), Darwin)
 MLX_FLAGS 	+= -lmlx -framework OpenGL -framework AppKit
