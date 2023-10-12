@@ -6,19 +6,19 @@
 /*   By: cllovio <cllovio@student.42lyon.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/09 14:20:24 by cllovio           #+#    #+#             */
-/*   Updated: 2023/10/10 17:43:19 by cllovio          ###   ########.fr       */
+/*   Updated: 2023/10/12 09:32:07 by cllovio          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3D.h"
 
-static void	draw_wall(long *y, t_raycasting *raycasting, t_data *data, int y_max, int color);
-static void	draw_ceilling_and_floor(long *y, t_raycasting *raycasting, \
+static void	draw_wall(int *y, t_raycasting *raycasting, int y_max, long size_wall);
+static void	draw_ceilling_and_floor(int *y, t_raycasting *raycasting, \
 			int y_max, int color);
 
-void	draw_game(t_data *data, t_raycasting *raycasting, double distance)
+void	draw_game(t_raycasting *raycasting, double distance)
 {
-	long	y;
+	int	y;
 	long	size_wall;
 	long	half_size_wall;
 
@@ -29,31 +29,40 @@ void	draw_game(t_data *data, t_raycasting *raycasting, double distance)
 	y = 0;
 	draw_ceilling_and_floor(&y, raycasting, ((SIZE_Y / 2) - half_size_wall), \
 	raycasting->data->celling);
-	draw_wall(&y, raycasting, data, ((SIZE_Y / 2) + half_size_wall), H_GREY);
+	draw_wall(&y, raycasting, ((SIZE_Y / 2) + half_size_wall), size_wall);
 	draw_ceilling_and_floor(&y, raycasting, SIZE_Y, raycasting->data->floor);
 }
 
 #include <stdio.h>
 
-static void	draw_wall(long *y, t_raycasting *raycasting, t_data *data, int y_max, int color)
+static void	draw_wall(int *y, t_raycasting *raycasting, int y_max, long size_wall)
 {
-	(void)color;
-	int color_1;
-	// t_draw test;
-	// int size = 100;
-	(void)data;
-
-	// init_texture(&test, "./textures/north.xpm", data->mlx);
+	int color;
+	int	x_pixel_get;
+	int	y_pixel_get;
+	
+	x_pixel_get = 0;
+	y_pixel_get = 0;
 	while (*y <= y_max)
 	{
-		color_1 = my_mlx_pixel_get(&raycasting->data->N_texture, ((raycasting->x % SQUARE_SIZE) * 100) / SQUARE_SIZE, ((*y % SQUARE_SIZE) * 100) / SQUARE_SIZE);
-		my_mlx_pixel_put(raycasting->draw, raycasting->x, *y, color_1);
+		if (raycasting->data->horizontal == true)
+		{
+			x_pixel_get = ((raycasting->data->collision_cor[1] % SQUARE_SIZE) * 100) / SQUARE_SIZE;
+			y_pixel_get = ((*y - ((SIZE_Y >> 1) - (size_wall >> 1))) * 100) / (size_wall);
+			color = my_mlx_pixel_get(&raycasting->data->N_texture, x_pixel_get, y_pixel_get);
+		}
+		else if (raycasting->data->horizontal == false)
+		{
+			x_pixel_get = ((raycasting->data->collision_cor[0] % SQUARE_SIZE) * 100) / SQUARE_SIZE;
+			y_pixel_get = ((*y - ((SIZE_Y >> 1) - (size_wall >> 1))) * 100) / (size_wall);			
+			color = my_mlx_pixel_get(&raycasting->data->N_texture, x_pixel_get, y_pixel_get);
+		}
+		my_mlx_pixel_put(raycasting->draw, raycasting->x, *y, color);
 		(*y)++;
 	}
-	// mlx_destroy_image(data->mlx, test.img);
 }
 
-void	draw_ceilling_and_floor(long *y, t_raycasting *raycasting, int y_max, \
+void	draw_ceilling_and_floor(int *y, t_raycasting *raycasting, int y_max, \
 		int color)
 {
 	while (*y < y_max)

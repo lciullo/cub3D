@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   structure.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lciullo <lciullo@student.42.fr>            +#+  +:+       +#+        */
+/*   By: cllovio <cllovio@student.42lyon.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/03 10:17:09 by lciullo           #+#    #+#             */
-/*   Updated: 2023/10/10 13:28:39 by lciullo          ###   ########.fr       */
+/*   Updated: 2023/10/12 09:29:43 by cllovio          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,6 +61,7 @@ static void	init_struct_data(t_data *data)
 	data->S = false;
 	data->W = false;
 	data->E = false;
+	data->horizontal = false;
 }
 
 void	init_struct_raycasting(t_raycasting *raycasting, \
