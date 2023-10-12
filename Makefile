@@ -1,49 +1,54 @@
-#include paths/sources_lisa.mk
-#include paths/sources_clem.mk
 
 # ---- Variables ---- #
 NAME		=	cub3D
 OS			=	$(shell uname)
-DEBUG		=	no
 
 # ---- Directories ---- #
 
-DIR_SRCS	=	sources/mandatory/
-
-SRCS		= 	$(DIR_SRCS)draw/draw_game.c\
-				$(DIR_SRCS)draw/draw_square.c\
-				$(DIR_SRCS)draw/my_mlx_pixel_put.c\
-				$(DIR_SRCS)game/hook.c\
-				$(DIR_SRCS)game/launch_game.c\
-				$(DIR_SRCS)game/mini_map.c\
-				$(DIR_SRCS)game/move.c\
-				$(DIR_SRCS)game/raycasting.c\
-				$(DIR_SRCS)game/render_next_frame.c\
-				$(DIR_SRCS)game/set_start_value.c\
-				$(DIR_SRCS)print_error.c\
-				$(DIR_SRCS)quit.c \
-				$(DIR_SRCS)main.c \
-				$(DIR_SRCS)structure.c \
-				$(DIR_SRCS)parsing/parsing.c \
-				$(DIR_SRCS)parsing/file/file.c \
-				$(DIR_SRCS)parsing/map/is_map_closed.c \
-				$(DIR_SRCS)parsing/map/check_around.c \
-				$(DIR_SRCS)parsing/map/is_valid_player.c \
-				$(DIR_SRCS)parsing/map/utils_map.c \
-				$(DIR_SRCS)parsing/map/fill_map.c \
-				$(DIR_SRCS)parsing/map/map_size.c \
-				$(DIR_SRCS)parsing/asset/is_right_format.c \
-				$(DIR_SRCS)parsing/asset/fill_asset.c \
-				$(DIR_SRCS)parsing/asset/get_color.c \
-				$(DIR_SRCS)parsing/asset/asset_utils.c \
-				$(DIR_SRCS)fill/find_textures.c  \
-				$(DIR_SRCS)parsing/clean/clean_asset.c \
-				$(DIR_SRCS)parsing/clean/clean_gnl.c 
-	
-DIR_OBJS	=	.objs/
-DIR_HEADERS	=	headers/mandatory/
 DIR_LIB		=	library/
+
 LIB			=	$(DIR_LIB)library.a
+
+DIR_MANDATORY	=	sources/mandatory/
+
+MANDATORY		= 	$(DIR_MANDATORY)draw/draw_game.c\
+					$(DIR_MANDATORY)draw/draw_square.c\
+					$(DIR_MANDATORY)draw/my_mlx_pixel_put.c\
+					$(DIR_MANDATORY)game/hook.c\
+					$(DIR_MANDATORY)game/launch_game.c\
+					$(DIR_MANDATORY)game/mini_map.c\
+					$(DIR_MANDATORY)game/move.c\
+					$(DIR_MANDATORY)game/raycasting.c\
+					$(DIR_MANDATORY)game/render_next_frame.c\
+					$(DIR_MANDATORY)game/set_start_value.c\
+					$(DIR_MANDATORY)print_error.c\
+					$(DIR_MANDATORY)quit.c \
+					$(DIR_MANDATORY)main.c \
+					$(DIR_MANDATORY)structure.c \
+					$(DIR_MANDATORY)parsing/parsing.c \
+					$(DIR_MANDATORY)parsing/file/file.c \
+					$(DIR_MANDATORY)parsing/map/is_map_closed.c \
+					$(DIR_MANDATORY)parsing/map/check_around.c \
+					$(DIR_MANDATORY)parsing/map/is_valid_player.c \
+					$(DIR_MANDATORY)parsing/map/utils_map.c \
+					$(DIR_MANDATORY)parsing/map/fill_map.c \
+					$(DIR_MANDATORY)parsing/map/map_size.c \
+					$(DIR_MANDATORY)parsing/asset/is_right_format.c \
+					$(DIR_MANDATORY)parsing/asset/fill_asset.c \
+					$(DIR_MANDATORY)parsing/asset/get_color.c \
+					$(DIR_MANDATORY)parsing/asset/asset_utils.c \
+					$(DIR_MANDATORY)fill/find_textures.c  \
+					$(DIR_MANDATORY)parsing/clean/clean_asset.c \
+					$(DIR_MANDATORY)parsing/clean/clean_gnl.c 
+	
+DIR_HEADERS	=	headers/mandatory/
+
+HEADERS		=	$(DIR_HEADERS)cub3D.h \
+				$(DIR_LIB)/headers/library.h 
+
+DIR_OBJS	=	.objs/
+
+OBJS		=	$(addprefix $(DIR_OBJS),$(MANDATORY:.c=.o))
 
 # ---- Flags ---- #
 CFLAGS		=	-Wall -Wextra -Werror -O3 -g3 -I $(DIR_LIB) -I $(DIR_MLX) -I $(DIR_HEADERS)
@@ -64,13 +69,8 @@ else ifeq ($(OS), Linux)
 DIR_MLX	=	mlx/mlx_linux
 endif
 
-# ---- Files ---- #
-HEADERS	=	$(DIR_HEADERS)cub3D.h \
-			$(DIR_LIB)/headers/library.h 
-
-OBJS	=	$(addprefix $(DIR_OBJS),$(SRCS:.c=.o))
-
 # ---- Command ---- #
+
 RMF		=	rm -rf
 
 # ====================== RULES ====================== #
@@ -91,20 +91,17 @@ $(DIR_OBJS)%.o: %.c	$(HEADERS)
 $(LIB) :
 			$(MAKE) -C $(DIR_LIB)
 
-# ---- Norm rule ---- #
-norm:
-			clear
-			norminette $(DIR_SRCS) $(DIR_HEADERS) $(DIR_LIB)
-
 # ---- Clean rules ---- #
-re :		fclean all
 
 clean:
-			${RMF} ${OBJS} ${DIR_OBJS}
-			$(MAKE) clean -C $(DIR_LIB)
+			$(MAKE) -C $(DIR_LIB) clean
+			$(RMF) $(DIR_OBJS)
 
 fclean:		clean
-			${RM} ${NAME}
-			$(MAKE) fclean -C $(DIR_LIB)
+			$(MAKE) -C $(DIR_LIB) fclean
+			$(RMF)  $(NAME)
 
-.PHONY :	all debug norm re clean fclean 
+re :		fclean 
+			$(MAKE) all
+
+.PHONY :	all lib clean fclean re
