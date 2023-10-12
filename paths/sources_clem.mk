@@ -10,5 +10,7 @@ SRCS	+=	$(DIR_SRCS)draw/draw_game.c\
 			$(DIR_SRCS)game/raycasting.c\
 			$(DIR_SRCS)game/render_next_frame.c\
 			$(DIR_SRCS)game/set_start_value.c\
+			$(DIR_SRCS)game/vertical_collision.c\
+			$(DIR_SRCS)game/horizontal_collision.c\
 			$(DIR_SRCS)print_error.c\
 			$(DIR_SRCS)quit.c
