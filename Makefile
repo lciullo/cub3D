@@ -1,5 +1,5 @@
-include paths/sources_lisa.mk
-include paths/sources_clem.mk
+#include paths/sources_lisa.mk
+#include paths/sources_clem.mk
 
 # ---- Variables ---- #
 NAME		=	cub3D
@@ -9,6 +9,37 @@ DEBUG		=	no
 # ---- Directories ---- #
 
 DIR_SRCS	=	sources/mandatory/
+
+SRCS		= 	$(DIR_SRCS)draw/draw_game.c\
+				$(DIR_SRCS)draw/draw_square.c\
+				$(DIR_SRCS)draw/my_mlx_pixel_put.c\
+				$(DIR_SRCS)game/hook.c\
+				$(DIR_SRCS)game/launch_game.c\
+				$(DIR_SRCS)game/mini_map.c\
+				$(DIR_SRCS)game/move.c\
+				$(DIR_SRCS)game/raycasting.c\
+				$(DIR_SRCS)game/render_next_frame.c\
+				$(DIR_SRCS)game/set_start_value.c\
+				$(DIR_SRCS)print_error.c\
+				$(DIR_SRCS)quit.c \
+				$(DIR_SRCS)main.c \
+				$(DIR_SRCS)structure.c \
+				$(DIR_SRCS)parsing/parsing.c \
+				$(DIR_SRCS)parsing/file/file.c \
+				$(DIR_SRCS)parsing/map/is_map_closed.c \
+				$(DIR_SRCS)parsing/map/check_around.c \
+				$(DIR_SRCS)parsing/map/is_valid_player.c \
+				$(DIR_SRCS)parsing/map/utils_map.c \
+				$(DIR_SRCS)parsing/map/fill_map.c \
+				$(DIR_SRCS)parsing/map/map_size.c \
+				$(DIR_SRCS)parsing/asset/is_right_format.c \
+				$(DIR_SRCS)parsing/asset/fill_asset.c \
+				$(DIR_SRCS)parsing/asset/get_color.c \
+				$(DIR_SRCS)parsing/asset/asset_utils.c \
+				$(DIR_SRCS)fill/find_textures.c  \
+				$(DIR_SRCS)parsing/clean/clean_asset.c \
+				$(DIR_SRCS)parsing/clean/clean_gnl.c 
+	
 DIR_OBJS	=	.objs/
 DIR_HEADERS	=	headers/mandatory/
 DIR_LIB		=	library/
