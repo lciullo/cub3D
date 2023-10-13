@@ -100,7 +100,8 @@ typedef struct s_data {
 	t_draw		S_texture;
 	t_draw		W_texture;
 	t_draw		E_texture;
-	int			collision_cor[2];
+	float		collision_cor[2];
+	float		begin_cor[2];	
 	bool		horizontal;
 }	t_data;
 

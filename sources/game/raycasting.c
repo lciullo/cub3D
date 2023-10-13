@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   raycasting.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: cllovio <cllovio@student.42lyon.fr>        +#+  +:+       +#+        */
+/*   By: cllovio <cllovio@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/09 14:36:07 by cllovio           #+#    #+#             */
-/*   Updated: 2023/10/12 09:30:21 by cllovio          ###   ########.fr       */
+/*   Updated: 2023/10/13 15:48:08 by cllovio          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,10 +48,11 @@ static void	init_angle_struct_raycasting(int i, t_raycasting *raycasting, \
 
 static double	get_wall_distance(t_raycasting *raycasting)
 {
-	int			x;
-	int			y;
-	float		t_x;
-	float		t_y;
+	float	x;
+	float	y;
+	int		t_x;
+	int		t_y;
+	// double		distance;
 	double		distance;
 
 	t_x = 0;
@@ -61,7 +62,7 @@ static double	get_wall_distance(t_raycasting *raycasting)
 	distance = 0;
 	while (1)
 	{
-		if (did_we_reach_a_wall(raycasting, x, y) == true)
+		if (did_we_reach_a_wall(raycasting, (int)x, (int)y) == true)
 		{
 			raycasting->data->horizontal = false;
 			raycasting->data->collision_cor[0] = x;
@@ -70,7 +71,7 @@ static double	get_wall_distance(t_raycasting *raycasting)
 		}
 		t_x += 1;
 		x = raycasting->data->px_map + t_x * raycasting->cos_angle / 10;
-		if (did_we_reach_a_wall(raycasting, x, y) == true)
+		if (did_we_reach_a_wall(raycasting, (int)x, (int)y) == true)
 		{
 			raycasting->data->horizontal = true;
 			raycasting->data->collision_cor[0] = x;
