@@ -6,7 +6,7 @@
 #    By: lciullo <lciullo@student.42.fr>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/10/12 17:01:18 by lciullo           #+#    #+#              #
-#    Updated: 2023/10/12 17:03:34 by lciullo          ###   ########.fr        #
+#    Updated: 2023/10/13 11:20:01 by lciullo          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -70,7 +70,6 @@ MANDATORY		= 	$(DIR_MANDATORY)draw/draw_game.c\
 					$(DIR_MANDATORY)parsing/asset/fill_asset.c \
 					$(DIR_MANDATORY)parsing/asset/get_color.c \
 					$(DIR_MANDATORY)parsing/asset/asset_utils.c \
-					$(DIR_MANDATORY)fill/find_textures.c  \
 					$(DIR_MANDATORY)parsing/clean/clean_asset.c \
 					$(DIR_MANDATORY)parsing/clean/clean_gnl.c 
 
@@ -102,7 +101,6 @@ BONUS			= 	$(DIR_BONUS)draw/draw_game.c\
 					$(DIR_BONUS)parsing/asset/fill_asset.c \
 					$(DIR_BONUS)parsing/asset/get_color.c \
 					$(DIR_BONUS)parsing/asset/asset_utils.c \
-					$(DIR_BONUS)fill/find_textures.c  \
 					$(DIR_BONUS)parsing/clean/clean_asset.c \
 					$(DIR_BONUS)parsing/clean/clean_gnl.c 
 	
