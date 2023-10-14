@@ -6,7 +6,7 @@
 /*   By: cllovio <cllovio@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/09 14:44:54 by cllovio           #+#    #+#             */
-/*   Updated: 2023/10/14 13:16:50 by cllovio          ###   ########.fr       */
+/*   Updated: 2023/10/14 13:40:31 by cllovio          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,8 @@
 
 # define SIZE_X				1920
 # define SIZE_Y				1080
-# define SQUARE_SIZE		64
+# define SQUARE_SIZE		32
+# define IMG_SIZE			256
 
 # define H_WHITE			0xffffff
 # define H_BLACK			0x000000
