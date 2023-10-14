@@ -20,8 +20,6 @@
 
 /*======================= DEFINE =======================*/
 
-
-
 # define SIZE_X				1920
 # define SIZE_Y				1080
 # define SQUARE_SIZE		64
@@ -90,6 +88,7 @@ typedef struct s_draw {
 	int		endian;
 }				t_draw;
 
+
 typedef struct s_data {
 	void		*mlx;
 	void		*win;
@@ -124,6 +123,12 @@ typedef struct s_data {
 	bool		horizontal;
 	int			left_mouse;
 	int			right_mouse;
+	int			right;
+	int			left;
+	int			top;
+	int			down;
+	int			rot_left;
+	int			rot_right;
 }	t_data;
 
 typedef struct s_parsing {
