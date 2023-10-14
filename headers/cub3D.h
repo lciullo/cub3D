@@ -70,6 +70,16 @@ typedef struct	s_draw {
 	int		endian;
 }				t_draw;
 
+typedef struct	s_key_hook {
+	int	escape;
+	int	move_up;
+	int	move_down;
+	int	move_left;
+	int	move_right;
+	int	rotate_left;
+	int	rotate_right;
+}	t_key_hook;
+
 typedef struct s_data {
 	void		*mlx;
 	void		*win;
@@ -103,6 +113,7 @@ typedef struct s_data {
 	float		collision_cor[2];
 	float		begin_cor[2];	
 	bool		horizontal;
+	t_key_hook	key_hook;
 }	t_data;
 
 typedef struct s_parsing {

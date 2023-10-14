@@ -6,7 +6,7 @@
 /*   By: cllovio <cllovio@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/09 14:35:08 by cllovio           #+#    #+#             */
-/*   Updated: 2023/10/11 20:38:02 by cllovio          ###   ########.fr       */
+/*   Updated: 2023/10/14 13:39:25 by cllovio          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,7 +56,7 @@ static int	init_texture(t_draw *texture, char *texture_path, void *mlx)
 {
 	int	size_1;
 
-	size_1 = 100;
+	size_1 = IMG_SIZE;
 	texture->img = mlx_xpm_file_to_image(mlx, texture_path, &size_1, &size_1);
 	if (!(texture->img))
 		return (FAILURE);
