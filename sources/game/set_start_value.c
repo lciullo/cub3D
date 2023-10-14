@@ -6,7 +6,7 @@
 /*   By: cllovio <cllovio@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/09 14:35:08 by cllovio           #+#    #+#             */
-/*   Updated: 2023/10/14 15:25:45 by cllovio          ###   ########.fr       */
+/*   Updated: 2023/10/14 15:42:26 by cllovio          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,11 +30,23 @@ int	set_start_value(t_data *data)
 	if (init_texture(&data->N_texture, data->north_path, data->mlx) == FAILURE)
 		return (print_error_mlx(), quit_game(data), FAILURE);
 	if (init_texture(&data->S_texture, data->south_path, data->mlx) == FAILURE)
+	{
+		mlx_destroy_image(data->mlx, data->N_texture.img);
 		return (print_error_mlx(), quit_game(data), FAILURE);
+	}
 	if (init_texture(&data->W_texture, data->west_path, data->mlx) == FAILURE)
+	{
+		mlx_destroy_image(data->mlx, data->N_texture.img);
+		mlx_destroy_image(data->mlx, data->S_texture.img);
 		return (print_error_mlx(), quit_game(data), FAILURE);
+	}
 	if (init_texture(&data->E_texture, data->east_path, data->mlx) == FAILURE)
+	{
+		mlx_destroy_image(data->mlx, data->N_texture.img);
+		mlx_destroy_image(data->mlx, data->S_texture.img);
+		mlx_destroy_image(data->mlx, data->W_texture.img);
 		return (print_error_mlx(), quit_game(data), FAILURE);
+	}
 	set_start_direction(data);
 	return (SUCCESS);
 }
