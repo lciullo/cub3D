@@ -6,7 +6,7 @@
 /*   By: cllovio <cllovio@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/09 14:38:18 by cllovio           #+#    #+#             */
-/*   Updated: 2023/10/14 13:42:52 by cllovio          ###   ########.fr       */
+/*   Updated: 2023/10/14 15:29:01 by cllovio          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,7 +39,10 @@ static int	init_image(t_data *data, t_draw *draw)
 	draw->addr = mlx_get_data_addr(draw->img, &draw->bits_per_pixel, \
 	&draw->line_length, &draw->endian);
 	if (draw->addr == NULL)
+	{
+		mlx_destroy_image(data->mlx, draw->img);
 		return (print_error_mlx(), quit_game(data), FAILURE);
+	}
 	return (SUCCESS);
 }
 

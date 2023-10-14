@@ -6,7 +6,7 @@
 /*   By: cllovio <cllovio@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/09 14:35:08 by cllovio           #+#    #+#             */
-/*   Updated: 2023/10/14 13:54:29 by cllovio          ###   ########.fr       */
+/*   Updated: 2023/10/14 15:25:45 by cllovio          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,6 +14,8 @@
 
 static void	set_start_direction(t_data *data);
 static int	init_texture(t_draw *texture, char *texture_path, void *mlx);
+
+#include <stdio.h>
 
 // data->px_map = (data->x_pers + (SQUARE_SIZE / 2))* SQUARE_SIZE;
 // 	data->py_map = (data->y_pers + (SQUARE_SIZE / 2))* SQUARE_SIZE;
@@ -26,13 +28,13 @@ int	set_start_value(t_data *data)
 	data->px_map = (data->x_pers* SQUARE_SIZE) + (SQUARE_SIZE / 2);
 	data->py_map = (data->y_pers* SQUARE_SIZE) + (SQUARE_SIZE / 2);
 	if (init_texture(&data->N_texture, data->north_path, data->mlx) == FAILURE)
-		return (FAILURE);
+		return (print_error_mlx(), quit_game(data), FAILURE);
 	if (init_texture(&data->S_texture, data->south_path, data->mlx) == FAILURE)
-		return (FAILURE);
+		return (print_error_mlx(), quit_game(data), FAILURE);
 	if (init_texture(&data->W_texture, data->west_path, data->mlx) == FAILURE)
-		return (FAILURE);
+		return (print_error_mlx(), quit_game(data), FAILURE);
 	if (init_texture(&data->E_texture, data->east_path, data->mlx) == FAILURE)
-		return (FAILURE);
+		return (print_error_mlx(), quit_game(data), FAILURE);
 	set_start_direction(data);
 	return (SUCCESS);
 }

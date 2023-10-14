@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   quit.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lciullo <lciullo@student.42.fr>            +#+  +:+       +#+        */
+/*   By: cllovio <cllovio@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/09 14:43:32 by cllovio           #+#    #+#             */
-/*   Updated: 2023/10/10 13:36:55 by lciullo          ###   ########.fr       */
+/*   Updated: 2023/10/14 15:27:38 by cllovio          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,10 +16,20 @@
 
 int	quit_game(t_data *data)
 {
-	mlx_destroy_window(data->mlx, data->win);
-	mlx_destroy_display(data->mlx);
 	secure_free_array(data->map, data->size_map);
 	free_textures(data);
+	if (data->win)
+		mlx_destroy_window(data->mlx, data->win);
+	if (data->N_texture.img)
+		mlx_destroy_image(data->mlx, data->N_texture.img);
+	if (data->S_texture.img)
+		mlx_destroy_image(data->mlx, data->S_texture.img);
+	if (data->W_texture.img)
+		mlx_destroy_image(data->mlx, data->W_texture.img);
+	if (data->E_texture.img)
+		mlx_destroy_image(data->mlx, data->E_texture.img);
+	if (data->mlx)
+		mlx_destroy_display(data->mlx);
 	free(data->mlx);
 	exit(0);
 	return (0);
