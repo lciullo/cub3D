@@ -6,7 +6,7 @@
 /*   By: cllovio <cllovio@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/09 14:36:07 by cllovio           #+#    #+#             */
-/*   Updated: 2023/10/13 15:48:08 by cllovio          ###   ########.fr       */
+/*   Updated: 2023/10/14 10:37:16 by cllovio          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,6 +34,10 @@ void	raycasting(t_data *data, t_draw *draw)
 		raycasting.x--;
 	}
 }
+
+// wallray->angle = atanf((wallray->x + 0.0001 - (1920 / 2)) / \
+//     (1920 * 6 / (2 * M_PI))) + g->player.angle + 0.0001;
+// Sachant que wallray->x varie de -SCREEN_WIDTH/2 a +SCREEN_WIDTH/2
 
 static void	init_angle_struct_raycasting(int i, t_raycasting *raycasting, \
 			t_data *data)
@@ -64,8 +68,8 @@ static double	get_wall_distance(t_raycasting *raycasting)
 	{
 		if (did_we_reach_a_wall(raycasting, (int)x, (int)y) == true)
 		{
-			raycasting->data->horizontal = false;
-			raycasting->data->collision_cor[0] = x;
+			raycasting->data->horizontal = true;
+			raycasting->data->collision_cor[0] = x + 1;
 			raycasting->data->collision_cor[1] = y;
 			break ;
 		}
@@ -73,9 +77,9 @@ static double	get_wall_distance(t_raycasting *raycasting)
 		x = raycasting->data->px_map + t_x * raycasting->cos_angle / 10;
 		if (did_we_reach_a_wall(raycasting, (int)x, (int)y) == true)
 		{
-			raycasting->data->horizontal = true;
+			raycasting->data->horizontal = false;
 			raycasting->data->collision_cor[0] = x;
-			raycasting->data->collision_cor[1] = y;
+			raycasting->data->collision_cor[1] = y + 1;
 			break ;
 		}
 		t_y += 1;
@@ -85,11 +89,11 @@ static double	get_wall_distance(t_raycasting *raycasting)
 	return (distance);
 }
 
+/*raycasting->data->map[(y + 1) / SQUARE_SIZE][x / SQUARE_SIZE] == '1' \
+	|| raycasting->data->map[y / SQUARE_SIZE][(x + 1) / SQUARE_SIZE] == '1'*/
 static bool	did_we_reach_a_wall(t_raycasting *raycasting, int x, int y)
 {
-	if (raycasting->data->map[y / SQUARE_SIZE][x / SQUARE_SIZE] == '1' || \
-	raycasting->data->map[(y + 1) / SQUARE_SIZE][x / SQUARE_SIZE] == '1' \
-	|| raycasting->data->map[y / SQUARE_SIZE][(x + 1) / SQUARE_SIZE] == '1')
+	if (raycasting->data->map[y / SQUARE_SIZE][x / SQUARE_SIZE] == '1')
 		return (true);
 	return (false);
 }
