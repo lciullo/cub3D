@@ -6,7 +6,7 @@
 /*   By: cllovio <cllovio@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/09 14:38:18 by cllovio           #+#    #+#             */
-/*   Updated: 2023/10/14 15:29:01 by cllovio          ###   ########.fr       */
+/*   Updated: 2023/10/16 10:37:24 by cllovio          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,6 @@
 static int	init_image(t_data *data, t_draw *draw);
 static void	key_hook(t_data *data);
 
-#include <stdio.h>
 int	render_next_frame(t_data *data)
 {
 	t_draw	draw;

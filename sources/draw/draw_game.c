@@ -6,34 +6,33 @@
 /*   By: cllovio <cllovio@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/09 14:20:24 by cllovio           #+#    #+#             */
-/*   Updated: 2023/10/14 14:15:10 by cllovio          ###   ########.fr       */
+/*   Updated: 2023/10/16 16:27:02 by cllovio          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3D.h"
 
-static void	draw_wall(int *y, t_raycasting *raycasting, int y_max, long size_wall);
+static void	draw_wall(int *y, t_raycasting *raycasting, int y_max, long size_wall, int i);
 static void	draw_ceilling_and_floor(int *y, t_raycasting *raycasting, \
-			int y_max, int color);
+			int y_max, int color, int i);
 
-void	draw_game(t_raycasting *raycasting, double distance)
+void	draw_game(t_raycasting *raycasting, double distance, double angle, int i)
 {
 	int	y;
 	long	size_wall;
 	long	half_size_wall;
 
+	(void)angle;
 	if (distance == 0)
 		distance = 0.2;
-	size_wall = (1 / (distance * cos(raycasting->shift))) * 40000;
+	size_wall = 1 / (distance * cos(angle)) * 40000;
 	half_size_wall = size_wall / 2;
 	y = 0;
 	draw_ceilling_and_floor(&y, raycasting, ((SIZE_Y / 2) - half_size_wall), \
-	raycasting->data->celling);
-	draw_wall(&y, raycasting, ((SIZE_Y / 2) + half_size_wall), size_wall);
-	draw_ceilling_and_floor(&y, raycasting, SIZE_Y, raycasting->data->floor);
+	raycasting->data->celling, i);
+	draw_wall(&y, raycasting, ((SIZE_Y / 2) + half_size_wall), size_wall, i);
+	draw_ceilling_and_floor(&y, raycasting, SIZE_Y, raycasting->data->floor, i);
 }
-
-#include <stdio.h>
 
 float	float_modulo(float nbr, int div)
 {
@@ -44,7 +43,7 @@ float	float_modulo(float nbr, int div)
 	return (nbr);	
 }
 
-static void	draw_wall(int *y, t_raycasting *raycasting, int y_max, long size_wall)
+static void	draw_wall(int *y, t_raycasting *raycasting, int y_max, long size_wall, int i)
 {
 	int color;
 	int	x_pixel_get;
@@ -80,17 +79,17 @@ static void	draw_wall(int *y, t_raycasting *raycasting, int y_max, long size_wal
 			else if (raycasting->cos_angle > 0)
 				color = my_mlx_pixel_get(&raycasting->data->E_texture, x_pixel_get, y_pixel_get);
 		}
-		my_mlx_pixel_put(raycasting->draw, raycasting->x, *y, color);
+		my_mlx_pixel_put(raycasting->draw, i, *y, color);
 		(*y)++;
 	}
 }
 
 void	draw_ceilling_and_floor(int *y, t_raycasting *raycasting, int y_max, \
-		int color)
+		int color, int i)
 {
 	while (*y < y_max)
 	{
-		my_mlx_pixel_put(raycasting->draw, raycasting->x, *y, color);
+		my_mlx_pixel_put(raycasting->draw, i, *y, color);
 		(*y)++;
 	}
 }

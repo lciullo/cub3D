@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   structure.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: cllovio <cllovio@student.42lyon.fr>        +#+  +:+       +#+        */
+/*   By: cllovio <cllovio@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/03 10:17:09 by lciullo           #+#    #+#             */
-/*   Updated: 2023/10/12 09:29:43 by cllovio          ###   ########.fr       */
+/*   Updated: 2023/10/16 16:29:40 by cllovio          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,7 +48,7 @@ static void	init_struct_data(t_data *data)
 	data->floor = 0;
 	data->px_map = 0;
 	data->py_map = 0;
-	data->angle = 0;
+	data->angle = M_PI_2;
 	data->xf_p = 0;
 	data->yf_p = 0;
 	data->x_dir = 0;

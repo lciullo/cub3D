@@ -6,15 +6,14 @@
 /*   By: cllovio <cllovio@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/09 14:36:07 by cllovio           #+#    #+#             */
-/*   Updated: 2023/10/14 14:09:31 by cllovio          ###   ########.fr       */
+/*   Updated: 2023/10/16 17:25:35 by cllovio          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3D.h"
 
 static double	get_wall_distance(t_raycasting *raycasting);
-static void		init_angle_struct_raycasting(int i, t_raycasting *raycasting, \
-				t_data *data);
+static void		init_angle_struct_raycasting(t_raycasting *raycasting, t_data *data, double angle);
 static bool		did_we_reach_a_wall(t_raycasting *raycasting, int x, int y);
 
 #include "stdio.h"
@@ -24,32 +23,35 @@ void	raycasting(t_data *data, t_draw *draw)
 	int				i;
 	double			distance;
 	t_raycasting	raycasting;
-
+	double			adj;
+	double			opp;
+	double			angle;
+	
 	i = 1;
+	adj = 0;
+	opp = 0;
 	init_struct_raycasting(&raycasting, data, draw);
+	opp = SIZE_X / 2;
+	adj = opp / tan(M_PI / 6);
+	angle = (M_PI / 6) + data->angle;
 	while (i <= SIZE_X)
 	{
-		init_angle_struct_raycasting(i, &raycasting, data);
+		init_angle_struct_raycasting(&raycasting, data, angle);
 		distance = get_wall_distance(&raycasting);
-		draw_game(&raycasting, distance);
+		draw_game(&raycasting, distance, angle - data->angle, i);
 		i++;
-		raycasting.x--;
+		opp--;
+		angle = atanf(opp /adj) + data->angle;
 	}
 }
 
-// wallray->angle = atanf((wallray->x + 0.0001 - (1920 / 2)) / \
-//     (1920 * 6 / (2 * M_PI))) + g->player.angle + 0.0001;
-// Sachant que wallray->x varie de -SCREEN_WIDTH/2 a +SCREEN_WIDTH/2
-
-static void	init_angle_struct_raycasting(int i, t_raycasting *raycasting, \
-			t_data *data)
+static void	init_angle_struct_raycasting(t_raycasting *raycasting, \
+			t_data *data, double angle)
 {
 	data->collision_cor[0] = 0;
 	data->collision_cor[1] = 0;
-	raycasting->shift = ((float)i / SIZE_X) + 1;
-	raycasting->cos_angle = cosf(raycasting->shift * (M_PI / 3) + data->angle);
-	raycasting->sin_angle = -sinf(raycasting->shift * (M_PI / 3) + data->angle);
-	raycasting->shift = (raycasting->shift - 1.5) * (M_PI / 3);
+	raycasting->cos_angle = cosf(angle);
+	raycasting->sin_angle = -sinf(angle);
 }
 
 static double	get_wall_distance(t_raycasting *raycasting)
@@ -60,7 +62,6 @@ static double	get_wall_distance(t_raycasting *raycasting)
 	float	first_y;
 	int		t_x;
 	int		t_y;
-	// double		distance;
 	double		distance;
 
 	t_x = 0;
@@ -99,7 +100,8 @@ static double	get_wall_distance(t_raycasting *raycasting)
 	|| raycasting->data->map[y / SQUARE_SIZE][(x + 1) / SQUARE_SIZE] == '1'*/
 static bool	did_we_reach_a_wall(t_raycasting *raycasting, int x, int y)
 {
-	if (raycasting->data->map[(int)(y / SQUARE_SIZE)][(int)(x / SQUARE_SIZE)] == '1')
+	if (raycasting->data->map[(int)(y / SQUARE_SIZE)][(int)(x / SQUARE_SIZE)] == '1' || raycasting->data->map[(int)(y + 0.9) / SQUARE_SIZE][x / SQUARE_SIZE] == '1' \
+	|| raycasting->data->map[y / SQUARE_SIZE][(int)(x + 0.9) / SQUARE_SIZE] == '1')
 		return (true);
 	return (false);
 }
