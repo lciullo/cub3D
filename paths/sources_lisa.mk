@@ -14,5 +14,4 @@ SRCS		= 	$(DIR_SRCS)main.c \
 				$(DIR_SRCS)parsing/asset/fill_asset.c \
 				$(DIR_SRCS)parsing/asset/get_color.c \
 				$(DIR_SRCS)parsing/asset/asset_utils.c \
-				$(DIR_SRCS)parsing/clean/clean_asset.c \
-				$(DIR_SRCS)parsing/clean/clean_gnl.c 				
+				$(DIR_SRCS)parsing/clean/clean_parsing.c 				

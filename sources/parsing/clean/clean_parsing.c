@@ -6,7 +6,7 @@
 /*   By: lciullo <lciullo@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/09 11:35:28 by lciullo           #+#    #+#             */
-/*   Updated: 2023/10/10 13:34:59 by lciullo          ###   ########.fr       */
+/*   Updated: 2023/10/17 16:05:38 by lciullo          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -72,4 +72,15 @@ void	free_asset(t_parsing *utils, t_data *data)
 		free(utils->color_f_path);
 		utils->color_f_path = NULL;
 	}
+}
+
+void	clean_gnl(int fd, char *line)
+{
+	if (line)
+	{
+		free(line);
+		line = NULL;
+	}
+	if (fd > 2)
+		close(fd);
 }
