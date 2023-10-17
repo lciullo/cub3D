@@ -6,7 +6,7 @@
 /*   By: cllovio <cllovio@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/09 14:42:04 by cllovio           #+#    #+#             */
-/*   Updated: 2023/10/14 14:01:18 by cllovio          ###   ########.fr       */
+/*   Updated: 2023/10/17 13:22:14 by cllovio          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,7 +39,7 @@ void	mini_map(t_data *data, t_draw *draw)
 		y++;
 		y_square += SQUARE_SIZE;
 	}
-	draw_square(draw, ((data->px_map - ((SQUARE_SIZE / 2))+ 8) / 2), \
+	draw_square(draw, ((data->px_map - ((SQUARE_SIZE / 2)) + 8) / 2), \
 	((data->py_map - ((SQUARE_SIZE / 2)) + 8) / 2), H_PURPLE);
 }
 

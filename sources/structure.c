@@ -6,7 +6,7 @@
 /*   By: cllovio <cllovio@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/03 10:17:09 by lciullo           #+#    #+#             */
-/*   Updated: 2023/10/16 16:29:40 by cllovio          ###   ########.fr       */
+/*   Updated: 2023/10/17 12:37:18 by cllovio          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,11 +14,13 @@
 
 static void	init_struct_data(t_data *data);
 static void	init_struct_parsing(t_parsing *utils);
+static void	init_struct_key_hook(t_data *data);
 
 void	init_struct(t_data *data, t_parsing *utils)
 {
 	init_struct_data(data);
 	init_struct_parsing(utils);
+	init_struct_key_hook(data);
 }
 
 static void	init_struct_parsing(t_parsing *utils)
@@ -49,8 +51,6 @@ static void	init_struct_data(t_data *data)
 	data->px_map = 0;
 	data->py_map = 0;
 	data->angle = M_PI_2;
-	data->xf_p = 0;
-	data->yf_p = 0;
 	data->x_dir = 0;
 	data->y_dir = 0;
 	data->north_path = NULL;
@@ -64,10 +64,24 @@ static void	init_struct_data(t_data *data)
 	data->horizontal = false;
 }
 
+static void	init_struct_key_hook(t_data *data)
+{
+	data->key_hook.rotate_left = 0;
+	data->key_hook.rotate_right = 0;
+	data->key_hook.move_up = 0;
+	data->key_hook.move_down = 0;
+	data->key_hook.move_left = 0;
+	data->key_hook.move_right = 0;
+	data->key_hook.escape = 0;
+}
+
 void	init_struct_raycasting(t_raycasting *raycasting, \
 		t_data *data, t_draw *draw)
 {
-	raycasting->x = SIZE_X - 1;
+	raycasting->adj = 0;
+	raycasting->opp = 0;
+	raycasting->angle = 0;
+	raycasting->distance = 0;
 	raycasting->draw = draw;
 	raycasting->data = data;
 }

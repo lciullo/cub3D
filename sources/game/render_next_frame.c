@@ -6,7 +6,7 @@
 /*   By: cllovio <cllovio@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/09 14:38:18 by cllovio           #+#    #+#             */
-/*   Updated: 2023/10/16 10:37:24 by cllovio          ###   ########.fr       */
+/*   Updated: 2023/10/17 14:57:53 by cllovio          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,13 +45,12 @@ static int	init_image(t_data *data, t_draw *draw)
 	return (SUCCESS);
 }
 
-
 static void	key_hook(t_data *data)
 {
 	if (data->key_hook.escape == 1)
 	{
 		quit_game(data);
-		return ;	
+		return ;
 	}
 	if (data->key_hook.move_up == 1)
 		move_up(data);
@@ -62,15 +61,13 @@ static void	key_hook(t_data *data)
 	if (data->key_hook.move_right == 1)
 		move_right(data);
 	if (data->key_hook.rotate_left == 1)
-	{
 		data->angle += M_PI / 36;
-		// if (data->angle < 0)
-		// 	data->angle = 2 * M_PI;
-	}
 	if (data->key_hook.rotate_right == 1)
-	{
 		data->angle -= M_PI / 36;
-		// if (data->angle > 2 * M_PI)
-		// 	data->angle = 0;
-	}
 }
+
+	// if (data->angle < 0)
+		// 	data->angle = 2 * M_PI;
+
+	// if (data->angle > 2 * M_PI)
+		// 	data->angle = 0;

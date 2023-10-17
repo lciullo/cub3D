@@ -6,7 +6,7 @@
 /*   By: cllovio <cllovio@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/09 14:44:54 by cllovio           #+#    #+#             */
-/*   Updated: 2023/10/16 17:05:32 by cllovio          ###   ########.fr       */
+/*   Updated: 2023/10/17 15:07:50 by cllovio          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,14 +38,23 @@ typedef struct s_raycasting {
 	float	cos_angle;
 	float	sin_angle;
 	float	shift;
+	double	adj;
+	double	opp;
+	double	angle;
+	double	distance;
 	int		x;
 }	t_raycasting;
 
 /*======================= PROTOTYPES =======================*/
 
-/* ---- draw/draw_game.c ----*/
-void	draw_game(t_raycasting *raycasting, double distance, double angle, int i);
+int	quit_game_error_image(t_data *data);
 
+/* ---- draw/draw_game.c ----*/
+void	draw_game(t_raycasting *raycasting, double distance, double angle, \
+		int i);
+float	float_modulo(float nbr, int div);
+int			get_pixel_ns(long size_wall, int *y, t_raycasting *raycasting);
+int			get_pixel_we(long size_wall, int *y, t_raycasting *raycasting);
 /* ---- draw/draw_square.c ----*/
 void	draw_square(t_draw *draw, int x, int y, int color);
 

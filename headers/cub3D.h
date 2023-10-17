@@ -7,6 +7,7 @@
 # include "../mlx/mlx_linux/mlx.h"
 # include "../mlx/mlx_mac/mlx.h"
 
+# include "../mlx/mlx_linux/mlx_int.h"
 /*======================= COULEUR =======================*/
 
 # define END "\033[0m"
@@ -70,6 +71,16 @@ typedef struct	s_draw {
 	int		endian;
 }				t_draw;
 
+typedef	struct	s_pointf {
+	float	x;
+	float	y;
+}	t_pointf;
+
+typedef	struct	s_point {
+	int	x;
+	int	y;
+}	t_point;
+
 typedef struct	s_key_hook {
 	int	escape;
 	int	move_up;
@@ -94,8 +105,6 @@ typedef struct s_data {
 	float		px_map;
 	float		py_map;
 	float		angle;
-	float		xf_p;
-	float		yf_p;
 	float		x_dir;
 	float		y_dir;	
 	char		*north_path;

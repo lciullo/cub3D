@@ -1,6 +1,7 @@
 DIR_SRCS	=	sources/
 
 SRCS	+=	$(DIR_SRCS)draw/draw_game.c\
+			$(DIR_SRCS)draw/get_pixel_textures.c\
 			$(DIR_SRCS)draw/draw_square.c\
 			$(DIR_SRCS)draw/my_mlx_pixel_put.c\
 			$(DIR_SRCS)game/hook.c\
