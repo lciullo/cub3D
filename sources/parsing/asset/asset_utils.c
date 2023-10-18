@@ -6,7 +6,7 @@
 /*   By: lciullo <lciullo@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/03 11:21:10 by lciullo           #+#    #+#             */
-/*   Updated: 2023/10/11 09:33:54 by lciullo          ###   ########.fr       */
+/*   Updated: 2023/10/18 11:22:12 by lciullo          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,6 +14,7 @@
 
 static	void	count_asset(char *line, t_parsing *utils);
 static	int	check_count(t_parsing *utils);
+static	int	is_map_charset(char *line, int fd);
 
 int	is_right_asset_number(char *path, t_parsing *utils)
 {
@@ -30,6 +31,8 @@ int	is_right_asset_number(char *path, t_parsing *utils)
 		if (line == NULL)
 			break ;
 		count_asset(line, utils);
+		if (is_map_charset(line, fd) == FAILURE)
+			return (FAILURE);
 		if (line)
 			free(line);
 	}
@@ -65,6 +68,31 @@ static int	check_count(t_parsing *utils)
 		return (FAILURE);
 	}
 	return (SUCCESS);
+}
+
+static	int	is_map_charset(char *line, int fd)
+{
+	if (ft_strchr(line, 'W') && ft_strchr(line, 'E'))
+		return (SUCCESS);
+	else if (ft_strchr(line, 'N') && ft_strchr(line, 'O'))
+		return (SUCCESS);
+	else if (ft_strchr(line, 'S') && ft_strchr(line, 'O'))
+		return (SUCCESS);
+	else if (ft_strchr(line, 'E') && ft_strchr(line, 'A'))
+		return (SUCCESS);
+	else if (ft_strchr(line, 'C'))
+		return (SUCCESS);
+	else if (ft_strchr(line, 'F'))
+		return (SUCCESS);
+	else if (ft_strchr(line, '1'))
+		return (SUCCESS);
+	else if (ft_strchr(line, '0'))
+		return (SUCCESS);
+	else if (is_empty_line(line) == TRUE)
+		return (SUCCESS);
+	clean_gnl(fd, line);
+	ft_dprintf(2, "Error\nNot a valid charset map\n");
+	return (FAILURE);
 }
 
 char	*copy_asset(char *texture, char *s)

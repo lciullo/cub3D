@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   draw_game.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: cllovio <cllovio@student.42.fr>            +#+  +:+       +#+        */
+/*   By: lciullo <lciullo@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/09 14:20:24 by cllovio           #+#    #+#             */
-/*   Updated: 2023/10/17 14:40:01 by cllovio          ###   ########.fr       */
+/*   Updated: 2023/10/18 11:23:49 by lciullo          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,12 +49,12 @@ static void	draw_wall(int *y, t_raycasting *raycasting, int y_max, \
 long size_wall)
 {
 	int	color;
-	int	x_pixel_get;
-	int	y_pixel_get;
+	/*int	x_pixel_get;
+	int	y_pixel_get;*/
 
 	color = 0;
-	x_pixel_get = 0;
-	y_pixel_get = 0;
+	/*x_pixel_get = 0;
+	y_pixel_get = 0;*/
 	while (*y <= y_max)
 	{
 		if (raycasting->data->horizontal == true)
