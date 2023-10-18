@@ -6,7 +6,7 @@
 #    By: lciullo <lciullo@student.42.fr>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/10/18 12:33:09 by lciullo           #+#    #+#              #
-#    Updated: 2023/10/18 12:47:06 by lciullo          ###   ########.fr        #
+#    Updated: 2023/10/18 12:51:23 by lciullo          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -14,7 +14,7 @@
 
 NAME		=	cub3D
 OS			=	$(shell uname)
-RMF		=	rm -rf
+RMF			=	rm -rf
 
 # ---- Libraries ---- #
 
