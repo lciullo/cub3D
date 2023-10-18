@@ -6,7 +6,7 @@
 #    By: lciullo <lciullo@student.42.fr>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/10/18 12:33:09 by lciullo           #+#    #+#              #
-#    Updated: 2023/10/18 16:13:54 by lciullo          ###   ########.fr        #
+#    Updated: 2023/10/18 16:55:49 by lciullo          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -112,7 +112,7 @@ DIR_OBJS	    =	.objs/
 
 # ---- Flags ---- #
 
-ifeq ($(BONUS_RULES), no)
+ifeq ($(R_BONUS), no)
 CFLAGS		=	-Wall -Wextra -Werror -O3 -g3 -Wno-deprecated-declarations -I $(DIR_LIB) -I $(DIR_MLX) -I $(DIR_HEADERS)
 else
 CFLAGS		=	-Wall -Wextra -Werror -O3 -g3 -Wno-deprecated-declarations -I $(DIR_LIB) -I $(DIR_MLX) -I $(DIR_H_BONUS)
@@ -130,7 +130,7 @@ endif
 
 # ---- Directory  objs ---- #
 
-ifeq ($(BONUS_RULES), no)
+ifeq ($(R_BONUS), no)
 OBJS		=	$(addprefix $(DIR_OBJS),$(MANDATORY:.c=.o))
 else
 OBJS		=	$(addprefix $(DIR_OBJS),$(BONUS:.c=.o))
@@ -140,13 +140,15 @@ endif
 
 # ---- Compilation rules ---- #
 
-all:		$(NAME)
+all:		
+			${MAKE} lib
+			${MAKE} ${NAME}
 
 ${NAME}:	$(LIB) ${OBJS}
 			make -C $(DIR_MLX)
 			$(CC) $(CFLAGS) $(OBJS) $(LIB) $(MLX_FLAGS) -o $(NAME)
 
-ifeq ($(BONUS_RULES), no)
+ifeq ($(R_BONUS), no)
 $(DIR_OBJS)%.o: %.c	$(HEADERS)
 			@ mkdir -p ${dir $@}
 			$(CC) $(CFLAGS) -c $< -o $@ -I $(DIR_HEADERS)
@@ -162,7 +164,7 @@ $(LIB) :
 			$(MAKE) -C $(DIR_LIB)
 						
 bonus:
-			$(MAKE) re R_BONUS=yes
+			$(MAKE) R_BONUS=yes
 
 # ---- Clean rules ---- #
 
