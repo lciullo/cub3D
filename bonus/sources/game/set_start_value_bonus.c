@@ -1,16 +1,16 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   set_start_value.c                                  :+:      :+:    :+:   */
+/*   set_start_value_bonus.c                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: cllovio <cllovio@student.42.fr>            +#+  +:+       +#+        */
+/*   By: lciullo <lciullo@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/09 14:35:08 by cllovio           #+#    #+#             */
-/*   Updated: 2023/10/17 12:32:10 by cllovio          ###   ########.fr       */
+/*   Updated: 2023/10/18 16:15:01 by lciullo          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "cub3D.h"
+#include "cub3D_bonus.h"
 
 static void	set_start_direction(t_data *data);
 static int	init_texture(t_draw *texture, char *texture_path, void *mlx);

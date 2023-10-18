@@ -1,16 +1,16 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   is_valid_player.c                                  :+:      :+:    :+:   */
+/*   is_valid_player_bonus.c                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: cllovio <cllovio@student.42.fr>            +#+  +:+       +#+        */
+/*   By: lciullo <lciullo@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/03 09:11:23 by lciullo           #+#    #+#             */
-/*   Updated: 2023/10/17 13:22:37 by cllovio          ###   ########.fr       */
+/*   Updated: 2023/10/18 16:15:47 by lciullo          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "cub3D.h"
+#include "cub3D_bonus.h"
 
 static void	count_nb_player(t_data *data, t_parsing *utils);
 static	void	fill_player_directions(t_data *data, int y, int x);

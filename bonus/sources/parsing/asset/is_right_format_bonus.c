@@ -6,11 +6,11 @@
 /*   By: lciullo <lciullo@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/18 14:09:10 by lciullo           #+#    #+#             */
-/*   Updated: 2023/10/18 14:09:13 by lciullo          ###   ########.fr       */
+/*   Updated: 2023/10/18 16:15:17 by lciullo          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "cub3D.h"
+#include "cub3D_bonus.h"
 
 static int	check_xpm_format(char *texture);
 

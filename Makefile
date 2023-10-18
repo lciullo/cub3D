@@ -6,7 +6,7 @@
 #    By: lciullo <lciullo@student.42.fr>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/10/18 12:33:09 by lciullo           #+#    #+#              #
-#    Updated: 2023/10/18 15:41:01 by lciullo          ###   ########.fr        #
+#    Updated: 2023/10/18 16:13:54 by lciullo          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -16,9 +16,9 @@ NAME			=	cub3D
 
 OS				=	$(shell uname)
 
-RMF				=	rm -rf
+R_BONUS			= 	no
 
-BONUS_RULES		= 	no
+RMF				=	rm -rf
 
 # ---- Libraries ---- #
 
@@ -107,14 +107,8 @@ BONUS			=	$(DIR_BONUS)main_bonus.c \
 					$(DIR_BONUS)game/set_start_value_bonus.c \
 					$(DIR_BONUS)print_error_bonus.c \
 					$(DIR_BONUS)quit_bonus.c
-
-# ---- Directory  objs ---- #
-
-ifeq ($(BONUS_RULES), no)
-OBJS		=	$(addprefix $(DIR_OBJS),$(MANDATORY:.c=.o))
-else
-OBJS		=	$(addprefix $(DIR_OBJS),$(BONUS:.c=.o))
-endif
+					
+DIR_OBJS	    =	.objs/
 
 # ---- Flags ---- #
 
@@ -132,6 +126,14 @@ ifeq ($(OS), Darwin)
 MLX_FLAGS 	+= -lmlx -framework OpenGL -framework AppKit
 else ifeq ($(OS), Linux)
 MLX_FLAGS 	+= -lmlx -lX11 -lXext -L$(DIR_MLX)
+endif
+
+# ---- Directory  objs ---- #
+
+ifeq ($(BONUS_RULES), no)
+OBJS		=	$(addprefix $(DIR_OBJS),$(MANDATORY:.c=.o))
+else
+OBJS		=	$(addprefix $(DIR_OBJS),$(BONUS:.c=.o))
 endif
 
 # ====================== RULES ====================== #
@@ -158,11 +160,9 @@ endif
 
 $(LIB) :
 			$(MAKE) -C $(DIR_LIB)
-			
-# ---- Bonus rule ---- #
-			
+						
 bonus:
-			$(MAKE) re BONUS_RULES=yes
+			$(MAKE) re R_BONUS=yes
 
 # ---- Clean rules ---- #
 
@@ -177,4 +177,4 @@ fclean:		clean
 re :		fclean 
 			$(MAKE) all
 
-.PHONY :	all lib clean fclean  bonus_rules re	
+.PHONY :	all lib clean fclean  bonus re	

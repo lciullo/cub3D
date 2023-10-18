@@ -1,16 +1,16 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   asset_utils.c                                      :+:      :+:    :+:   */
+/*   asset_utils_bonus.c                                :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: lciullo <lciullo@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/03 11:21:10 by lciullo           #+#    #+#             */
-/*   Updated: 2023/10/18 11:22:12 by lciullo          ###   ########.fr       */
+/*   Updated: 2023/10/18 16:15:06 by lciullo          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "cub3D.h"
+#include "cub3D_bonus.h"
 
 static	void	count_asset(char *line, t_parsing *utils);
 static	int	check_count(t_parsing *utils);

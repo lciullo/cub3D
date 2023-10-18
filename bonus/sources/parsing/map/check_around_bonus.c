@@ -1,16 +1,16 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   check_around.c                                     :+:      :+:    :+:   */
+/*   check_around_bonus.c                               :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: lciullo <lciullo@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/03 09:09:14 by lciullo           #+#    #+#             */
-/*   Updated: 2023/10/03 15:24:46 by lciullo          ###   ########.fr       */
+/*   Updated: 2023/10/18 16:15:32 by lciullo          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "cub3D.h"
+#include "cub3D_bonus.h"
 
 int	check_around(t_data *data, int y, int x, char **copy)
 {
