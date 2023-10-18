@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   render_next_frame.c                                :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: cllovio <cllovio@student.42.fr>            +#+  +:+       +#+        */
+/*   By: cllovio <cllovio@student.42lyon.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/09 14:38:18 by cllovio           #+#    #+#             */
-/*   Updated: 2023/10/18 13:26:18 by cllovio          ###   ########.fr       */
+/*   Updated: 2023/10/18 15:20:16 by cllovio          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,7 @@ int	render_next_frame(t_data *data)
 		return (FAILURE);
 	key_hook(data);
 	raycasting(data, &draw);
-	// mini_map(data, &draw);
+	mini_map(data, &draw);
 	mlx_put_image_to_window(data->mlx, data->win, draw.img, 0, 0);
 	mlx_destroy_image(data->mlx, draw.img);
 	mlx_do_sync(data->mlx);

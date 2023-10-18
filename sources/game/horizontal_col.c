@@ -10,7 +10,7 @@ double	horizontal_col(t_raycasting *raycasting, t_pointf *xy)
     distance = 0;
 	if (raycasting->sin_angle < 0)
 		distance = horizontal_col_pos(raycasting, xy);
-	else if (raycasting->sin_angle > 0)
+	else if (raycasting->sin_angle >= 0)
 		distance = horizontal_col_neg(raycasting, xy);
     return (distance);
 }
@@ -31,7 +31,7 @@ static double horizontal_col_pos(t_raycasting *raycasting, t_pointf *xy)
 	while (((xy->x - 0.000000001) / SQUARE_SIZE)  > 0 && ((xy->y - 0.000000001) / SQUARE_SIZE)  > 0 && \
 	((xy->y - 0.000000001) / SQUARE_SIZE)  < raycasting->data->size_map && \
 	((xy->x - 0.000000001) / SQUARE_SIZE)  < raycasting->data->len_line[(int)((xy->y - 0.000000001) / SQUARE_SIZE)] && \
-	raycasting->data->map[(int)((xy->y - 0.000000001) / SQUARE_SIZE) ][(int)((xy->x - 0.000000001) / SQUARE_SIZE) ] != '1')
+	(raycasting->data->map[(int)((xy->y - 0.000000001) / SQUARE_SIZE) ][(int)((xy->x - 0.000000001) / SQUARE_SIZE) ] != '1'))
 	{
 		xy->x += delta_depth;
 		xy->y -= SQUARE_SIZE;
@@ -56,7 +56,7 @@ static double horizontal_col_neg(t_raycasting *raycasting, t_pointf *xy)
 	while ((xy->x / SQUARE_SIZE) > 0 && (xy->y / SQUARE_SIZE) > 0 && \
 	(xy->y / SQUARE_SIZE) < raycasting->data->size_map && \
 	(xy->x / SQUARE_SIZE) < raycasting->data->len_line[(int)(xy->y / SQUARE_SIZE)] && \
-	raycasting->data->map[(int)(xy->y / SQUARE_SIZE)][(int)(xy->x / SQUARE_SIZE)] != '1')
+	(raycasting->data->map[(int)(xy->y / SQUARE_SIZE)][(int)(xy->x / SQUARE_SIZE)] != '1'))
 	{
 		xy->x += delta_depth;
 		xy->y += SQUARE_SIZE;

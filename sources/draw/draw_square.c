@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   draw_square.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: cllovio <cllovio@student.42.fr>            +#+  +:+       +#+        */
+/*   By: cllovio <cllovio@student.42lyon.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/09 14:20:31 by cllovio           #+#    #+#             */
-/*   Updated: 2023/10/18 09:28:43 by cllovio          ###   ########.fr       */
+/*   Updated: 2023/10/18 15:25:01 by cllovio          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,8 +31,7 @@ void	draw_square(t_draw *draw, int x, int y, int color)
 		x = x_value;
 		while (i < size)
 		{
-			if ((j != 0 && i != 0 && j != size - 1 && i != size -1))
-				my_mlx_pixel_put(draw, x, y, color);
+			my_mlx_pixel_put(draw, x, y, color);
 			x++;
 			i++;
 		}

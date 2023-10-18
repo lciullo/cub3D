@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   quit.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: cllovio <cllovio@student.42.fr>            +#+  +:+       +#+        */
+/*   By: cllovio <cllovio@student.42lyon.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/09 14:43:32 by cllovio           #+#    #+#             */
-/*   Updated: 2023/10/17 09:47:26 by cllovio          ###   ########.fr       */
+/*   Updated: 2023/10/18 15:45:09 by cllovio          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,6 +14,8 @@
 
 int	quit_game_error_image(t_data *data)
 {
+	if (data->len_line)
+		free(data->len_line);
 	secure_free_array(data->map, data->size_map);
 	free_textures(data);
 	if (data->win)

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   structure.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: cllovio <cllovio@student.42.fr>            +#+  +:+       +#+        */
+/*   By: cllovio <cllovio@student.42lyon.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/03 10:17:09 by lciullo           #+#    #+#             */
-/*   Updated: 2023/10/17 12:37:18 by cllovio          ###   ########.fr       */
+/*   Updated: 2023/10/18 16:32:57 by cllovio          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -84,4 +84,7 @@ void	init_struct_raycasting(t_raycasting *raycasting, \
 	raycasting->distance = 0;
 	raycasting->draw = draw;
 	raycasting->data = data;
+	raycasting->opp = SIZE_X / 2;
+	raycasting->adj = raycasting->opp / tan(M_PI / 6);
+	raycasting->angle = (M_PI / 6) + data->angle;
 }
