@@ -6,30 +6,16 @@
 # include "../library/headers/library.h"
 # include "../mlx/mlx_linux/mlx.h"
 # include "../mlx/mlx_mac/mlx.h"
-
+# include <math.h>
 # include "../mlx/mlx_linux/mlx_int.h"
-/*======================= COULEUR =======================*/
 
+/*======================= DEFINE =======================*/
 # define END "\033[0m"
 # define RED "\033[1;31m"
 
 # ifndef BUFFER_SIZE
 # define BUFFER_SIZE 1
 # endif
-
-/*======================= ENUMERATION =======================*/
-
-enum {
-	SUCCESS,
-	FAILURE,
-	ERROR = -1,
-};
-
-enum {
-	MLX,
-};
-
-/*======================= DEFINE =======================*/
 
 # ifdef __linux__
 	# define LEFT_KEY	65361
@@ -60,6 +46,36 @@ enum {
 # define ON_MOUSEMOVE	6
 # define ON_EXPOSE		12
 # define ON_DESTROY		17
+
+# define SIZE_X				1920
+# define SIZE_Y				1080
+# define SQUARE_SIZE		32
+# define IMG_SIZE			256
+
+# define H_WHITE			0xffffff
+# define H_BLACK			0x000000
+# define H_RED				0xff0000
+# define H_GREEN			0x00ff00
+# define H_DARKGREEN		0x01452c
+# define H_BLUE				0x0000ff
+# define H_YELLOW			0xffff00
+# define H_ORANGE			0xffa500
+# define H_PINK				0xffc0cb
+# define H_PURPLE			0x800080
+# define H_GREY				0x808080
+
+/*======================= ENUMERATION =======================*/
+
+enum {
+	SUCCESS,
+	FAILURE,
+	ERROR = -1,
+};
+
+enum {
+	MLX,
+};
+
 
 /*======================= STRUCTURES =======================*/
 
@@ -146,9 +162,113 @@ typedef struct s_parsing {
 	t_draw		texture_ea;
 }	t_parsing;
 
+typedef struct s_raycasting {
+	t_data	*data;
+	t_draw	*draw;
+	float	cos_angle;
+	float	sin_angle;
+	float	shift;
+	double	adj;
+	double	opp;
+	double	angle;
+	double	distance;
+	int		x;
+}	t_raycasting;
 
-# include "lisa.h"
-# include "clem.h"
-# include "../library/headers/library.h"
+//===================== PARSING =====================
+
+int		parsing(char *file, t_data *data, t_parsing *utils);
+
+//==== File ====
+
+int		type_file_check(char *file);
+int		ft_open(char *path);
+int		is_empty_map(char *file, char *line);
+
+//==== Map ====
+
+// --- Utils map ---
+int		is_map(char *line);
+int		is_empty_line(char *line);
+int		is_valid(char c);
+char	**ft_copy_map(t_data *data);
+
+// --- Fill map ---
+int		get_size_map(char *path, t_data *data, char *line);
+int		fill_map(char *path, t_data *data, char *line);
+int		fill_len_line_array(t_data *data);
+
+//--- Is valid map ---
+int		is_one_player(t_data *data, t_parsing *utils);
+
+//--- Get position ---
+void	get_player_position(t_data *data);
+
+//--- Is Map Closed ---
+int		is_map_closed(t_data *data);
+int		check_around(t_data *data, int y, int x, char **copy);
+int		check_up(t_data *data, int y, int x, char **copy);
+int		check_down(t_data *data, int y, int x, char **copy);
+int		check_left(int y, int x, char **copy);
+int		check_right(t_data *data, int y, int x, char **copy);
+int		move_on_map(t_data *data, int y, int x, char **copy);
+
+//==== Textures ====
+
+// --- Read map ---
+int		read_to_get_asset(char *path, t_parsing *utils, t_data *data);
+int		is_right_asset_number(char *path, t_parsing *utils);
+int		type_texture_check(t_parsing *utils, t_data *data);
+int		asset_line_len(char *s);
+char	*copy_asset(char *texture, char *s);
+int		get_colors(t_parsing *utils, t_data *data);
+
+// --- Free textures ---
+
+void	free_textures(t_data *data);
+void	clean_gnl(int fd, char *line);
+void	free_asset(t_parsing *utils, t_data *data);
+void	free_texture(char *texture);
+void	free_all_colors(t_parsing *utils);
+
+//======================= GAME =======================
+
+int		quit_game_error_image(t_data *data);
+
+void	draw_game(t_raycasting *raycasting, double distance, double angle, \
+		int i);
+float	float_modulo(float nbr, int div);
+int		get_pixel_ns(long size_wall, int *y, t_raycasting *raycasting);
+int		get_pixel_we(long size_wall, int *y, t_raycasting *raycasting);
+
+void	draw_square(t_draw *draw, int x, int y, int color);
+
+void	my_mlx_pixel_put(t_draw *draw, int x, int y, int color);
+int		my_mlx_pixel_get(t_draw *img, int x, int y);
+
+void	hook(t_data *data);
+
+int		launch_game(t_data *data);
+
+void	mini_map(t_data *data, t_draw *draw);
+
+void	move_up(t_data *data);
+void	move_down(t_data *data);
+void	move_left(t_data *data);
+void	move_right(t_data *data);
+
+void	raycasting(t_data *data, t_draw *draw);
+
+int		render_next_frame(t_data *data);
+
+int		set_start_value(t_data *data);
+
+void	print_error_mlx(void);
+
+int		quit_game(t_data *data);
+
+void	init_struct(t_data *data, t_parsing *utils);
+void	init_struct_raycasting(t_raycasting *raycasting, t_data *data, \
+		t_draw *draw);
 
 #endif

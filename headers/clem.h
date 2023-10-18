@@ -3,17 +3,17 @@
 /*                                                        :::      ::::::::   */
 /*   clem.h                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: cllovio <cllovio@student.42.fr>            +#+  +:+       +#+        */
+/*   By: lciullo <lciullo@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/09 14:44:54 by cllovio           #+#    #+#             */
-/*   Updated: 2023/10/17 15:07:50 by cllovio          ###   ########.fr       */
+/*   Updated: 2023/10/18 12:26:39 by lciullo          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef CLEM_H
 # define CLEM_H
 
-# include <math.h>
+/*# include <math.h>
 
 # define SIZE_X				1920
 # define SIZE_Y				1080
@@ -45,56 +45,56 @@ typedef struct s_raycasting {
 	int		x;
 }	t_raycasting;
 
-/*======================= PROTOTYPES =======================*/
+======================= PROTOTYPES =======================
 
 int	quit_game_error_image(t_data *data);
 
-/* ---- draw/draw_game.c ----*/
+---- draw/draw_game.c ---
 void	draw_game(t_raycasting *raycasting, double distance, double angle, \
 		int i);
 float	float_modulo(float nbr, int div);
 int			get_pixel_ns(long size_wall, int *y, t_raycasting *raycasting);
 int			get_pixel_we(long size_wall, int *y, t_raycasting *raycasting);
-/* ---- draw/draw_square.c ----*/
+---- draw/draw_square.c ----
 void	draw_square(t_draw *draw, int x, int y, int color);
 
-/* ---- draw/my_mlx_pixel_put.c ----*/
+---- draw/my_mlx_pixel_put.c ----
 void	my_mlx_pixel_put(t_draw *draw, int x, int y, int color);
 int		my_mlx_pixel_get(t_draw *img, int x, int y);
 
-/* ---- game/hook.c ----*/
+ ---- game/hook.c ----
 void	hook(t_data *data);
 
-/* ---- game/launch_mlx.c ----*/
+ ---- game/launch_mlx.c ----
 int		launch_game(t_data *data);
 
-/* ---- game/mini_map.c ----*/
+ ---- game/mini_map.c ----
 void	mini_map(t_data *data, t_draw *draw);
 
-/* ---- game/move.c ----*/
+ ---- game/move.c ----
 void	move_up(t_data *data);
 void	move_down(t_data *data);
 void	move_left(t_data *data);
 void	move_right(t_data *data);
 
-/* ---- game/raycasting.c ----*/
+ ---- game/raycasting.c ----
 void	raycasting(t_data *data, t_draw *draw);
 
-/* ---- game/render_next_frame.c ----*/
+ ---- game/render_next_frame.c ----
 int		render_next_frame(t_data *data);
 
-/* ---- game/set_start_value.c ----*/
+ ---- game/set_start_value.c ----
 int		set_start_value(t_data *data);
 
-/* ---- print_eroor.c ----*/
+---- print_eroor.c ---
 void	print_error_mlx(void);
 
-/* ---- quit.c ----*/
+ ---- quit.c ----
 int		quit_game(t_data *data);
 
-/* ---- structure.c ----*/
+---- structure.c ----
 void	init_struct(t_data *data, t_parsing *utils);
 void	init_struct_raycasting(t_raycasting *raycasting, t_data *data, \
 		t_draw *draw);
-
+*/
 #endif

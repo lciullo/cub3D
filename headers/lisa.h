@@ -6,14 +6,14 @@
 /*   By: lciullo <lciullo@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/03 09:58:31 by lciullo           #+#    #+#             */
-/*   Updated: 2023/10/10 13:35:05 by lciullo          ###   ########.fr       */
+/*   Updated: 2023/10/18 12:31:52 by lciullo          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef LISA_H
 # define LISA_H
 
-//===================== PARSING =====================
+/*//===================== PARSING =====================
 
 int		parsing(char *file, t_data *data, t_parsing *utils);
 
@@ -67,5 +67,5 @@ void	free_textures(t_data *data);
 void	clean_gnl(int fd, char *line);
 void	free_asset(t_parsing *utils, t_data *data);
 void	free_texture(char *texture);
-void	free_all_colors(t_parsing *utils);
+void	free_all_colors(t_parsing *utils);*/
 #endif
