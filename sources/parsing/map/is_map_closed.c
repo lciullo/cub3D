@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   is_map_closed.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lciullo <lciullo@student.42.fr>            +#+  +:+       +#+        */
+/*   By: cllovio <cllovio@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/03 09:10:54 by lciullo           #+#    #+#             */
-/*   Updated: 2023/10/10 13:26:16 by lciullo          ###   ########.fr       */
+/*   Updated: 2023/10/18 09:44:44 by cllovio          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,8 +36,8 @@ int	is_map_closed(t_data *data)
 		return (FAILURE);
 	}
 	secure_free_array(copy_map, data->size_map);
-	if (data->len_line)
-		free(data->len_line);
+	// if (data->len_line)
+	// 	free(data->len_line);
 	return (SUCCESS);
 }
 

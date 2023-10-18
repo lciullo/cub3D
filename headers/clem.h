@@ -6,7 +6,7 @@
 /*   By: cllovio <cllovio@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/09 14:44:54 by cllovio           #+#    #+#             */
-/*   Updated: 2023/10/17 15:07:50 by cllovio          ###   ########.fr       */
+/*   Updated: 2023/10/18 11:32:53 by cllovio          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -96,5 +96,7 @@ int		quit_game(t_data *data);
 void	init_struct(t_data *data, t_parsing *utils);
 void	init_struct_raycasting(t_raycasting *raycasting, t_data *data, \
 		t_draw *draw);
+double	horizontal_col(t_raycasting *raycasting, t_pointf *xy);
+double	vertical_col(t_raycasting *raycasting, t_pointf *xy);
 
 #endif
