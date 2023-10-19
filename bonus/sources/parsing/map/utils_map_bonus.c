@@ -6,7 +6,7 @@
 /*   By: lciullo <lciullo@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/03 09:13:49 by lciullo           #+#    #+#             */
-/*   Updated: 2023/10/18 16:15:58 by lciullo          ###   ########.fr       */
+/*   Updated: 2023/10/18 17:48:52 by lciullo          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,7 +46,7 @@ int	is_empty_line(char *line)
 	count = 0;
 	while (line[i])
 	{
-		if ((line[i] == '\n') || (line[i] == ' '))
+		if ((line[i] == '\n') || (line[i] == ' ') || (line[i] == '\t'))
 			count++;
 		i++;
 	}

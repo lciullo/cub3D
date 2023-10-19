@@ -1,15 +1,3 @@
-# **************************************************************************** #
-#                                                                              #
-#                                                         :::      ::::::::    #
-#    Makefile                                           :+:      :+:    :+:    #
-#                                                     +:+ +:+         +:+      #
-#    By: cllovio <cllovio@student.42lyon.fr>        +#+  +:+       +#+         #
-#                                                 +#+#+#+#+#+   +#+            #
-#    Created: 2023/10/18 12:33:09 by lciullo           #+#    #+#              #
-#    Updated: 2023/10/19 09:22:57 by cllovio          ###   ########.fr        #
-#                                                                              #
-# **************************************************************************** #
-
 # ---- Variables ---- #
 
 NAME			=	cub3D
@@ -51,6 +39,7 @@ MANDATORY		=	$(DIR_MANDATORY)main.c \
 					$(DIR_MANDATORY)parsing/asset/fill_asset.c \
 					$(DIR_MANDATORY)parsing/asset/get_color.c \
 					$(DIR_MANDATORY)parsing/asset/asset_utils.c \
+					$(DIR_MANDATORY)parsing/asset/copy_asset_utils.c \
 					$(DIR_MANDATORY)parsing/clean/clean_parsing.c \
 					$(DIR_MANDATORY)draw/draw_game.c \
 					$(DIR_MANDATORY)draw/get_pixel_textures.c \
@@ -91,6 +80,7 @@ BONUS			=	$(DIR_BONUS)main_bonus.c \
 					$(DIR_BONUS)parsing/asset/fill_asset_bonus.c \
 					$(DIR_BONUS)parsing/asset/get_color_bonus.c \
 					$(DIR_BONUS)parsing/asset/asset_utils_bonus.c \
+					$(DIR_BONUS)parsing/asset/copy_asset_utils_bonus.c \
 					$(DIR_BONUS)parsing/clean/clean_parsing_bonus.c \
 					$(DIR_BONUS)draw/draw_game_bonus.c \
 					$(DIR_BONUS)draw/get_pixel_textures_bonus.c \
@@ -111,9 +101,9 @@ DIR_OBJS	    =	.objs/
 # ---- Flags ---- #
 
 ifeq ($(R_BONUS), no)
-CFLAGS		=	-Wall -Wextra -Werror -O3 -g3 -Wno-deprecated-declarations -I $(DIR_LIB) -I $(DIR_MLX) -I $(DIR_HEADERS)
+CFLAGS		=	-Wall -Wextra -Werror -O3  -Wno-deprecated-declarations -g3	-fsanitize=address -I $(DIR_LIB) -I $(DIR_MLX) -I $(DIR_HEADERS)
 else
-CFLAGS		=	-Wall -Wextra -Werror -O3 -g3 -Wno-deprecated-declarations -I $(DIR_LIB) -I $(DIR_MLX) -I $(DIR_H_BONUS)
+CFLAGS		=	-Wall -Wextra -Werror -O3  -Wno-deprecated-declarations -g3	-fsanitize=address -I $(DIR_LIB) -I $(DIR_MLX) -I $(DIR_H_BONUS)
 endif
 
 # ---- MLX ---- #
