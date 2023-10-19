@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   get_next_line_utils.c                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: cllovio <cllovio@student.42.fr>            +#+  +:+       +#+        */
+/*   By: lciullo <lciullo@student.42lyon.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/10 12:49:35 by cllovio           #+#    #+#             */
-/*   Updated: 2023/09/13 17:41:47 by cllovio          ###   ########.fr       */
+/*   Updated: 2023/10/19 16:20:12 by lciullo          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,13 +22,11 @@ size_t	ft_strlen_gnl(char *s)
 	return (i);
 }
 
-char	*ft_strjoin_gnl(char *stash, char *buffer)
+char	*ft_strjoin_gnl(char *stash, char *buffer, int i)
 {
-	int		i;
 	int		k;
 	char	*new_s;
 
-	i = 0;
 	k = 0;
 	if (!(stash))
 	{
@@ -39,7 +37,8 @@ char	*ft_strjoin_gnl(char *stash, char *buffer)
 	}
 	if (!(buffer))
 		return (free(stash), NULL);
-	new_s = malloc(sizeof(char) * (ft_strlen_gnl(stash) + ft_strlen_gnl(buffer) + 1));
+	new_s = malloc(sizeof(char) * (ft_strlen_gnl(stash) \
+	+ ft_strlen_gnl(buffer) + 1));
 	if (!new_s)
 		return (free(stash), NULL);
 	while (stash[i])
@@ -48,8 +47,7 @@ char	*ft_strjoin_gnl(char *stash, char *buffer)
 	while (buffer[i])
 		new_s[k++] = buffer[i++];
 	new_s[k] = '\0';
-	free(stash);
-	return (new_s);
+	return (free(stash), new_s);
 }
 
 char	*ft_strdup_gnl(char *buffer)

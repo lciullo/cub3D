@@ -1,23 +1,23 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   raycasting.c                                       :+:      :+:    :+:   */
+/*   raycasting_bonus.c                                 :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: cllovio <cllovio@student.42lyon.fr>        +#+  +:+       +#+        */
+/*   By: lciullo <lciullo@student.42lyon.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/09 14:36:07 by cllovio           #+#    #+#             */
-/*   Updated: 2023/10/19 11:15:10 by cllovio          ###   ########.fr       */
+/*   Updated: 2023/10/19 15:28:20 by lciullo          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "cub3D.h"
+#include "cub3D_bonus.h"
 
 static void	init_angle_struct_raycasting(t_raycasting *raycasting, \
 			t_data *data, t_pointf *xy_vert, t_pointf *xy_hori);
 static void	draw_horizontal_collision(t_raycasting *raycasting, t_pointf *xy, \
 			double distance, int i);
-static void	draw_vertical_collision(t_raycasting *raycasting, t_pointf *xy, \
-			double distance, int i);
+static void	draw_vertical_collision(t_raycasting *raycasting, \
+			t_pointf *xy, double distance, int i);
 
 void	raycasting(t_data *data, t_draw *draw, int i)
 {

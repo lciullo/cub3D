@@ -3,17 +3,17 @@
 /*                                                        :::      ::::::::   */
 /*   structure_bonus.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: cllovio <cllovio@student.42lyon.fr>        +#+  +:+       +#+        */
+/*   By: lciullo <lciullo@student.42lyon.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/03 10:17:09 by lciullo           #+#    #+#             */
-/*   Updated: 2023/10/19 10:58:56 by cllovio          ###   ########.fr       */
+/*   Updated: 2023/10/19 15:46:33 by lciullo          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3D_bonus.h"
 
-static void	init_struct_data(t_data *data);
 static void	init_struct_parsing(t_parsing *utils);
+static void	init_struct_data(t_data *data);
 static void	init_struct_key_hook(t_data *data);
 
 void	init_struct(t_data *data, t_parsing *utils)
@@ -44,8 +44,8 @@ static void	init_struct_data(t_data *data)
 	data->size_map = 0;
 	data->len_line = 0;
 	data->gap = 10;
-	data->x_pers = 0;
-	data->y_pers = 0;
+	data->x_p = 0;
+	data->y_p = 0;
 	data->celling = 0;
 	data->floor = 0;
 	data->px_map = 0;
@@ -57,10 +57,10 @@ static void	init_struct_data(t_data *data)
 	data->path.west = NULL;
 	data->path.east = NULL;
 	data->path.south = NULL;
-	data->N = false;
-	data->S = false;
-	data->W = false;
-	data->E = false;
+	data->direction.n = false;
+	data->direction.s = false;
+	data->direction.w = false;
+	data->direction.e = false;
 	data->horizontal = false;
 }
 
@@ -73,15 +73,18 @@ static void	init_struct_key_hook(t_data *data)
 	data->key_hook.move_left = 0;
 	data->key_hook.move_right = 0;
 	data->key_hook.escape = 0;
+	data->key_hook.left_mouse = 0;
+	data->key_hook.right_mouse = 0;
+	data->key_hook.mini_map = 1;
 }
 
 void	init_struct_raycasting(t_raycasting *raycasting, \
 		t_data *data, t_draw *draw)
 {
-	raycasting->adj = 0;
-	raycasting->opp = 0;
-	raycasting->angle = 0;
 	raycasting->distance = 0;
 	raycasting->draw = draw;
 	raycasting->data = data;
+	raycasting->opp = HALF_WIDTH;
+	raycasting->adj = raycasting->opp / tan(M_PI / 6);
+	raycasting->angle = (M_PI / 6) + data->angle;
 }

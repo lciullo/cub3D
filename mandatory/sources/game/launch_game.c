@@ -6,7 +6,7 @@
 /*   By: cllovio <cllovio@student.42lyon.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/09 14:31:19 by cllovio           #+#    #+#             */
-/*   Updated: 2023/10/19 11:17:35 by cllovio          ###   ########.fr       */
+/*   Updated: 2023/10/19 13:14:17 by cllovio          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,7 +26,7 @@ static int	init_mlx(t_data *data)
 {
 	data->mlx = mlx_init();
 	if (data->mlx == NULL)
-		return (print_error_mlx(), quit_game(data), FAILURE);
+		return (print_error_mlx(), quit_game_error_image(data), FAILURE);
 	if (set_start_value(data) == FAILURE)
 		return (FAILURE);
 	data->win = mlx_new_window(data->mlx, WIDTH, HEIGHT, "cubi_rose");

@@ -3,17 +3,17 @@
 /*                                                        :::      ::::::::   */
 /*   render_next_frame_bonus.c                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: cllovio <cllovio@student.42lyon.fr>        +#+  +:+       +#+        */
+/*   By: lciullo <lciullo@student.42lyon.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/09 14:38:18 by cllovio           #+#    #+#             */
-/*   Updated: 2023/10/19 11:17:23 by cllovio          ###   ########.fr       */
+/*   Updated: 2023/10/19 16:06:19 by lciullo          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3D_bonus.h"
 
 static int	init_image(t_data *data, t_draw *draw);
-static void	key_hook(t_data *data);
+static void	key_hook(t_data *data, t_draw *draw);
 
 int	render_next_frame(t_data *data)
 {
@@ -21,9 +21,11 @@ int	render_next_frame(t_data *data)
 
 	if (init_image(data, &draw) == FAILURE)
 		return (FAILURE);
-	key_hook(data);
-	raycasting(data, &draw);
-	mini_map(data, &draw);
+	key_hook(data, &draw);
+	mouse_move(data);
+	raycasting(data, &draw, 1);
+	if (data->key_hook.mini_map == 1)
+		mini_map(data, &draw);
 	mlx_put_image_to_window(data->mlx, data->win, draw.img, 0, 0);
 	mlx_destroy_image(data->mlx, draw.img);
 	mlx_do_sync(data->mlx);
@@ -45,29 +47,24 @@ static int	init_image(t_data *data, t_draw *draw)
 	return (SUCCESS);
 }
 
-static void	key_hook(t_data *data)
+static void	key_hook(t_data *data, t_draw *draw)
 {
 	if (data->key_hook.escape == 1)
 	{
+		mlx_destroy_image(data->mlx, draw->img);
 		quit_game(data);
 		return ;
 	}
 	if (data->key_hook.move_up == 1)
-		move_up(data);
+		move_front(data);
 	if (data->key_hook.move_left == 1)
 		move_left(data);
 	if (data->key_hook.move_down == 1)
-		move_down(data);
+		move_back(data);
 	if (data->key_hook.move_right == 1)
 		move_right(data);
 	if (data->key_hook.rotate_left == 1)
-		data->angle += M_PI / 36;
+		data->angle += M_PI / 64;
 	if (data->key_hook.rotate_right == 1)
-		data->angle -= M_PI / 36;
+		data->angle -= M_PI / 64;
 }
-
-	// if (data->angle < 0)
-		// 	data->angle = 2 * M_PI;
-
-	// if (data->angle > 2 * M_PI)
-		// 	data->angle = 0;

@@ -6,7 +6,7 @@
 /*   By: cllovio <cllovio@student.42lyon.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/03 09:11:23 by lciullo           #+#    #+#             */
-/*   Updated: 2023/10/19 11:05:14 by cllovio          ###   ########.fr       */
+/*   Updated: 2023/10/19 12:25:27 by cllovio          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -73,8 +73,8 @@ void	get_player_position(t_data *data)
 
 static	void	fill_player_directions(t_data *data, int y, int x)
 {
-	data->y_pers = y;
-	data->x_pers = x;
+	data->y_p = y;
+	data->x_p = x;
 	if (data->map[y][x] == 'N')
 		data->direction.n = TRUE;
 	else if (data->map[y][x] == 'S')

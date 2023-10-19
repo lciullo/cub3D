@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   get_next_line.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: cllovio <cllovio@student.42.fr>            +#+  +:+       +#+        */
+/*   By: lciullo <lciullo@student.42lyon.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/10 12:49:46 by cllovio           #+#    #+#             */
-/*   Updated: 2023/09/13 17:41:55 by cllovio          ###   ########.fr       */
+/*   Updated: 2023/10/19 16:19:47 by lciullo          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,7 +26,7 @@ char	*get_next_line(int fd)
 	if (read(fd, NULL, 0) == -1)
 		return (NULL);
 	if (ft_strlen_gnl(buffer) != 0)
-	{	
+	{
 		stash = ft_strdup_gnl(buffer);
 		if (!(stash))
 			return (NULL);
@@ -55,7 +55,7 @@ char	*ft_read(int fd, char *buffer, char *stash)
 		if (read_bytes == 0)
 			buffer[0] = '\0';
 		buffer[read_bytes] = '\0';
-		stash = ft_strjoin_gnl(stash, buffer);
+		stash = ft_strjoin_gnl(stash, buffer, 0);
 		if (!(stash))
 			return (NULL);
 	}
@@ -99,12 +99,6 @@ char	*ft_new_buffer(char	*buffer)
 	return (buffer);
 }
 
-// Dans mon so_long j'avas modifié mon gnl de manière à que si il y a un \n a
-//la fin de la ligne il ne soit pas dans le char * renvoyé par le programme
-
-// Actuellement c'est un gnl normal
-// Si tu veux le remodifié comme pour mon so_long tu as juste a effacé les
-// lignes 116, 117, 118, 127, 128, 129, 130, 131
 char	*ft_full_line(char *stash, int i, int j)
 {
 	char	*line;

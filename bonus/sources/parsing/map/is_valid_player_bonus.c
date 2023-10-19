@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   is_valid_player_bonus.c                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: cllovio <cllovio@student.42lyon.fr>        +#+  +:+       +#+        */
+/*   By: lciullo <lciullo@student.42lyon.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/03 09:11:23 by lciullo           #+#    #+#             */
-/*   Updated: 2023/10/19 10:44:27 by cllovio          ###   ########.fr       */
+/*   Updated: 2023/10/19 15:29:34 by lciullo          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -73,14 +73,14 @@ void	get_player_position(t_data *data)
 
 static	void	fill_player_directions(t_data *data, int y, int x)
 {
-	data->y_pers = y;
-	data->x_pers = x;
+	data->y_p = y;
+	data->x_p = x;
 	if (data->map[y][x] == 'N')
-		data->direction->N = TRUE;
+		data->direction.n = TRUE;
 	else if (data->map[y][x] == 'S')
-		data->direction->S = TRUE;
+		data->direction.s = TRUE;
 	else if (data->map[y][x] == 'E')
-		data->direction->E = TRUE;
+		data->direction.e = TRUE;
 	else if (data->map[y][x] == 'W')
-		data->direction->W = TRUE;
+		data->direction.w = TRUE;
 }

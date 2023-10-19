@@ -1,31 +1,29 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main_bonus.c                                       :+:      :+:    :+:   */
+/*   mouse_move_bonus.c                                 :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: lciullo <lciullo@student.42lyon.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/10/19 13:05:59 by cllovio           #+#    #+#             */
-/*   Updated: 2023/10/19 15:29:52 by lciullo          ###   ########.fr       */
+/*   Created: 2023/10/19 16:02:43 by lciullo           #+#    #+#             */
+/*   Updated: 2023/10/19 16:08:04 by lciullo          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3D_bonus.h"
 
-int	main(int ac, char **av)
+void	mouse_move(t_data *data)
 {
-	t_data		data;
-	t_parsing	utils;	
-
-	if (ac != 2)
+	if (data->key_hook.left_mouse == 1)
 	{
-		ft_dprintf(2, "Error\nWrong number of arguments\n");
-		return (FAILURE);
+		data->angle += M_PI / 64;
+		data->key_hook.left_mouse = 0;
+		mlx_mouse_move(data->mlx, data->win, HALF_WIDTH, HALF_HEIGHT);
 	}
-	init_struct(&data, &utils);
-	if (parsing(av[1], &data, &utils) == FAILURE)
-		return (FAILURE);
-	if (launch_game(&data) == FAILURE)
-		return (FAILURE);
-	return (0);
+	else if (data->key_hook.right_mouse == 1)
+	{
+		data->angle -= M_PI / 64;
+		data->key_hook.right_mouse = 0;
+		mlx_mouse_move(data->mlx, data->win, HALF_WIDTH, HALF_HEIGHT);
+	}
 }

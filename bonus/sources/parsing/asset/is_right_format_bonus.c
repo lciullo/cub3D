@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   is_right_format_bonus.c                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: cllovio <cllovio@student.42lyon.fr>        +#+  +:+       +#+        */
+/*   By: lciullo <lciullo@student.42lyon.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/10/18 14:09:10 by lciullo           #+#    #+#             */
-/*   Updated: 2023/10/19 10:58:57 by cllovio          ###   ########.fr       */
+/*   Created: 2023/10/04 09:08:15 by lciullo           #+#    #+#             */
+/*   Updated: 2023/10/19 15:29:08 by lciullo          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 

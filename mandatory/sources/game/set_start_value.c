@@ -6,7 +6,7 @@
 /*   By: cllovio <cllovio@student.42lyon.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/09 14:35:08 by cllovio           #+#    #+#             */
-/*   Updated: 2023/10/19 13:01:48 by cllovio          ###   ########.fr       */
+/*   Updated: 2023/10/19 15:04:59 by cllovio          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,8 +17,8 @@ static int	init_texture(t_draw *texture, char *texture_path, void *mlx);
 
 int	set_start_value(t_data *data)
 {
-	data->px_map = (data->x_pers * SQUARE_SIZE) + (SQUARE_SIZE / 2);
-	data->py_map = (data->y_pers * SQUARE_SIZE) + (SQUARE_SIZE / 2);
+	data->px_map = (data->x_p * SQUARE_SIZE) + (SQUARE_SIZE / 2);
+	data->py_map = (data->y_p * SQUARE_SIZE) + (SQUARE_SIZE / 2);
 	if (init_texture(&data->n_texture, data->path.north, data->mlx) == FAILURE)
 		return (quit_game_error_image(data), FAILURE);
 	if (init_texture(&data->s_texture, data->path.south, data->mlx) == FAILURE)
@@ -72,7 +72,7 @@ static int	init_texture(t_draw *texture, char *texture_path, void *mlx)
 	size_1 = IMG_SIZE;
 	image = mlx_xpm_file_to_image(mlx, texture_path, &size_1, &size_1);
 	if (!(image))
-		return (FAILURE);
+		return (print_error_mlx(), FAILURE);
 	if (image->width != IMG_SIZE || image->height != IMG_SIZE)
 	{
 		mlx_destroy_image(mlx, image);
@@ -85,7 +85,10 @@ static int	init_texture(t_draw *texture, char *texture_path, void *mlx)
 		return (print_error_mlx(), FAILURE);
 	texture->addr = mlx_get_data_addr(texture->img, &texture->bits_per_pixel, \
 	&texture->line_length, &texture->endian);
-	if (!(texture->img))
+	if (!(texture->addr))
+	{
+		mlx_destroy_image(mlx, texture->img);
 		return (print_error_mlx(), FAILURE);
+	}
 	return (SUCCESS);
 }

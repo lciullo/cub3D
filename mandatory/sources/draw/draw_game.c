@@ -6,7 +6,7 @@
 /*   By: cllovio <cllovio@student.42lyon.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/09 14:20:24 by cllovio           #+#    #+#             */
-/*   Updated: 2023/10/19 11:18:26 by cllovio          ###   ########.fr       */
+/*   Updated: 2023/10/19 12:58:27 by cllovio          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,23 +30,14 @@ void	draw_game(t_raycasting *raycasting, double distance, double angle, \
 	half_size_wall = size_wall / 2;
 	y = 0;
 	raycasting->x = i;
-	draw_ceilling_and_floor(&y, raycasting, ((HEIGHT >> 1) - half_size_wall), \
+	draw_ceilling_and_floor(&y, raycasting, ((HALF_HEIGHT) - half_size_wall), \
 	raycasting->data->celling);
-	draw_wall(&y, raycasting, ((HEIGHT >> 1) + half_size_wall), size_wall);
+	draw_wall(&y, raycasting, ((HALF_HEIGHT) + half_size_wall), size_wall);
 	draw_ceilling_and_floor(&y, raycasting, HEIGHT, raycasting->data->floor);
 }
 
-float	float_modulo(float nbr, int div)
-{
-	int	i;
-
-	i = nbr / div;
-	nbr -= div * i;
-	return (nbr);
-}
-
 static void	draw_wall(int *y, t_raycasting *raycasting, int y_max, \
-long size_wall)
+			long size_wall)
 {
 	int	color;
 
@@ -62,8 +53,8 @@ long size_wall)
 	}
 }
 
-void	draw_ceilling_and_floor(int *y, t_raycasting *raycasting, int y_max, \
-		int color)
+static void	draw_ceilling_and_floor(int *y, t_raycasting *raycasting, \
+			int y_max, int color)
 {
 	while (*y < y_max)
 	{

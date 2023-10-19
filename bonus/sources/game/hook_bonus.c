@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   hook_bonus.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lciullo <lciullo@student.42.fr>            +#+  +:+       +#+        */
+/*   By: lciullo <lciullo@student.42lyon.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/09 14:33:59 by cllovio           #+#    #+#             */
-/*   Updated: 2023/10/18 16:14:37 by lciullo          ###   ########.fr       */
+/*   Updated: 2023/10/19 16:03:25 by lciullo          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,10 +14,12 @@
 
 static int	key_press(int key_code, t_data *data);
 static int	key_release(int key_code, t_data *data);
+static int	mouse_key_hook(int x, int y, t_data *data);
 
 void	hook(t_data *data)
 {
 	mlx_hook(data->win, ON_DESTROY, 0, quit_game, data);
+	mlx_hook(data->win, 6, 1L << 6, mouse_key_hook, data);
 	mlx_hook(data->win, 2, 1L << 0, key_press, data);
 	mlx_hook(data->win, 3, 1L << 1, key_release, data);
 	mlx_loop_hook(data->mlx, render_next_frame, data);
@@ -40,6 +42,13 @@ static int	key_press(int key_code, t_data *data)
 		data->key_hook.rotate_left = 1;
 	if (key_code == RIGHT_KEY)
 		data->key_hook.rotate_right = 1;
+	if (key_code == M_KEY)
+	{
+		if (data->key_hook.mini_map == 0)
+			data->key_hook.mini_map = 1;
+		else if (data->key_hook.mini_map == 1)
+			data->key_hook.mini_map = 0;
+	}
 	return (SUCCESS);
 }
 
@@ -60,4 +69,14 @@ static int	key_release(int key_code, t_data *data)
 	if (key_code == RIGHT_KEY)
 		data->key_hook.rotate_right = 0;
 	return (SUCCESS);
+}
+
+static int	mouse_key_hook(int x, int y, t_data *data)
+{
+	(void)y;
+	if (x > HALF_WIDTH)
+		data->key_hook.right_mouse = 1;
+	else if (x < HALF_WIDTH)
+		data->key_hook.left_mouse = 1;
+	return (0);
 }

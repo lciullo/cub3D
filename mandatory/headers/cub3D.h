@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub3D.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: cllovio <cllovio@student.42lyon.fr>        +#+  +:+       +#+        */
+/*   By: lciullo <lciullo@student.42lyon.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/19 10:35:58 by cllovio           #+#    #+#             */
-/*   Updated: 2023/10/19 11:24:10 by cllovio          ###   ########.fr       */
+/*   Updated: 2023/10/19 16:05:10 by lciullo          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,11 +59,13 @@
 # define H_GREY			0x808080
 
 # define WIDTH			1920
-# define HALF_WIDTH		WIDTH / 2
+# define HALF_WIDTH		960
 # define HEIGHT			1080
-# define HALF_HEIGHT	HEIGHT / 2
+# define HALF_HEIGHT	540
 # define SQUARE_SIZE	32
 # define IMG_SIZE		256
+# define HIT_BOX		10
+# define GAP			5
 
 /*======================= ENUMERATION =======================*/
 
@@ -134,8 +136,8 @@ typedef struct s_data {
 	int			size_map;
 	int			*len_line;
 	int			gap;
-	int			x_pers;
-	int			y_pers;
+	int			x_p;
+	int			y_p;
 	int			celling;
 	int			floor;
 	void		*mlx;
@@ -173,6 +175,60 @@ typedef struct s_raycasting {
 	float		shift;
 	int			x;
 }	t_raycasting;
+
+//======================= DRAW =======================
+// --- draw_game.c ---
+void	draw_game(t_raycasting *raycasting, double distance, double angle, \
+		int i);
+
+// --- draw_game.c ---
+void	draw_square(t_draw *draw, int x, int y, int color);
+
+// --- get_pixel_textures.c ---
+int		get_pixel_ns(long size_wall, int *y, t_raycasting *raycasting);
+int		get_pixel_we(long size_wall, int *y, t_raycasting *raycasting);
+
+// --- my_mlx_pixel_get.c ---
+int		my_mlx_pixel_get(t_draw *img, int x, int y);
+
+// --- my_mlx_pixel_put.c ---
+void	my_mlx_pixel_put(t_draw *draw, int x, int y, int color);
+
+//======================= GAME/RAYCASTING =======================
+// --- horizontal_col.c ---
+double	horizontal_col(t_raycasting *raycasting, t_pointf *xy);
+
+// --- raycasting.c ---
+void	raycasting(t_data *data, t_draw *draw, int i);
+
+// --- vertical_col.c ---
+double	vertical_col(t_raycasting *raycasting, t_pointf *xy);
+
+//======================= GAME =======================
+// --- check_collision.c ---
+bool	check_collision_y(float map_y, float px_map, char **map);
+bool	check_collision_x(float map_x, float py_map, char **map);
+
+// --- hook.c ---
+void	hook(t_data *data);
+
+// --- launch_game.c ---
+int		launch_game(t_data *data);
+
+// --- mini_map.c ---
+void	mini_map(t_data *data, t_draw *draw);
+
+// --- move.c ---
+void	move_front(t_data *data);
+void	move_back(t_data *data);
+void	move_left(t_data *data);
+void	move_right(t_data *data);
+
+// --- render_next_frame.c ---
+int		render_next_frame(t_data *data);
+
+// --- set_start_value.c ---
+int		set_start_value(t_data *data);
 
 //===================== PARSING =====================
 
@@ -226,46 +282,14 @@ void	free_asset(t_parsing *utils, t_data *data);
 void	free_texture(char *texture);
 void	free_all_colors(t_parsing *utils);
 
-//======================= GAME =======================
-
+//======================= SOURCES =======================
+// --- quit.c ---
+int		quit_game(t_data *data);
 int		quit_game_error_image(t_data *data);
-
-void	draw_game(t_raycasting *raycasting, double distance, double angle, \
-		int i);
-float	float_modulo(float nbr, int div);
-int		get_pixel_ns(long size_wall, int *y, t_raycasting *raycasting);
-int		get_pixel_we(long size_wall, int *y, t_raycasting *raycasting);
-
-void	draw_square(t_draw *draw, int x, int y, int color);
-
-void	my_mlx_pixel_put(t_draw *draw, int x, int y, int color);
-int		my_mlx_pixel_get(t_draw *img, int x, int y);
-
-void	hook(t_data *data);
-
-int		launch_game(t_data *data);
-
-void	mini_map(t_data *data, t_draw *draw);
-
-void	move_up(t_data *data);
-void	move_down(t_data *data);
-void	move_left(t_data *data);
-void	move_right(t_data *data);
-
-void	raycasting(t_data *data, t_draw *draw, int i);
-
-int		render_next_frame(t_data *data);
-
-int		set_start_value(t_data *data);
-
 void	print_error_mlx(void);
 
-int		quit_game(t_data *data);
-
+// --- structures.c ---
 void	init_struct(t_data *data, t_parsing *utils);
-void	init_struct_raycasting(t_raycasting *raycasting, t_data *data, \
-		t_draw *draw);
-double	vertical_col(t_raycasting *raycasting, t_pointf *xy);
-double	horizontal_col(t_raycasting *raycasting, t_pointf *xy);
-
+void	init_struct_raycasting(t_raycasting *raycasting, \
+		t_data *data, t_draw *draw);
 #endif

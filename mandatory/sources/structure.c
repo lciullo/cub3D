@@ -6,14 +6,14 @@
 /*   By: cllovio <cllovio@student.42lyon.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/03 10:17:09 by lciullo           #+#    #+#             */
-/*   Updated: 2023/10/19 11:22:36 by cllovio          ###   ########.fr       */
+/*   Updated: 2023/10/19 12:52:09 by cllovio          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3D.h"
 
-static void	init_struct_data(t_data *data);
 static void	init_struct_parsing(t_parsing *utils);
+static void	init_struct_data(t_data *data);
 static void	init_struct_key_hook(t_data *data);
 
 void	init_struct(t_data *data, t_parsing *utils)
@@ -44,8 +44,8 @@ static void	init_struct_data(t_data *data)
 	data->size_map = 0;
 	data->len_line = 0;
 	data->gap = 10;
-	data->x_pers = 0;
-	data->y_pers = 0;
+	data->x_p = 0;
+	data->y_p = 0;
 	data->celling = 0;
 	data->floor = 0;
 	data->px_map = 0;
@@ -78,9 +78,6 @@ static void	init_struct_key_hook(t_data *data)
 void	init_struct_raycasting(t_raycasting *raycasting, \
 		t_data *data, t_draw *draw)
 {
-	raycasting->adj = 0;
-	raycasting->opp = 0;
-	raycasting->angle = 0;
 	raycasting->distance = 0;
 	raycasting->draw = draw;
 	raycasting->data = data;

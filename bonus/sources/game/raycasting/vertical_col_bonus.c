@@ -1,21 +1,21 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   vertical_col.c                                     :+:      :+:    :+:   */
+/*   vertical_col_bonus.c                               :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: cllovio <cllovio@student.42lyon.fr>        +#+  +:+       +#+        */
+/*   By: lciullo <lciullo@student.42lyon.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/18 15:47:21 by cllovio           #+#    #+#             */
-/*   Updated: 2023/10/19 09:21:02 by cllovio          ###   ########.fr       */
+/*   Updated: 2023/10/19 15:28:24 by lciullo          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "cub3D.h"
+#include "cub3D_bonus.h"
 
 static double	vertical_col_pos(t_raycasting *raycasting, t_pointf *xy);
+static bool		check_wall_vertical_pos(t_data *data, t_pointf *xy);
 static double	vertical_col_neg(t_raycasting *raycasting, t_pointf *xy);
 static bool		check_wall_vertical_neg(t_data *data, t_pointf *xy);
-static bool		check_wall_vertical_pos(t_data *data, t_pointf *xy);
 
 double	vertical_col(t_raycasting *raycasting, t_pointf *xy)
 {
