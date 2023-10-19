@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   quit.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: cllovio <cllovio@student.42.fr>            +#+  +:+       +#+        */
+/*   By: lciullo <lciullo@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/09 14:43:32 by cllovio           #+#    #+#             */
-/*   Updated: 2023/10/17 09:47:26 by cllovio          ###   ########.fr       */
+/*   Updated: 2023/10/18 18:12:34 by lciullo          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,10 +30,14 @@ int	quit_game(t_data *data)
 {
 	secure_free_array(data->map, data->size_map);
 	free_textures(data);
-	mlx_destroy_image(data->mlx, data->N_texture.img);
-	mlx_destroy_image(data->mlx, data->S_texture.img);
-	mlx_destroy_image(data->mlx, data->W_texture.img);
-	mlx_destroy_image(data->mlx, data->E_texture.img);
+	if (data->N_texture.img)
+		mlx_destroy_image(data->mlx, data->N_texture.img);
+	if (data->S_texture.img)
+		mlx_destroy_image(data->mlx, data->S_texture.img);
+	if (data->W_texture.img)
+		mlx_destroy_image(data->mlx, data->W_texture.img);
+	if (data->E_texture.img)
+		mlx_destroy_image(data->mlx, data->E_texture.img);
 	if (data->win)
 		mlx_destroy_window(data->mlx, data->win);
 	if (data->mlx)
