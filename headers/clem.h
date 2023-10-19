@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   clem.h                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: cllovio <cllovio@student.42.fr>            +#+  +:+       +#+        */
+/*   By: cllovio <cllovio@student.42lyon.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/09 14:44:54 by cllovio           #+#    #+#             */
-/*   Updated: 2023/10/18 11:32:53 by cllovio          ###   ########.fr       */
+/*   Updated: 2023/10/19 11:17:24 by cllovio          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,8 +15,8 @@
 
 # include <math.h>
 
-# define SIZE_X				1920
-# define SIZE_Y				1080
+# define WIDTH				1920
+# define HEIGHT				1080
 # define SQUARE_SIZE		32
 # define IMG_SIZE			256
 
