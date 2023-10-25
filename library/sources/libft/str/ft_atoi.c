@@ -3,16 +3,31 @@
 /*                                                        :::      ::::::::   */
 /*   ft_atoi.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: cllovio <cllovio@student.42.fr>            +#+  +:+       +#+        */
+/*   By: lciullo <lciullo@student.42lyon.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/12 17:09:33 by cllovio           #+#    #+#             */
-/*   Updated: 2023/09/12 10:47:40 by cllovio          ###   ########.fr       */
+/*   Updated: 2023/10/19 17:44:22 by lciullo          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "library.h"
 
+static int	convert(const char *str);
+
 int	ft_atoi(const char *str)
+{
+	long	result;
+	int		sign;
+
+	result = 0;
+	sign = 1;
+	if (!str)
+		return (-1);
+	result = convert(str);
+	return ((int)(result * sign));
+}
+
+static int	convert(const char *str)
 {
 	int		i;
 	long	result;

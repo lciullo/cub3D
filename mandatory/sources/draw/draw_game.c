@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   draw_game.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lciullo <lciullo@student.42.fr>            +#+  +:+       +#+        */
+/*   By: cllovio <cllovio@student.42lyon.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/09 14:20:24 by cllovio           #+#    #+#             */
-/*   Updated: 2023/10/18 11:23:49 by lciullo          ###   ########.fr       */
+/*   Updated: 2023/10/19 12:58:27 by cllovio          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,31 +30,18 @@ void	draw_game(t_raycasting *raycasting, double distance, double angle, \
 	half_size_wall = size_wall / 2;
 	y = 0;
 	raycasting->x = i;
-	draw_ceilling_and_floor(&y, raycasting, ((SIZE_Y >> 1) - half_size_wall), \
+	draw_ceilling_and_floor(&y, raycasting, ((HALF_HEIGHT) - half_size_wall), \
 	raycasting->data->celling);
-	draw_wall(&y, raycasting, ((SIZE_Y >> 1) + half_size_wall), size_wall);
-	draw_ceilling_and_floor(&y, raycasting, SIZE_Y, raycasting->data->floor);
-}
-
-float	float_modulo(float nbr, int div)
-{
-	int	i;
-
-	i = nbr / div;
-	nbr -= div * i;
-	return (nbr);
+	draw_wall(&y, raycasting, ((HALF_HEIGHT) + half_size_wall), size_wall);
+	draw_ceilling_and_floor(&y, raycasting, HEIGHT, raycasting->data->floor);
 }
 
 static void	draw_wall(int *y, t_raycasting *raycasting, int y_max, \
-long size_wall)
+			long size_wall)
 {
 	int	color;
-	/*int	x_pixel_get;
-	int	y_pixel_get;*/
 
 	color = 0;
-	/*x_pixel_get = 0;
-	y_pixel_get = 0;*/
 	while (*y <= y_max)
 	{
 		if (raycasting->data->horizontal == true)
@@ -66,8 +53,8 @@ long size_wall)
 	}
 }
 
-void	draw_ceilling_and_floor(int *y, t_raycasting *raycasting, int y_max, \
-		int color)
+static void	draw_ceilling_and_floor(int *y, t_raycasting *raycasting, \
+			int y_max, int color)
 {
 	while (*y < y_max)
 	{

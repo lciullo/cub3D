@@ -6,7 +6,7 @@
 /*   By: lciullo <lciullo@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/04 10:13:38 by lciullo           #+#    #+#             */
-/*   Updated: 2023/10/11 10:40:11 by lciullo          ###   ########.fr       */
+/*   Updated: 2023/10/19 18:33:54 by lciullo          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,6 +46,9 @@ static int	is_valid_color_format(char *color)
 			return (FAILURE);
 		if (color[i] == ',')
 			comma++;
+		if (color[i] == ',' && ((color[i + 1] == ',') \
+			|| (color[i + 1] == '\0')))
+			return (FAILURE);
 		i++;
 	}
 	if (comma != 2)
@@ -83,6 +86,9 @@ static	int	convert_rgb_to_int(char *color, t_parsing *utils, t_data *data)
 
 static int	get_res(t_parsing *utils, int res, char **array, t_data *data)
 {
+	int	i;
+
+	i = 0;
 	utils->r = ft_atoi(array[0]);
 	utils->g = ft_atoi(array[1]);
 	utils->b = ft_atoi(array[2]);
@@ -90,7 +96,13 @@ static int	get_res(t_parsing *utils, int res, char **array, t_data *data)
 		|| (utils->r > 255) || (utils->g > 255) || (utils->b > 255))
 	{
 		ft_dprintf(2, "Error\nAdd only positif interger from 0 to 255\n");
-		secure_free_array(array, 4);
+		while (array[i])
+		{
+			free(array[i]);
+			i++;
+		}
+		free(array);
+		array = NULL;
 		free_asset(utils, data);
 		return (ERROR);
 	}

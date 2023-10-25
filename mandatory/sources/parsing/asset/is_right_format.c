@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   is_right_format.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lciullo <lciullo@student.42.fr>            +#+  +:+       +#+        */
+/*   By: cllovio <cllovio@student.42lyon.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/04 09:08:15 by lciullo           #+#    #+#             */
-/*   Updated: 2023/10/11 09:42:28 by lciullo          ###   ########.fr       */
+/*   Updated: 2023/10/19 10:59:00 by cllovio          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,10 +16,10 @@ static int	check_xpm_format(char *texture);
 
 int	type_texture_check(t_parsing *utils, t_data *data)
 {
-	if ((check_xpm_format(data->north_path) == FAILURE) || \
-		(check_xpm_format(data->south_path) == FAILURE) || \
-		(check_xpm_format(data->west_path) == FAILURE) || \
-		(check_xpm_format(data->east_path) == FAILURE))
+	if ((check_xpm_format(data->path.north) == FAILURE) || \
+		(check_xpm_format(data->path.south) == FAILURE) || \
+		(check_xpm_format(data->path.west) == FAILURE) || \
+		(check_xpm_format(data->path.east) == FAILURE))
 	{
 		free_asset(utils, data);
 		return (FAILURE);

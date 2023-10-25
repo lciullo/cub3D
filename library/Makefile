@@ -56,10 +56,7 @@ SRCS			=	ft_dprintf/ft_dprintf.c\
 					libft/str/ft_strtrim.c \
 					libft/str/ft_substr.c
 
-HEADERS 		=	${INCLUDES}ft_dprintf.h \
-					${INCLUDES}get_next_line.h \
-					${INCLUDES}libft.h \
-					${INCLUDES}library.h
+HEADERS 		=	${INCLUDES}library.h
 
 OBJS			=	${addprefix ${DIR_OBJS},${DIR_SRCS:.c=.o}}
 

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   is_map_closed.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lciullo <lciullo@student.42.fr>            +#+  +:+       +#+        */
+/*   By: cllovio <cllovio@student.42lyon.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/03 09:10:54 by lciullo           #+#    #+#             */
-/*   Updated: 2023/10/10 13:26:16 by lciullo          ###   ########.fr       */
+/*   Updated: 2023/10/19 12:25:27 by cllovio          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,7 +25,7 @@ int	is_map_closed(t_data *data)
 		free_textures(data);
 		return (FAILURE);
 	}
-	if (move_on_map(data, data->y_pers, data->x_pers, copy_map) == FAILURE)
+	if (move_on_map(data, data->y_p, data->x_p, copy_map) == FAILURE)
 	{
 		ft_dprintf(2, "Error\nMap isn't closed\n");
 		secure_free_array(copy_map, data->size_map);
@@ -36,8 +36,6 @@ int	is_map_closed(t_data *data)
 		return (FAILURE);
 	}
 	secure_free_array(copy_map, data->size_map);
-	if (data->len_line)
-		free(data->len_line);
 	return (SUCCESS);
 }
 

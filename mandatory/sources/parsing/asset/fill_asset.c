@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   fill_asset.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lciullo <lciullo@student.42.fr>            +#+  +:+       +#+        */
+/*   By: lciullo <lciullo@student.42lyon.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/03 09:17:32 by lciullo           #+#    #+#             */
-/*   Updated: 2023/10/11 10:43:52 by lciullo          ###   ########.fr       */
+/*   Updated: 2023/10/19 17:41:47 by lciullo          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -115,28 +115,28 @@ static int	get_color(char *s, t_parsing *utils)
 
 static	int	store_direction(char *texture, t_data *data)
 {
-	if (texture && texture[0] == 'N')
+	if (texture && texture[0] == 'N' && texture[1] == 'O')
 	{
-		data->north_path = ft_substr(texture, 2, ft_strlen(texture));
-		if (!data->north_path)
+		data->path.north = ft_substr(texture, 2, ft_strlen(texture));
+		if (!data->path.north)
 			return (FAILURE);
 	}
-	if (texture && texture[0] == 'S')
+	if (texture && texture[0] == 'S' && texture[1] == 'O')
 	{
-		data->south_path = ft_substr(texture, 2, ft_strlen(texture));
-		if (!data->south_path)
+		data->path.south = ft_substr(texture, 2, ft_strlen(texture));
+		if (!data->path.south)
 			return (FAILURE);
 	}
-	if (texture && texture[0] == 'E')
+	if (texture && texture[0] == 'E' && texture[1] == 'A')
 	{
-		data->east_path = ft_substr(texture, 2, ft_strlen(texture));
-		if (!data->east_path)
+		data->path.east = ft_substr(texture, 2, ft_strlen(texture));
+		if (!data->path.east)
 			return (FAILURE);
 	}
-	if (texture && texture[0] == 'W')
+	if (texture && texture[0] == 'W' && texture[1] == 'E')
 	{
-		data->west_path = ft_substr(texture, 2, ft_strlen(texture));
-		if (!data->west_path)
+		data->path.west = ft_substr(texture, 2, ft_strlen(texture));
+		if (!data->path.west)
 			return (FAILURE);
 	}
 	return (SUCCESS);

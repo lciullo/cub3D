@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   clean_asset.c                                      :+:      :+:    :+:   */
+/*   clean_parsing.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lciullo <lciullo@student.42.fr>            +#+  +:+       +#+        */
+/*   By: cllovio <cllovio@student.42lyon.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/09 11:35:28 by lciullo           #+#    #+#             */
-/*   Updated: 2023/10/17 16:05:38 by lciullo          ###   ########.fr       */
+/*   Updated: 2023/10/19 10:59:00 by cllovio          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,25 +14,25 @@
 
 void	free_textures(t_data *data)
 {
-	if (data->north_path != NULL)
+	if (data->path.north != NULL)
 	{
-		free(data->north_path);
-		data->north_path = NULL;
+		free(data->path.north);
+		data->path.north = NULL;
 	}
-	if (data->south_path != NULL)
+	if (data->path.south != NULL)
 	{
-		free(data->south_path);
-		data->south_path = NULL;
+		free(data->path.south);
+		data->path.south = NULL;
 	}
-	if (data->east_path != NULL)
+	if (data->path.east != NULL)
 	{
-		free(data->east_path);
-		data->east_path = NULL;
+		free(data->path.east);
+		data->path.east = NULL;
 	}
-	if (data->west_path != NULL)
+	if (data->path.west != NULL)
 	{
-		free(data->west_path);
-		data->west_path = NULL;
+		free(data->path.west);
+		data->path.west = NULL;
 	}
 }
 
