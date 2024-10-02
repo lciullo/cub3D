@@ -28,15 +28,18 @@ EA ./path_to_east_texture
 
 #### Map layout using characters:
   
-   • `0` for empty space
+  • `0` for empty space
   
   • `1` for walls
   
   • `N`, `S`, `E` or `W` for player starting position and orientation
 
 ## Controls
-•`W`, `A`, `S`, `D`: Move the player
+• `W`, `A`, `S`, `D`: Move the player
+
 • Left/Right arrow keys: Rotate the camera
+
+• `ESC`: Exit the game
 
 ## Credits
 This project was developed by Clémence Llovio and Lisa Ciullo as part of the curriculum at 42 School.
