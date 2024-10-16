@@ -42,4 +42,4 @@ EA ./path_to_east_texture
 • `ESC`: Exit the game
 
 ## Credits
-This project was developed by Clémence Llovio and Lisa Ciullo as part of the curriculum at 42 School.
+This project was developed by Clémence Llovio and Lisa Ciullo as part of the curriculum at 42 School..
