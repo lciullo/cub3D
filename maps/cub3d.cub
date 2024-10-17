@@ -1,8 +1,8 @@
-NO ./textures/north_cubi.xpm
-WE ./textures/west_cubi.xpm
-SO ./textures/south_cubi.xpm
+NO ./textures/sunset1.xpm
+WE ./textures/sunset3.xpm
+SO ./textures/sunset2.xpm
 
-EA ./textures/east_cubi.xpm
+EA ./textures/sunset4.xpm
 
 
             F         51,51,51

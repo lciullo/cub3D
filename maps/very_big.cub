@@ -1,8 +1,8 @@
-WE ./textures/west_cubi.xpm
-SO ./textures/south_cubi.xpm
+WE ./textures/sunset1.xpm
+SO ./textures/sunset2.xpm
 
-EA   ./textures/east_cubi.xpm
-NO   ./textures/north_cubi.xpm
+EA   ./textures/sunset3.xpm
+NO   ./textures/sunset4.xpm
 F   147, 112, 219
 C   135,  206, 235
 

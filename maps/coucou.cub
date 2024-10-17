@@ -1,7 +1,7 @@
-NO ./textures/north_cubi.xpm
-SO ./textures/south_cubi.xpm
-EA ./textures/east_cubi.xpm
-WE ./textures/west_cubi.xpm
+NO ./textures/sunset1.xpm
+SO ./textures/sunset2.xpm
+EA ./textures/sunset4.xpm
+WE ./textures/sunset3.xpm
 
 C 149,242,223
 F 229,241,217
