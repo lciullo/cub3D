@@ -1,4 +1,4 @@
-<h1 align="center">Cub3D</h1>
+<h1 align="center">⬛ Cub3D</h1>
 <p align="center">
   <img src="https://img.shields.io/badge/C-00599C?style=for-the-badge&logo=c&logoColor=white" alt="C"/>
   <img src="https://img.shields.io/badge/42-000000?style=for-the-badge&logo=42&logoColor=white" alt="42"/>
