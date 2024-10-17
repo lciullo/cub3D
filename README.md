@@ -1,7 +1,8 @@
 # Cub3D
+![perspective2](https://github.com/user-attachments/assets/91c5094b-7fea-45cf-9436-cc6b2ff57b45) 
+![perspective6](https://github.com/user-attachments/assets/94fdecee-2f2f-43e2-96b5-2023f4428531)
+
 Cub3D is a project that aims to create a basic 3D game engine using raycasting techniques. Inspired by games like Wolfenstein 3D, this project deepens understanding of graphics programming, game development basics, and efficient rendering techniques. The engine renders a 3D-like environment from a 2D map, allowing the player to navigate through the space.
-![perspective](https://github.com/user-attachments/assets/c9f8eb34-8f34-4ab2-acc5-62db5edee36e)
-![perspective2](https://github.com/user-attachments/assets/8c7e28f4-4b2a-4d8a-8cb1-aa226a8cf53d)
 
 ## Installation
 1. CLone the repository:
