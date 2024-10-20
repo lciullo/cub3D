@@ -99,7 +99,7 @@ C 225,30,0     # Ceiling color
 - Ensure smooth performance and optimization
 
 ## 🤝 Contributors
-- **Lisa Ciullo** - [@lciullo](https://github.com/YOUR_USERNAME)
+- **Lisa Ciullo** - [@lciullo](https://github.com/lciullo)
 - **Clémence Llovio** - [@clemllovio](https://github.com/clemllovio)
 
 ## 🧠 Learning Outcomes
